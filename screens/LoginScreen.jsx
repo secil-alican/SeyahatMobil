@@ -1,0 +1,20 @@
+import { Alert, StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import AuthForm from "../components/AuthForm";
+import  { loginUser } from "../auth/auth";
+
+export default function LoginScreen({ navigation }) {
+  const [isLogin, setIsLogin] = useState(true);
+
+  const loginHandler = async (email, password) => {
+    try {
+      await loginUser(email, password);
+      Alert.alert("Giriş Başarılı");
+      navigation.navigate("Index");
+    } catch (error) {
+      Alert.alert("Giriş Başarısız!", error.message || "Tekrar deneyiniz!");
+    }
+  };
+
+  return <AuthForm isLogin={isLogin} onAuthanticating={loginHandler} />;
+}
