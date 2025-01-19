@@ -1,63 +1,66 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ExploreScreen from "../screens/ExploreScreen";
+import FavoritesScreen from "../screens/FavoritesScreen";
+import AcountScreen from "./AcountScreen";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+
+
+const Tab = createBottomTabNavigator();
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <View style={styles.imageView}>
-        <ImageBackground
-          source={require("../assets/images/index.jpg")}
-          style={styles.backImage}
-        >
-          <Text style={styles.imageText}>Where do you wanna go?</Text>
-        </ImageBackground>
-      </View>
-      <View style={styles.startView}>
-        <Text style={styles.startText}>Get Started</Text>
-        <AntDesign
-          name="arrowright"
-          size={35}
-          color="black"
-          style={{ marginTop: 15 }}
-        />
-      </View>
-    </View>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        statusBarHidden: true,
+        tabBarActiveTintColor: "#D8A25E",
+
+        tabBarStyle: {
+          position: "absolute",
+          borderRadius: 20,
+          marginVertical: 20,
+          marginHorizontal: 20,
+          backgroundColor: "#343131",
+
+        },
+      }}
+    >
+      <Tab.Screen
+        name="ExploreScreen"
+        component={ExploreScreen}
+        options={{
+          tabBarIcon: () => (
+            <AntDesign name="search1" size={24} color="#ddd" />
+          ),
+          title: "Keşfet",
+        }}
+      />
+      <Tab.Screen
+        name="FavoritesScreen"
+        component={FavoritesScreen}
+        options={{
+          tabBarIcon: () => (
+            <MaterialIcons name="favorite-border" size={24} color="#ddd" />
+          ),
+          title: "Favoriler",
+        }}
+      />
+      <Tab.Screen
+        name="AcountScreen"
+        component={AcountScreen}
+        options={{
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="account" size={24} color="#ddd" />
+          ),
+          title: "Hesap",
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "lightgray",
-  },
-  backImage: {
-    width: "100%",
-    height: 700,
-    opacity: 0.8,
-    borderBottomRightRadius: 20,
-    resizeMode: "contain",
-    borderBottomRightRadius: 100,
-    overflow: "hidden",
-  },
-  startView: {
-    backgroundColor: "#F0BB78",
-    marginHorizontal: 20,
-    width: 180,
-    borderRadius: 30,
-    marginTop: 40,
-    flexDirection: "row",
-  },
-  startText: {
-    padding: 20,
-    paddingHorizontal: 15,
-    fontSize: 20,
-    color: "white",
-  },
-  imageText: {
-    fontSize: 80,
-    color: "white",
-    fontFamily: "monospace",
-    marginTop: 250,
-  },
-});
+const styles = StyleSheet.create({});

@@ -2,9 +2,9 @@ import { initializeApp, getApp, getApps } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  initializeAuth,
-  getReactNativePersistence,
+  getAuth,
 } from "firebase/auth";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const firebaseConfig = {
@@ -26,9 +26,7 @@ if (!getApps().length) {
 }
 
 // Firebase Auth başlatma ve persistence ayarı
-const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(AsyncStorage),
-});
+const auth = getAuth(app);
 
 // Kullanıcı kayıt işlemi
 export const registerUser = async (email, password) => {
@@ -60,6 +58,43 @@ export const loginUser = async (email, password) => {
     console.error("Hata mesajı:", error.message);
     throw error;
   }
+};
+
+
+// Firestore'a kullanıcı bilgilerini kaydetme
+export const saveProfile = async (name, email, phoneNumber, description) => {
+  const user = auth.currentUser; // Giriş yapan kullanıcıyı al
+
+  if (user) {
+    const db = getFirestore();
+    const userRef = doc(db, "users", user.uid); // Firestore'da user id'ye göre belge oluşturuyoruz
+    await setDoc(userRef, {
+      firstName: name.split(" ")[0],  // Adın ilk kısmını al
+      lastName: name.split(" ")[1],   // Soyadının ikinci kısmını al
+      email: email,
+      phoneNumber: phoneNumber,
+      description: description,
+    });
+  }
+};
+
+// Firestore'dan kullanıcı bilgilerini alma
+export const getUserProfile = async () => {
+  const user = auth.currentUser; // Giriş yapan kullanıcıyı al
+
+  if (user) {
+    const db = getFirestore();
+    const userRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+      return userDoc.data();
+    } else {
+      console.log("No such document!");
+      return null;
+    }
+  }
+  return null;
 };
 
 export default { auth };
