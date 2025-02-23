@@ -1,7 +1,7 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
-import React, { useState, useEffect } from "react";
+import { Alert } from "react-native";
+import React, { useState } from "react";
 import AuthForm from "../components/AuthForm";
-import { loginUser } from "../auth/auth";
+import { loginUser } from "../firebase/firebase";
 
 export default function LoginScreen({ navigation }) {
   const [isLogin, setIsLogin] = useState(true);

@@ -1,7 +1,7 @@
-import { Alert, StyleSheet, Text } from "react-native";
+import { Alert } from "react-native";
 import React, { useState } from "react";
 import AuthForm from "../components/AuthForm";
-import { registerUser } from "../auth/auth";
+import { registerUser } from "../firebase/firebase";
 
 export default function SignUpScreen({ navigation }) {
   const signUpHandler = async (email, password) => {

@@ -1,5 +1,5 @@
 import "react-native-reanimated";
-import { View, Text } from "react-native";
+import { View, Text, StatusBar } from "react-native";
 import {
   NavigationContainer,
   NavigationIndependentTree,
@@ -13,12 +13,17 @@ import SearchScreen from "../screens/SearchScreen";
 import PlaceDetailsScreen from "../screens/PlaceDetailsScreen";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MapScreen from "../screens/MapScreen";
+import FavoritesScreen from "../screens/FavoritesScreen";
+import FoodDetailsScreen from "../screens/FoodDetailsScreen";
+import ActivityDetailsScreen from "../screens/ActivityDetailsScreen";
+
 
 const Stack = createNativeStackNavigator();
 
 export default function RootLayout() {
   Text.defaultProps = Text.defaultProps || {};
   Text.defaultProps.style = { fontFamily: "Roboto" };
+
   return (
     <NavigationIndependentTree>
       <NavigationContainer>
@@ -26,11 +31,7 @@ export default function RootLayout() {
           screenOptions={{
             headerStyle: { backgroundColor: "#fff" },
             headerTintColor: "#1A1A1A",
-            contentStyle: {
-              fontFamily: "cursive",
-            },
-
-            statusBarHidden: true,
+            contentStyle: { fontFamily: "cursive" },
           }}
         >
           <Stack.Screen
@@ -56,20 +57,34 @@ export default function RootLayout() {
           <Stack.Screen
             name="PlaceDetailsScreen"
             component={PlaceDetailsScreen}
-            options={{
-              headerRight: () => (
-                <MaterialIcons
-                  name="favorite-border"
-                  size={30}
-                  color="#D8A25E"
-                />
-              ),
-            }}
+            options={{}}
           />
           <Stack.Screen
             name="MapScreen"
             component={MapScreen}
             options={{ title: "Harita" }}
+          />
+          <Stack.Screen
+            name="FavoritesScreen"
+            component={FavoritesScreen}
+            options={{
+              title: "Favoriler",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="FoodDetailsScreen"
+            component={FoodDetailsScreen}
+            options={{
+              title: "Yerel Yemekler Detay",
+            }}
+          />
+          <Stack.Screen
+            name="ActivityDetailsScreen"
+            component={ActivityDetailsScreen}
+            options={{
+              title: "Aktivite Detay",
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

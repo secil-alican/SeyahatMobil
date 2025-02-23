@@ -11,7 +11,7 @@ export default function ErrorValid({ error }) {
 
 const styles = StyleSheet.create({
   errorText: {
-    color: "#D8A25E",
+    color: "#343131",
     justifyContent: "flex-start",
   },
   errorView: {

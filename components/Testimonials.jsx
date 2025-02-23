@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 
-export default function Testimonials({ testimonials }) {
+export default function Testimonials({ testimonials, text }) {
   return (
     <View style={styles.textView}>
       <View>
@@ -12,6 +12,7 @@ export default function Testimonials({ testimonials }) {
       </View>
       <View>
         <Text style={styles.text}>{testimonials}</Text>
+        <Text style={{textAlign:"center"}}>{text}</Text>
       </View>
     </View>
   );
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 30,
     padding: 20,
     marginTop: 40,
-    backgroundColor: "#F6C794",
+    backgroundColor: "#D8A25E",
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,

@@ -1,170 +1,162 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
-  TextInput,
   View,
   ScrollView,
   Image,
-  Pressable,
+  TouchableOpacity,
 } from "react-native";
 import Testimonials from "../components/Testimonials";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { useNavigation } from "@react-navigation/native";
 import Input from "../components/Input";
+import { db, auth } from "../firebase/firebaseConfig";
+import { getDoc, doc } from "firebase/firestore";
 
 export default function ExploreScreen() {
+  const [firstName, setFirstName] = useState("");
+
+  useEffect(() => {
+    const getName = async () => {
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const useRef = doc(db, "users", user.uid);
+          const userSnap = await getDoc(useRef);
+          if (userSnap.exists()) {
+            const name = userSnap.data().firstName;
+            setFirstName(name);
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getName();
+  }, []);
+
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      style={styles.viewContainer}
-    >
-      <View style={styles.view}>
-        <View style={styles.titleView}>
-          <Text style={styles.titleText}>Merhaba ,</Text>
-          <Image
-            source={require("../assets/images/user.jpg")}
-            style={styles.userImage}
-          />
-        </View>
-
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.title}>Merhaba, {firstName} 👋</Text>
+        <Text style={styles.subtitle}>Keşfetmeye hazır mısın?</Text>
         <Input onFocus />
+      </View>
 
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          style={styles.textViewContainer}
-        >
-          <Testimonials
-            testimonials="Seyahat, yalnızca bir yerden diğerine gitmek değil, aynı zamanda yaşamın ne kadar çeşitli olduğunu keşfetmektir. Yeni insanlarla tanışmak, farklı kültürlerle kaynaşmak ve onların gözlerinden dünyayı görmek, bizi daha derin bir anlayışa ulaştırır.
-– Mark Twain"
-          />
-          <Testimonials
-            testimonials="Her yolculuk, kendi içinde bir öğretmendir. Deneyimlediğiniz her şey, size yaşamın ne kadar basit ve aynı zamanda karmaşık olduğunu gösterir. Seyahat etmek, yalnızca manzaralarla değil, içsel bir dönüşümle de ilgilidir.
-– Elizabeth Gilbert"
-          />
-          <Testimonials
-            testimonials="Dünyayı bir kere görmek, bin kere duymaktan iyidir.
-– Evliya Çelebi"
-          />
-          <Testimonials
-            testimonials="Gezmek, sadece bir yerden diğerine gitmek değil; bir medeniyeti, bir tarihi, bir kültürü anlamaya çalışmaktır.
-– Halil İnalcık"
-          />
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.testimonialsContainer}
+      >
+        <Testimonials
+          testimonials="Seyahat, yalnızca bir yerden diğerine gitmek değil, aynı zamanda yaşamın ne kadar çeşitli olduğunu keşfetmektir."
+          text=" – Mark Twain"
+        />
+
+        <Testimonials
+          testimonials="Her yolculuk, kendi içinde bir öğretmendir. Deneyimlediğiniz her şey, size yaşamın ne kadar basit ve aynı zamanda karmaşık olduğunu gösterir."
+          text="– Elizabeth Gilbert"
+        />
+        <Testimonials
+          testimonials="Dünyayı bir kere görmek, bin kere duymaktan iyidir. "
+          text="– Evliya Çelebi"
+        />
+      </ScrollView>
+
+      <View style={styles.popularPlacesContainer}>
+        <Text style={styles.sectionTitle}>Popüler Yerler</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View style={styles.card}>
+            <Image
+              source={require("../assets/images/istanbul.jpg")}
+              style={styles.image}
+            />
+            <View style={styles.cardFooter}>
+              <Text style={styles.cardText}>İstanbul</Text>
+              <MaterialIcons name="favorite" size={24} color="red" />
+            </View>
+          </View>
+          <View style={styles.card}>
+            <Image
+              source={require("../assets/images/izmir.jpg")}
+              style={styles.image}
+            />
+            <View style={styles.cardFooter}>
+              <Text style={styles.cardText}>İzmir</Text>
+              <MaterialIcons name="favorite" size={24} color="red" />
+            </View>
+          </View>
+          <View style={styles.card}>
+            <Image
+              source={require("../assets/images/ankara.jpg")}
+              style={styles.image}
+            />
+            <View style={styles.cardFooter}>
+              <Text style={styles.cardText}>Ankara</Text>
+              <MaterialIcons name="favorite" size={24} color="red" />
+            </View>
+          </View>
         </ScrollView>
-
-        <View style={styles.imageContainer}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-            Popüler Yerler
-          </Text>
-          <ScrollView
-            style={styles.imageView}
-            showsHorizontalScrollIndicator={false}
-            horizontal={true}
-          >
-            <View style={styles.imageContent}>
-              <Image
-                source={require("../assets/images/istanbul.jpg")}
-                style={styles.image}
-              />
-              <View style={styles.textIcon}>
-                <Text style={styles.imageText}>İstanbul</Text>
-                <MaterialIcons
-                  name="favorite-border"
-                  size={24}
-                  color="#D8A25E"
-                />
-              </View>
-            </View>
-            <View style={styles.imageContent}>
-              <Image
-                source={require("../assets/images/izmir.jpg")}
-                style={styles.image}
-              />
-              <View style={styles.textIcon}>
-                <Text style={styles.imageText}>İzmir</Text>
-                <MaterialIcons
-                  name="favorite-border"
-                  size={24}
-                  color="#D8A25E"
-                />
-              </View>
-            </View>
-            <View style={styles.imageContent}>
-              <Image
-                source={require("../assets/images/ankara.jpg")}
-                style={styles.image}
-              />
-              <View style={styles.textIcon}>
-                <Text style={styles.imageText}>Ankara</Text>
-                <MaterialIcons
-                  name="favorite-border"
-                  size={24}
-                  color="#D8A25E"
-                />
-              </View>
-            </View>
-          </ScrollView>
-        </View>
       </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  viewContainer: {
+  container: {
     flex: 1,
-    margin: 5,
-    backgroundColor: "#eee",
+    backgroundColor: "#F7F7F7",
+    paddingHorizontal: 20,
+  },
+  headerContainer: {
+    marginTop: 50,
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#666",
+    marginBottom: 20,
+  },
+  testimonialsContainer: {
+    marginBottom: 30,
   },
 
-  titleView: {
-    marginTop: 80,
-    marginBottom: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  view: {
-    marginHorizontal: 20,
-  },
-  titleText: {
-    fontSize: 30,
-    justifyContent: "flex-start",
+  sectionTitle: {
+    fontSize: 20,
     fontWeight: "bold",
+    marginBottom: 30,
+    color: "#333",
   },
-  textViewContainer: {
-    flexDirection: "row",
-    gap: 20,
-  },
-  imageContainer: {
-    marginVertical: 50,
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+    marginRight: 15,
+    padding: 10,
   },
   image: {
-    width: 150,
+    width: 160,
     height: 200,
-    borderRadius: 20,
+    borderRadius:15
   },
-  imageView: {
-    marginVertical: 30,
-    flexDirection: "row",
-  },
-  imageText: {
-    textAlign: "left",
-  },
-  imageContent: {
-    marginRight: 20,
-    padding: 10,
-    borderRadius: 20,
-    backgroundColor: "#fff",
-  },
-  textIcon: {
+  cardFooter: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 10,
+    alignItems: "center",
+    padding: 10,
   },
-  userImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 250,
+  cardText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#333",
   },
 });

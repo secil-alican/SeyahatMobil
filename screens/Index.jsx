@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ExploreScreen from "../screens/ExploreScreen";
@@ -8,7 +8,6 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-
 const Tab = createBottomTabNavigator();
 
 export default function Index() {
@@ -17,7 +16,9 @@ export default function Index() {
       screenOptions={{
         headerShown: false,
         statusBarHidden: true,
-        tabBarActiveTintColor: "#D8A25E",
+        tabBarActiveBackgroundColor: "#D8A25E",
+        tabBarActiveTintColor: "#343131",
+        tabBarInactiveTintColor: "#ddd",
 
         tabBarStyle: {
           position: "absolute",
@@ -25,7 +26,7 @@ export default function Index() {
           marginVertical: 20,
           marginHorizontal: 20,
           backgroundColor: "#343131",
-
+          height: 55,
         },
       }}
     >
@@ -33,8 +34,8 @@ export default function Index() {
         name="ExploreScreen"
         component={ExploreScreen}
         options={{
-          tabBarIcon: () => (
-            <AntDesign name="search1" size={24} color="#ddd" />
+          tabBarIcon: ({ focused, color }) => (
+            <AntDesign name="search1" size={24} color={color} />
           ),
           title: "Keşfet",
         }}
@@ -43,8 +44,8 @@ export default function Index() {
         name="FavoritesScreen"
         component={FavoritesScreen}
         options={{
-          tabBarIcon: () => (
-            <MaterialIcons name="favorite-border" size={24} color="#ddd" />
+          tabBarIcon: ({ focused, color }) => (
+            <MaterialIcons name="favorite-border" size={24} color={color} />
           ),
           title: "Favoriler",
         }}
@@ -53,10 +54,12 @@ export default function Index() {
         name="AcountScreen"
         component={AcountScreen}
         options={{
-          tabBarIcon: () => (
-            <MaterialCommunityIcons name="account" size={24} color="#ddd" />
+          tabBarIcon: ({ focused, color }) => (
+            <MaterialCommunityIcons name="account" size={24} color={color} />
           ),
+
           title: "Hesap",
+
         }}
       />
     </Tab.Navigator>

@@ -2,53 +2,80 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   FlatList,
   Pressable,
+  Image,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { cities } from "../dataset/CitiesData";
-import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Weather from "../components/Weather";
+import { auth, db } from "../firebase/firebaseConfig";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { getDocs, collection } from "firebase/firestore";
+import * as Location from "expo-location";
 
-export default function PlaceDetailsScreen({ route }) {
-  const placeName = route.params.placeName;
-  const [filtered, setFiltered] = useState([]);
+export default function PlaceDetailsScreen({ route, navigation }) {
+  const { placeName, places, isFav } = route.params;
   const [filterPlace, setFilterPlace] = useState([]);
+  const [favoritePlacesList, setFavoritePlacesList] = useState([]);
 
-  const navigation = useNavigation();
+  useEffect(() => {
+    const placeDetails = places.filter(
+      (place) => place.placeName === placeName
+    );
+    setFilterPlace(placeDetails);
+  }, [placeName, places]);
 
   useEffect(() => {
     navigation.setOptions({ title: placeName });
   }, [placeName]);
 
   useEffect(() => {
-    const filter = cities.filter((place) =>
-      place.places.some((p) => p.placeName === placeName)
-    );
-    setFiltered(filter);
+    navigation.setOptions({
+      headerRight: () => (
+        <Pressable>
+          <MaterialIcons
+             name={isFav ? "favorite" : "favorite-border"}
+            size={30}
+            color={isFav ? "red" : "black"}
+          />
+        </Pressable>
+      ),
+    });
+  }, [favoritePlacesList]);
 
-    const filterPlace = filter.flatMap((place) =>
-      place.places.filter((p) => p.placeName === placeName)
-    );
-    setFilterPlace(filterPlace);
-  }, [placeName]);
+  useEffect(() => {
+    const getLocation = async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    };
+
+    getLocation();
+  }, []);
+
+  const openMap = (latitude, longitude, placeName) => {
+    navigation.navigate("MapScreen", { latitude, longitude, placeName });
+  };
 
   return (
     <FlatList
       data={filterPlace}
-      keyExtractor={(item) => item.placeName}
+      keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
+
       renderItem={({ item }) => (
         <View style={styles.container}>
-          {/* Resim Alanı */}
           <View style={styles.imageView}>
-            <Image source={item.placeImage} style={styles.image} />
+            <Image source={{ uri: item.placeImage }} style={styles.image} />
           </View>
 
-          {/* İçerik Alanı */}
           <View style={styles.contentView}>
             <View style={styles.titleAndRatings}>
               <Text style={styles.title}>{item.placeName}</Text>
@@ -66,32 +93,28 @@ export default function PlaceDetailsScreen({ route }) {
             <Text style={styles.description}>{item.placeDescription}</Text>
 
             <View style={styles.iconAndClock}>
-              <Ionicons name="alarm" size={24} color="#A04747" />
-              <Text>{item.placeOpeningHours}</Text>
+              <Ionicons name="alarm" size={25} color="#A04747" />
+              <Text style={{ fontSize: 15 }}>{item?.placeOpeningHours}</Text>
             </View>
 
-            {/* PlaceMap'den Hava Durumu */}
             <FlatList
               data={item.placeMap}
-              keyExtractor={(map) => map.placeName}
+              keyExtractor={(map) => (map.id ? map.id.toString() : Math.random().toString())}
+
               renderItem={({ item: map }) => (
                 <Weather latitude={map.latitude} longitude={map.longitude} />
               )}
             />
 
-            {/* Konuma Git Butonu */}
             {item.placeMap?.map((map) => (
               <Pressable
-                key={map.placeName} // her bir öğe için benzersiz bir key kullanın
+                key={map.placeName}
                 style={({ pressed }) => [
                   styles.goMapView,
                   pressed && styles.pressed,
                 ]}
                 onPress={() =>
-                  navigation.navigate("MapScreen", {
-                    latitude: map.latitude,
-                    longitude: map.longitude,
-                  })
+                  openMap(map.latitude, map.longitude, item.placeName)
                 }
               >
                 <Text style={{ color: "#fff" }}>Konuma Git</Text>
@@ -103,7 +126,6 @@ export default function PlaceDetailsScreen({ route }) {
     />
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -124,11 +146,12 @@ const styles = StyleSheet.create({
   },
   ratings: {
     fontSize: 20,
+    color:"#EEDF7A"
   },
   iconAndClock: {
     flexDirection: "row",
     gap: 10,
-    marginVertical: 30,
+    marginTop: 30,
   },
   contentView: {
     borderRadius: 40,
@@ -137,13 +160,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   description: {
-    marginTop: 20,
+    marginBottom: 20,
+    fontSize: 16,
+    color: "#555",
+    lineHeight: 24,
   },
   goMapView: {
     backgroundColor: "#343131",
-    padding: 10,
+    padding: 15,
     borderRadius: 20,
     alignItems: "center",
+    marginVertical: 20,
   },
   pressed: {
     opacity: 0.5,

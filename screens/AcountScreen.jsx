@@ -16,20 +16,20 @@ import {
   Image,
   Alert,
 } from "react-native";
-import { saveProfile } from "../auth/auth";
+import { LinearGradient } from "expo-linear-gradient";
+import { saveProfile } from "../firebase/firebase";
+import ImagePickerComponent from "../components/ImagePickerComponent";
 
-export default function AcountScreen() {
+export default function AccountScreen() {
   const [userInfo, setUserInfo] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [description, setDescription] = useState("");
-  const [isValidPhone, setIsValidPhone] = useState(true);
-  const [validEmail, setValidEmail] = useState(false);
+  const [image, setImage] = useState(null);
 
   const navigation = useNavigation();
 
-  // Kullanıcı bilgilerini Firestore'dan al
   useEffect(() => {
     const fetchUserInfo = async () => {
       const auth = getAuth();
@@ -46,8 +46,9 @@ export default function AcountScreen() {
           setEmail(data.email);
           setPhoneNumber(data.phoneNumber);
           setDescription(data.description);
-        } else {
-          console.log("No such document!");
+          if (data.image) {
+            setImage(data.image);
+          }
         }
       }
     };
@@ -55,30 +56,19 @@ export default function AcountScreen() {
     fetchUserInfo();
   }, []);
 
-  // Bilgileri kaydetme işlemi
   function saveHandler() {
-    if (!isValidPhone) {
-      Alert.alert("Geçersiz!", "Geçersiz Telefon Numarası");
-    } else if (!validemail) {
+    if (!email.includes("@")) {
       Alert.alert("Geçersiz!", "Geçersiz E-Posta");
     } else {
-      saveProfile(name, email, phoneNumber, description);
-      return Alert.alert("Başarılı", "Başarıyla Kaydedildi!");
+      saveProfile(name, email, phoneNumber, description, image);
+      Alert.alert("Başarılı", "Bilgiler kaydedildi!");
     }
   }
 
   function logOut() {
     navigation.navigate("LoginScreen");
-    return Alert.alert("Çıkış Yapıldı", "Başarıyla çıkış yapıldı!");
+    Alert.alert("Çıkış Yapıldı", "Başarıyla çıkış yapıldı!");
   }
-
-  const validPhone = (number) => {
-    const phoneRegex = /^0[5-9][0-9]{9}$/;
-    setIsValidPhone(phoneRegex.test(number));
-    setPhoneNumber(number);
-  };
-
-  const validemail = email.includes("@");
 
   return (
     <KeyboardAvoidingView
@@ -86,132 +76,107 @@ export default function AcountScreen() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView
-          style={styles.view}
-          contentContainerStyle={{ paddingBottom: 100 }} // Alttan boşluk ekler
-        >
-          <View style={styles.FirstLayer}>
-            <Image
-              source={require("../assets/images/user.jpg")}
-              style={styles.userImage}
-            />
-          </View>
-          <View style={styles.informations}>
-            <View style={styles.secondLayer}>
-              <Text style={styles.inputText}>İsim Soyisim :</Text>
+        <ScrollView contentContainerStyle={styles.container}>
+          <LinearGradient
+            colors={["rgba(216, 162, 94, 0.5)", "rgba(232, 203, 162, 0.5)"]}
+            style={styles.gradient}
+          >
+            <ImagePickerComponent image={image} setImage={setImage} />
+
+            <View style={styles.infoContainer}>
               <TextInput
                 style={styles.input}
                 value={name}
-                onChangeText={(newValue) => setName(newValue)}
+                onChangeText={setName}
+                placeholder="İsim Soyisim"
               />
 
-              <Text style={styles.inputText}>E-Posta :</Text>
               <TextInput
                 style={styles.input}
                 value={email}
-                onChangeText={(newValue) => setEmail(newValue)}
+                onChangeText={setEmail}
+                placeholder="E-posta"
               />
-              <Text style={styles.inputText}>Telefon Numarası :</Text>
+
               <TextInput
                 style={styles.input}
                 value={phoneNumber}
-                onChangeText={validPhone}
+                onChangeText={setPhoneNumber}
                 maxLength={11}
+                placeholder="Telefon Numarası"
               />
 
-              <Text style={styles.inputText}>Açıklama :</Text>
               <TextInput
-                placeholder="Kendinle İlgili Bir Açıklama Yap"
                 style={styles.input}
                 value={description}
-                onChangeText={(newValue) => setDescription(newValue)}
+                onChangeText={setDescription}
                 multiline
                 maxLength={100}
+                placeholder="Açıklama"
               />
-            </View>
-            <View style={styles.saveButton}>
-              <Pressable
-                style={({ pressed }) => pressed && styles.pressed}
-                onPress={saveHandler}
-              >
-                <Text style={{ textAlign: "center" }}>Kaydet</Text>
-              </Pressable>
-            </View>
 
-            <View style={styles.logoutButton}>
-              <Pressable
-                style={({ pressed }) => pressed && styles.pressed}
-                onPress={logOut}
-              >
-                <Text style={{ textAlign: "center" }}>Çıkış Yap</Text>
-              </Pressable>
+              <View style={styles.buttonContainer}>
+                <Pressable style={styles.saveButton} onPress={saveHandler}>
+                  <Text style={styles.buttonText}>Kaydet</Text>
+                </Pressable>
+                <Pressable style={styles.logoutButton} onPress={logOut}>
+                  <Text style={styles.buttonText}>Çıkış Yap</Text>
+                </Pressable>
+              </View>
             </View>
-          </View>
+          </LinearGradient>
         </ScrollView>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 }
+
 const styles = StyleSheet.create({
-  view: {
+  container: { padding: 20 },
+
+  gradient: {
     flex: 1,
-    backgroundColor: "#ddd",
+    borderRadius: 15,
+    padding: 20,
   },
-  FirstLayer: {
-    backgroundColor: "#343131",
-    height: 300,
-    alignItems: "center", // Resmi ortalar
-    justifyContent: "flex-end", // Resmi altta hizalar
-    paddingBottom: 20,
-  },
-  secondLayer: {
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    paddingVertical: 20,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
-    marginTop: -70,
-  },
+
   input: {
-    marginVertical: 20,
-    borderWidth: 2,
-    paddingHorizontal: 10,
-    fontSize: 15,
-    paddingVertical: 15,
-    borderColor: "#ddd",
-    borderRadius: 5,
-    marginHorizontal: 10,
-  },
-  pressed: {
-    opacity: 0.5,
-  },
-  logoutButton: {
-    backgroundColor: "#D8A25E",
-    paddingVertical: 10,
+    backgroundColor: "#fff",
+    padding: 15,
     borderRadius: 10,
-    marginTop: 10,
+    marginVertical: 10,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  buttonContainer: {
+    marginVertical: 50,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   saveButton: {
-    backgroundColor: "#118B50",
-    marginVertical: 20,
-    paddingVertical: 10,
+    backgroundColor: "#28a745",
+    padding: 15,
     borderRadius: 10,
+    flex: 1,
+    marginRight: 10,
   },
-  informations: {
-    marginHorizontal: 30,
-    marginTop: 20, // Absolute yerine margin ekledik
+  logoutButton: {
+    backgroundColor: "#dc3545",
+    padding: 15,
+    borderRadius: 10,
+    flex: 1,
+    marginLeft: 10,
   },
-  userImage: {
-    height: 150,
-    width: 150,
-    borderRadius: 250,
-    marginBottom: -40,
-  },
-  inputText: {
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
     fontWeight: "bold",
-    marginHorizontal: 10,
+    textAlign: "center",
   },
 });

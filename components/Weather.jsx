@@ -23,7 +23,7 @@ export default function Weather({ latitude, longitude }) {
 
   return (
     <View style={styles.container}>
-      {/* Hava Durumu Görseli */}
+
       <View style={styles.imageContainer}>
         <Image
           source={require("../assets/images/weather.png")}
@@ -31,15 +31,15 @@ export default function Weather({ latitude, longitude }) {
         />
       </View>
 
-      {/* Hava Durumu Bilgileri */}
+
       <View style={styles.infoContainer}>
-        {/* Sıcaklık */}
+
         <View style={styles.infoItem}>
           <Text style={styles.text}>Sıcaklık: </Text>
           <Text style={styles.value}>{weather.main?.temp}°C</Text>
         </View>
 
-        {/* Durum */}
+
         <View style={styles.infoItem}>
           <Text style={styles.text}>Durum: </Text>
           <Text style={styles.value}>
@@ -47,7 +47,6 @@ export default function Weather({ latitude, longitude }) {
           </Text>
         </View>
 
-        {/* Nem */}
         <View style={styles.infoItem}>
           <Text style={styles.text}>Nem: </Text>
           <Text style={styles.value}>{weather.main?.humidity}%</Text>
@@ -62,8 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#577BC1",
     paddingHorizontal: 20,
     borderRadius: 20,
-    marginBottom: 20,
-
+    marginVertical: 40,
 
   },
   text: {

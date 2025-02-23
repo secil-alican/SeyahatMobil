@@ -1,10 +1,21 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Image,
+} from "react-native";
 import React, { useState } from "react";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import ErrorValid from "./ErrorValid";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Fontisto from "@expo/vector-icons/Fontisto";
+import { useFonts } from "expo-font";
+import {
+  Srisakdi_400Regular,
+  Srisakdi_700Bold,
+} from "@expo-google-fonts/srisakdi";
 
 export default function AuthForm({ isLogin, onAuthanticating }) {
   const navigation = useNavigation();
@@ -17,33 +28,45 @@ export default function AuthForm({ isLogin, onAuthanticating }) {
   const userNameValid = userName.trim();
 
   const onAuthanticate = () => {
-    // Giriş işlemi
     if (isLogin) {
-      onAuthanticating(email, password); // Sadece e-posta ve şifreyi gönder
+      onAuthanticating(email, password);
       setEmail("");
       setPassword("");
     } else {
-      onAuthanticating(email, password); // Kayıt işlemi için de sadece e-posta ve şifreyi gönder
+      onAuthanticating(email, password);
       setEmail("");
       setPassword("");
       setUserName("");
     }
   };
 
+  let [fontsLoaded] = useFonts({
+    Srisakdi_Regular: Srisakdi_400Regular,
+    Srisakdi_Bold: Srisakdi_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.loginContainer}>
-      <View>
-        <Text style={styles.appTitle}>{"Hello!"}</Text>
-        <Text style={styles.appSubTitle}>{"Welcome to Seyahat Mobil"}</Text>
+      <View style={styles.imageFontView}>
+        <Image
+          source={require("../assets/images/authScreen.png")}
+          style={styles.image}
+        />
+        <Text style={styles.font}>JourneyNow</Text>
       </View>
+
       <View style={styles.secondLayer}>
         <View>
-          <Text style={styles.title}>{isLogin ? "Login" : "Sign Up"}</Text>
+          <Text style={styles.title}>{isLogin ? "Giriş Yap" : "Kayıt Ol"}</Text>
         </View>
         <View style={styles.login}>
           {!isLogin && (
             <View style={styles.inputComponent}>
-              <FontAwesome name="user" size={30} color="black" />
+              <AntDesign name="user" size={24} color="black" />
               <TextInput
                 placeholder="User Name"
                 style={styles.inputText}
@@ -95,15 +118,29 @@ export default function AuthForm({ isLogin, onAuthanticating }) {
           <Text style={styles.loginText}>{isLogin ? "Login" : "Sign Up"}</Text>
         </Pressable>
 
-        <View style={styles.signUp}>
+        <View style={styles.signUpAndLogin}>
           <Text style={styles.signUpText}>
-            {isLogin ? "Don't have an account?" : ""}
+            {isLogin ? "Hesabın yok mu ?" : ""}
           </Text>
           <Pressable
             style={({ pressed }) => pressed && styles.pressed}
             onPress={() => navigation.navigate("SignUpScreen")}
           >
-            <Text style={styles.signUpButton}>{isLogin ? "SignUp" : ""}</Text>
+            <Text style={styles.signUpAndLoginButton}>
+              {isLogin && "Kayıt Ol"}{" "}
+            </Text>
+
+            <View style={styles.signUpAndLogin}>
+              <Text> {!isLogin && "Zaten hesabın var mı ?"}</Text>
+              <Pressable
+                onPress={() => navigation.navigate("LoginScreen")}
+                style={({ pressed }) => pressed && styles.pressed}
+              >
+                <Text style={styles.signUpAndLoginButton}>
+                  {!isLogin && "Giriş Yap"}{" "}
+                </Text>
+              </Pressable>
+            </View>
           </Pressable>
         </View>
       </View>
@@ -125,7 +162,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
-    height: "70%",
+    height: "65%",
     display: "flex",
     gap: 30,
     justifyContent: "flex-start",
@@ -185,17 +222,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 700,
   },
-  signUp: {
+  signUpAndLogin: {
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
     gap: 10,
   },
-  signUpButton: {
+  signUpAndLoginButton: {
     fontWeight: 600,
     fontSize: 15,
     textDecorationLine: "underline",
-    color: "#D8A25E",
+    color: "#A04747",
   },
   signUpText: {
     fontSize: 15,
@@ -210,5 +245,26 @@ const styles = StyleSheet.create({
   },
   pressed: {
     opacity: 0.5,
+  },
+  existAcountView: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  image: {
+    width: 400,
+    height: 200,
+  },
+  font: {
+    color: "#ddd",
+    fontFamily: "Srisakdi_Regular",
+    fontSize: 40,
+    textAlign: "center",
+  },
+  imageFontView: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 80,
   },
 });
