@@ -108,7 +108,7 @@ export default function PlaceDetailsScreen({ route, navigation }) {
 
             {item.placeMap?.map((map) => (
               <Pressable
-                key={map.placeName}
+                key={item.placeName}
                 style={({ pressed }) => [
                   styles.goMapView,
                   pressed && styles.pressed,

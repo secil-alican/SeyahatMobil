@@ -4,7 +4,8 @@ import {
   Text,
   TextInput,
   View,
-  Image,
+  ImageBackground,
+  Image
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +17,7 @@ import {
   Srisakdi_400Regular,
   Srisakdi_700Bold,
 } from "@expo-google-fonts/srisakdi";
+
 
 export default function AuthForm({ isLogin, onAuthanticating }) {
   const navigation = useNavigation();

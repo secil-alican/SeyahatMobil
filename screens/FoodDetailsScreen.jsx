@@ -109,7 +109,7 @@ export default function FoodDetailsScreen({ route }) {
 
             {item.restaurantMap?.map((map) => (
               <Pressable
-                key={map.foodName}
+                key={item.foodName}
                 style={({ pressed }) => [
                   styles.goMapView,
                   pressed && styles.pressed,
