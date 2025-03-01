@@ -23,7 +23,6 @@ export default function Weather({ latitude, longitude }) {
 
   return (
     <View style={styles.container}>
-
       <View style={styles.imageContainer}>
         <Image
           source={require("../assets/images/weather.png")}
@@ -31,14 +30,11 @@ export default function Weather({ latitude, longitude }) {
         />
       </View>
 
-
       <View style={styles.infoContainer}>
-
         <View style={styles.infoItem}>
           <Text style={styles.text}>Sıcaklık: </Text>
           <Text style={styles.value}>{weather.main?.temp}°C</Text>
         </View>
-
 
         <View style={styles.infoItem}>
           <Text style={styles.text}>Durum: </Text>
