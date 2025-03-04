@@ -5,7 +5,7 @@ import {
   TextInput,
   View,
   ImageBackground,
-  Image
+  Image,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -18,16 +18,13 @@ import {
   Srisakdi_700Bold,
 } from "@expo-google-fonts/srisakdi";
 
-
 export default function AuthForm({ isLogin, onAuthanticating }) {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
 
   const emailValid = email.includes("@");
   const passwordValid = password.length >= 6;
-  const userNameValid = userName.trim();
 
   const onAuthanticate = () => {
     if (isLogin) {
@@ -53,30 +50,16 @@ export default function AuthForm({ isLogin, onAuthanticating }) {
 
   return (
     <View style={styles.loginContainer}>
-      <View style={styles.imageFontView}>
-        <Image
-          source={require("../assets/images/authScreen.png")}
-          style={styles.image}
-        />
-        <Text style={styles.font}>JourneyNow</Text>
-      </View>
+      <Image
+        source={require("../assets/images/plane.jpg")}
+        style={styles.image}
+      />
 
       <View style={styles.secondLayer}>
         <View>
           <Text style={styles.title}>{isLogin ? "Giriş Yap" : "Kayıt Ol"}</Text>
         </View>
         <View style={styles.login}>
-          {!isLogin && (
-            <View style={styles.inputComponent}>
-              <AntDesign name="user" size={24} color="black" />
-              <TextInput
-                placeholder="User Name"
-                style={styles.inputText}
-                value={userName}
-                onChangeText={setUserName}
-              />
-            </View>
-          )}
           <View style={styles.inputComponent}>
             <Fontisto name="email" size={25} color="black" />
             <TextInput
@@ -87,11 +70,7 @@ export default function AuthForm({ isLogin, onAuthanticating }) {
               keyboardType="email"
             />
           </View>
-          {!emailValid && email !== "" && (
-            <View>
-              <ErrorValid error="missing @" />
-            </View>
-          )}
+          {!emailValid && email !== "" && <ErrorValid error="missing @" />}
 
           <View style={styles.inputComponent}>
             <AntDesign name="lock" size={25} color="black" />
@@ -104,9 +83,7 @@ export default function AuthForm({ isLogin, onAuthanticating }) {
             />
           </View>
           {!passwordValid && password !== "" && (
-            <View>
-              <ErrorValid error="at least 6 characters" />
-            </View>
+            <ErrorValid error="at least 6 characters" />
           )}
         </View>
 
@@ -152,25 +129,22 @@ export default function AuthForm({ isLogin, onAuthanticating }) {
 
 const styles = StyleSheet.create({
   loginContainer: {
-    backgroundColor: "#343131",
     flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "flex-start",
-    gap: 30,
   },
   secondLayer: {
     alignSelf: "flex-end",
-    backgroundColor: "#c3c3c3",
+    backgroundColor: "#fff",
     width: "100%",
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
-    height: "65%",
+    height: "100%",
     display: "flex",
     gap: 30,
     justifyContent: "flex-start",
     alignItems: "center",
     paddingVertical: 30,
     paddingHorizontal: 30,
+    marginTop: -30,
   },
   login: {
     marginTop: 50,
@@ -183,14 +157,11 @@ const styles = StyleSheet.create({
   inputComponent: {
     display: "flex",
     flexDirection: "row",
-    borderRadius: 30,
-    height: 60,
     paddingHorizontal: 20,
     gap: 10,
     alignItems: "center",
-    backgroundColor: "#eee",
-    borderWidth: 2,
-    borderColor: "#fff",
+    borderBottomWidth: 1,
+    marginVertical: 5,
   },
   title: {
     textAlign: "left",
@@ -211,7 +182,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   loginButton: {
-    borderRadius: 30,
+    borderRadius: 10,
     width: "100%",
     paddingVertical: 15,
     backgroundColor: "#D8A25E",
@@ -253,20 +224,13 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   image: {
-    width: 400,
-    height: 200,
+    width: "100%",
+    resizeMode: "cover",
+    height: "35%",
   },
   font: {
-    color: "#ddd",
     fontFamily: "Srisakdi_Regular",
     fontSize: 40,
     textAlign: "center",
-  },
-  imageFontView: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 80,
   },
 });

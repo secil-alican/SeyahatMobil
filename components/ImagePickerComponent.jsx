@@ -44,8 +44,8 @@ export default function ImagePickerComponent({ image, setImage }) {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
     marginVertical: 50,
   },
   image: {
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   },
   photoText: {
     marginVertical: 10,
-    color:"#343131"
+    color: "#343131",
+    marginLeft:30
   },
 });

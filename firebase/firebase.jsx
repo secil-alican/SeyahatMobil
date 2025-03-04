@@ -48,8 +48,7 @@ export const loginUser = async (email, password) => {
   }
 };
 
-// Kullanıcı Profilini Kaydetme ve Alma
-export const saveProfile = async (name, email, phoneNumber, description) => {
+export const saveProfile = async (name, phoneNumber) => {
   const user = auth.currentUser;
 
   if (user) {
@@ -57,9 +56,7 @@ export const saveProfile = async (name, email, phoneNumber, description) => {
     await setDoc(userRef, {
       firstName: name.split(" ")[0],
       lastName: name.split(" ")[1] || "",
-      email,
       phoneNumber,
-      description,
     });
   }
 };
@@ -338,9 +335,7 @@ export const saveCitiesToFirestore = async () => {
     for (const city of cities) {
       const cityRef = doc(collection(db, "cities"), city.city);
 
-
       await setDoc(cityRef, { cityName: city.city }, { merge: true });
-
 
       for (const place of city.places) {
         const placeRef = doc(collection(cityRef, "places"), place.placeName);
@@ -359,7 +354,6 @@ export const saveCitiesToFirestore = async () => {
           { merge: true }
         );
       }
-
 
       for (const activity of city.activities) {
         const activityRef = doc(

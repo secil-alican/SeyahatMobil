@@ -125,7 +125,6 @@ export default function FavoriteFoods() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#eee",
     marginHorizontal: 20,
   },
 
@@ -171,6 +170,7 @@ const styles = StyleSheet.create({
   },
   emptyFavorites: {
     alignItems: "center",
-    marginVertical: 200,
+    justifyContent: "center",
+    marginTop: 100,
   },
 });

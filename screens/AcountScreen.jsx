@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -17,15 +17,14 @@ import {
   Alert,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { saveProfile } from "../firebase/firebase";
+import { getUserProfile, saveProfile } from "../firebase/firebase";
 import ImagePickerComponent from "../components/ImagePickerComponent";
+import { auth } from "../firebase/firebaseConfig";
 
 export default function AccountScreen() {
-  const [userInfo, setUserInfo] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
 
   const navigation = useNavigation();
@@ -43,9 +42,7 @@ export default function AccountScreen() {
         if (userDoc.exists()) {
           const data = userDoc.data();
           setName(`${data.firstName} ${data.lastName}`);
-          setEmail(data.email);
           setPhoneNumber(data.phoneNumber);
-          setDescription(data.description);
           if (data.image) {
             setImage(data.image);
           }
@@ -56,13 +53,19 @@ export default function AccountScreen() {
     fetchUserInfo();
   }, []);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setEmail(user.email);
+      } else {
+        console.log("Kullanıcı oturumu kapattı veya giriş yapmadı.");
+      }
+    });
+  }, []);
+
   function saveHandler() {
-    if (!email.includes("@")) {
-      Alert.alert("Geçersiz!", "Geçersiz E-Posta");
-    } else {
-      saveProfile(name, email, phoneNumber, description, image);
-      Alert.alert("Başarılı", "Bilgiler kaydedildi!");
-    }
+    saveProfile(name, phoneNumber, image);
+    Alert.alert("Başarılı", "Bilgiler kaydedildi!");
   }
 
   function logOut() {
@@ -71,74 +74,65 @@ export default function AccountScreen() {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
+    <ScrollView contentContainerStyle={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView contentContainerStyle={styles.container}>
-          <LinearGradient
-            colors={["rgba(216, 162, 94, 0.5)", "rgba(232, 203, 162, 0.5)"]}
-            style={styles.gradient}
-          >
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <View style={styles.imageName}>
             <ImagePickerComponent image={image} setImage={setImage} />
+            <View style={{ justifyContent: "center" }}>
+              <Text style={styles.nameText}>{name} 👋</Text>
+              <Text style={{ fontSize: 20 }}>Gezgin</Text>
+            </View>
+          </View>
+          <LinearGradient
+            colors={["#FAE1C0", "#F0C98D", "#D8A25E"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.gradientView}
+          >
+            <Text style={styles.inputText}>İsim Soyisim : </Text>
+            <TextInput
+              style={styles.input}
+              value={name}
+              onChangeText={setName}
+              placeholder="İsim Soyisim"
+            />
+            <Text style={styles.inputText}>E-Posta : </Text>
+            <TextInput
+              style={styles.input}
+              value={email}
+              placeholder="E-posta"
+              editable={false}
+            />
+            <Text style={styles.inputText}>Telefon Numarası : </Text>
+            <TextInput
+              style={styles.input}
+              value={phoneNumber}
+              onChangeText={setPhoneNumber}
+              maxLength={11}
+              placeholder="Telefon Numarası"
+            />
 
-            <View style={styles.infoContainer}>
-              <TextInput
-                style={styles.input}
-                value={name}
-                onChangeText={setName}
-                placeholder="İsim Soyisim"
-              />
-
-              <TextInput
-                style={styles.input}
-                value={email}
-                onChangeText={setEmail}
-                placeholder="E-posta"
-              />
-
-              <TextInput
-                style={styles.input}
-                value={phoneNumber}
-                onChangeText={setPhoneNumber}
-                maxLength={11}
-                placeholder="Telefon Numarası"
-              />
-
-              <TextInput
-                style={styles.input}
-                value={description}
-                onChangeText={setDescription}
-                multiline
-                maxLength={100}
-                placeholder="Açıklama"
-              />
-
-              <View style={styles.buttonContainer}>
-                <Pressable style={styles.saveButton} onPress={saveHandler}>
-                  <Text style={styles.buttonText}>Kaydet</Text>
-                </Pressable>
-                <Pressable style={styles.logoutButton} onPress={logOut}>
-                  <Text style={styles.buttonText}>Çıkış Yap</Text>
-                </Pressable>
-              </View>
+            <View style={styles.buttonContainer}>
+              <Pressable style={styles.saveButton} onPress={saveHandler}>
+                <Text style={styles.buttonText}>Kaydet</Text>
+              </Pressable>
+              <Pressable style={styles.logoutButton} onPress={logOut}>
+                <Text style={styles.buttonText}>Çıkış Yap</Text>
+              </Pressable>
             </View>
           </LinearGradient>
-        </ScrollView>
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: { padding: 20 },
-
-  gradient: {
-    flex: 1,
-    borderRadius: 15,
-    padding: 20,
-  },
 
   input: {
     backgroundColor: "#fff",
@@ -155,7 +149,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   buttonContainer: {
-    marginVertical: 50,
+    marginVertical: 35,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -178,5 +172,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  imageName: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    gap: 20,
+  },
+  nameText: {
+    fontSize: 28,
+    fontWeight: "bold",
+  },
+
+  gradientView: {
+    padding: 10,
+    borderRadius: 10,
+  },
+  inputText: {
+    fontSize: 15,
+    fontWeight: "500",
+    marginTop: 10,
   },
 });

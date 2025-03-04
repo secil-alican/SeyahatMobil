@@ -113,7 +113,7 @@ export default function FavoritePlaces() {
           </Pressable>
         )}
       />
-  {favoritePlacesList.length === 0 && (
+      {favoritePlacesList.length === 0 && (
         <View style={styles.emptyFavorites}>
           <Image
             source={require("../assets/images/emptyFavorites.png")}
@@ -176,8 +176,7 @@ const styles = StyleSheet.create({
   },
   emptyFavorites: {
     alignItems: "center",
-    marginVertical: 200,
+    justifyContent: "center",
+    marginTop: 100,
   },
-
-
 });

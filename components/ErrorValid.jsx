@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React from "react";
+
+const width = Dimensions.get("window").width;
 
 export default function ErrorValid({ error }) {
   return (
@@ -11,10 +13,12 @@ export default function ErrorValid({ error }) {
 
 const styles = StyleSheet.create({
   errorText: {
-    color: "#343131",
-    justifyContent: "flex-start",
+    color: "#A04747",
+    textAlign: "right",
   },
   errorView: {
-    width: 320,
+    paddingHorizontal: 20,
+    width: width,
+
   },
 });

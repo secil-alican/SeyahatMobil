@@ -37,116 +37,119 @@ export default function FavoritesScreen() {
   });
 
   useEffect(() => {
-    state.category == null;
+    dispatch({ type: "places" });
   }, []);
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.titleView}>
-          <Text style={styles.title}>FAVORİLER</Text>
-        </View>
-        <Pressable
-          style={({ pressed }) => [
-            pressed && styles.pressed,
-            styles.filterButton,
-          ]}
-          onPress={() => setModalVisible(true)}
-        >
-          <View style={styles.filterView}>
-            <Text style={styles.filterText}>Filtrele</Text>
-            <AntDesign name="filter" size={24} color="#fff" />
-          </View>
-        </Pressable>
-
-        {modalVisible && (
-          <Modal
-            animationType="slide"
-            transparent
-            visible={modalVisible}
-            onRequestClose={() => setModalVisible(false)}
+    <>
+      <View style={styles.titleView}>
+        <Text style={styles.title}>FAVORİLER</Text>
+      </View>
+      <View style={styles.container}>
+        <ScrollView>
+          <Pressable
+            style={({ pressed }) => [
+              pressed && styles.pressed,
+              styles.filterButton,
+            ]}
+            onPress={() => setModalVisible(true)}
           >
-            <View style={styles.modalBackground}>
-              <View style={styles.modalContent}>
-                <Text style={styles.categoryText}>KATEGORİLER</Text>
-                <View style={styles.categoryView}>
-                  <Pressable
-                    style={({ pressed }) => [
-                      pressed && styles.pressed,
-                      styles.categoryItem,
-                    ]}
-                    onPress={() => {
-                      dispatch({ type: "places" });
-                      setModalVisible(false);
-                    }}
-                  >
-                    <Text style={styles.categoryItemText}>Yerler</Text>
-                  </Pressable>
+            <View style={styles.filterView}>
+              <Text style={styles.filterText}>Filtrele</Text>
+              <AntDesign name="filter" size={24} color="#fff" />
+            </View>
+          </Pressable>
+
+          {modalVisible && (
+            <Modal
+              animationType="slide"
+              transparent
+              visible={modalVisible}
+              onRequestClose={() => setModalVisible(false)}
+            >
+              <View style={styles.modalBackground}>
+                <View style={styles.modalContent}>
+                  <Text style={styles.categoryText}>KATEGORİLER</Text>
+                  <View style={styles.categoryView}>
+                    <Pressable
+                      style={({ pressed }) => [
+                        pressed && styles.pressed,
+                        styles.categoryItem,
+                      ]}
+                      onPress={() => {
+                        dispatch({ type: "places" });
+                        setModalVisible(false);
+                      }}
+                    >
+                      <Text style={styles.categoryItemText}>Yerler</Text>
+                    </Pressable>
+
+                    <Pressable
+                      style={({ pressed }) => [
+                        pressed && styles.pressed,
+                        styles.categoryItem,
+                      ]}
+                      onPress={() => {
+                        dispatch({ type: "activities" });
+                        setModalVisible(false);
+                      }}
+                    >
+                      <Text style={styles.categoryItemText}>Yapılacaklar</Text>
+                    </Pressable>
+
+                    <Pressable
+                      style={({ pressed }) => [
+                        pressed && styles.pressed,
+                        styles.categoryItem,
+                      ]}
+                      onPress={() => {
+                        dispatch({ type: "foods" });
+                        setModalVisible(false);
+                      }}
+                    >
+                      <Text style={styles.categoryItemText}>
+                        Yerel Yemekler
+                      </Text>
+                    </Pressable>
+                  </View>
 
                   <Pressable
                     style={({ pressed }) => [
                       pressed && styles.pressed,
-                      styles.categoryItem,
+                      styles.closeButton,
                     ]}
-                    onPress={() => {
-                      dispatch({ type: "activities" });
-                      setModalVisible(false);
-                    }}
+                    onPress={() => setModalVisible(false)}
                   >
-                    <Text style={styles.categoryItemText}>Yapılacaklar</Text>
-                  </Pressable>
-
-                  <Pressable
-                    style={({ pressed }) => [
-                      pressed && styles.pressed,
-                      styles.categoryItem,
-                    ]}
-                    onPress={() => {
-                      dispatch({ type: "foods" });
-                      setModalVisible(false);
-                    }}
-                  >
-                    <Text style={styles.categoryItemText}>Yerel Yemekler</Text>
+                    <Text style={styles.closeButtonText}>Kapat</Text>
                   </Pressable>
                 </View>
-
-                <Pressable
-                  style={({ pressed }) => [
-                    pressed && styles.pressed,
-                    styles.closeButton,
-                  ]}
-                  onPress={() => setModalVisible(false)}
-                >
-                  <Text style={styles.closeButtonText}>Kapat</Text>
-                </Pressable>
               </View>
-            </View>
-          </Modal>
-        )}
+            </Modal>
+          )}
 
-        <View style={styles.categoryTitle}>
-          <Text style={styles.categoryTitleText}>
-            {state.category === "places" && "Yerler"}
-            {state.category === "activities" && "Yapılacaklar"}
-            {state.category === "foods" && "Yerel Yemekler"}
-            {!(
-              state.category === "places" ||
-              state.category === "activities" ||
-              state.category === "foods"
-            ) && "Filtrele"}
-          </Text>
-        </View>
-      </ScrollView>
-      {state.category === "places" && <FavoritePlaces />}
-      {state.category === "activities" && <FavoriteActivities />}
-      {state.category === "foods" && <FavoriteFoods />}
-    </View>
+          <View style={styles.categoryTitle}>
+            <Text style={styles.categoryTitleText}>
+              {state.category === "places" && "Yerler"}
+              {state.category === "activities" && "Yapılacaklar"}
+              {state.category === "foods" && "Yerel Yemekler"}
+              {!(
+                state.category === "places" ||
+                state.category === "activities" ||
+                state.category === "foods"
+              ) && ""}
+            </Text>
+          </View>
+        </ScrollView>
+        {state.category === "places" && <FavoritePlaces />}
+        {state.category === "activities" && <FavoriteActivities />}
+        {state.category === "foods" && <FavoriteFoods />}
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#eee",
     marginHorizontal: 20,
     paddingBottom: 20,
   },
@@ -155,23 +158,16 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
 
-  titleView: {
-    marginBottom: 30,
-    marginTop: 20,
-    padding: 15,
-    backgroundColor: "#fff",
-    borderRadius: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: "bold",
     textAlign: "center",
-  },
+    marginVertical: 40,
+    letterSpacing: 2,
+    textShadowColor: "rgba(0, 0, 0, 0.3)",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 5,
+},
 
   filterView: {
     flexDirection: "row",
@@ -214,6 +210,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginVertical: 15,
+
   },
 
   categoryView: {
@@ -258,6 +255,9 @@ const styles = StyleSheet.create({
   categoryTitleText: {
     fontSize: 22,
     fontWeight: "bold",
-    letterSpacing: 3,
+    letterSpacing: 2,
+    textShadowColor: "rgba(0, 0, 0, 0.3)",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 5,
   },
 });
