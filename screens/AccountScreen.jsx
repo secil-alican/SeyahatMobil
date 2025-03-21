@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -20,34 +20,26 @@ import { LinearGradient } from "expo-linear-gradient";
 import { getUserProfile, saveProfile } from "../firebase/firebase";
 import ImagePickerComponent from "../components/ImagePickerComponent";
 import { auth } from "../firebase/firebaseConfig";
+import Lottie from "../components/Lottie";
 
 export default function AccountScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [nameTitle, setNameTitle] = useState("");
 
   const navigation = useNavigation();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      const auth = getAuth();
-      const user = auth.currentUser;
-
-      if (user) {
-        const db = getFirestore();
-        const userRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userRef);
-
-        if (userDoc.exists()) {
-          const data = userDoc.data();
-          setName(`${data.firstName} ${data.lastName}`);
-          setPhoneNumber(data.phoneNumber);
-          if (data.image) {
-            setImage(data.image);
-          }
-        }
-      }
+      const data = await getUserProfile();
+      setName(`${data.firstName} ${data.lastName}`);
+      setNameTitle(`${data.firstName} ${data.lastName}`);
+      setPhoneNumber(data.phoneNumber);
+      if (data.image) setImage(data.image);
+      setTimeout(() => setLoading(false), 2000);
     };
 
     fetchUserInfo();
@@ -56,6 +48,7 @@ export default function AccountScreen() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        setTimeout(() => setLoading(false), 2000);
         setEmail(user.email);
       } else {
         console.log("Kullanıcı oturumu kapattı veya giriş yapmadı.");
@@ -69,8 +62,18 @@ export default function AccountScreen() {
   }
 
   function logOut() {
-    navigation.navigate("LoginScreen");
-    Alert.alert("Çıkış Yapıldı", "Başarıyla çıkış yapıldı!");
+    signOut(auth)
+      .then(() => {
+        Alert.alert("Çıkış Yapıldı", "Başarıyla çıkış yapıldı!");
+      })
+      .catch((error) => {
+        Alert.alert("İşlem Başarısız !", "Çıkış Yapılamadı !");
+        console.log(error);
+      });
+  }
+
+  if (loading) {
+    return <Lottie />;
   }
 
   return (
@@ -83,7 +86,9 @@ export default function AccountScreen() {
           <View style={styles.imageName}>
             <ImagePickerComponent image={image} setImage={setImage} />
             <View style={{ justifyContent: "center" }}>
-              <Text style={styles.nameText}>{name} 👋</Text>
+              <Text style={styles.nameText}>
+                {nameTitle ? `${nameTitle}  ✈️` : ""}
+              </Text>
               <Text style={{ fontSize: 20 }}>Gezgin</Text>
             </View>
           </View>
@@ -132,7 +137,7 @@ export default function AccountScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20 },
+  container: { padding: 20, flex: 1 },
 
   input: {
     backgroundColor: "#fff",

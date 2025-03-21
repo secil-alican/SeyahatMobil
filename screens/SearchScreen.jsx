@@ -242,6 +242,8 @@ const styles = StyleSheet.create({
   categoryAndIcon: {
     flexDirection: "row",
     gap: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     fontSize: 20,

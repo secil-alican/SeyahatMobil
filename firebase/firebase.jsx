@@ -2,22 +2,9 @@ import { initializeApp, getApp, getApps } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  getAuth,
-  getReactNativePersistence,
-  initializeAuth,
 } from "firebase/auth";
-import {
-  getFirestore,
-  collection,
-  doc,
-  addDoc,
-  deleteDoc,
-  getDoc,
-  setDoc,
-  getDocs,
-} from "firebase/firestore";
+import { collection, doc, deleteDoc, getDoc, setDoc } from "firebase/firestore";
 import { cities } from "../dataset/CitiesData";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { db, auth } from "./firebaseConfig";
 
 export const registerUser = async (email, password) => {
@@ -29,7 +16,6 @@ export const registerUser = async (email, password) => {
     );
     return userCredential;
   } catch (error) {
-    console.error("Kayıt Hatası:", error.message);
     throw error;
   }
 };
@@ -43,12 +29,11 @@ export const loginUser = async (email, password) => {
     );
     return userCredential.user;
   } catch (error) {
-    console.error("Giriş Hatası:", error.message);
     throw error;
   }
 };
 
-export const saveProfile = async (name, phoneNumber) => {
+export const saveProfile = async (name, phoneNumber,image) => {
   const user = auth.currentUser;
 
   if (user) {
@@ -57,6 +42,7 @@ export const saveProfile = async (name, phoneNumber) => {
       firstName: name.split(" ")[0],
       lastName: name.split(" ")[1] || "",
       phoneNumber,
+      image
     });
   }
 };

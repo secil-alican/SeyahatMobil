@@ -4,24 +4,24 @@ import {
   Text,
   TextInput,
   View,
-  ImageBackground,
   Image,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import ErrorValid from "./ErrorValid";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Fontisto from "@expo/vector-icons/Fontisto";
-import { useFonts } from "expo-font";
-import {
-  Srisakdi_400Regular,
-  Srisakdi_700Bold,
-} from "@expo-google-fonts/srisakdi";
 
 export default function AuthForm({ isLogin, onAuthanticating }) {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const emailValid = email.includes("@");
   const passwordValid = password.length >= 6;
@@ -32,98 +32,109 @@ export default function AuthForm({ isLogin, onAuthanticating }) {
       setEmail("");
       setPassword("");
     } else {
-      onAuthanticating(email, password);
-      setEmail("");
-      setPassword("");
-      setUserName("");
+      if (emailValid && passwordValid) {
+        onAuthanticating(email, password);
+        setEmail("");
+        setPassword("");
+        setShowError(false);
+      } else {
+        Alert.alert("Tekrar Deneyiniz !", "Geçersiz Email veya Şifre !");
+        setShowError(true);
+      }
     }
   };
 
-  let [fontsLoaded] = useFonts({
-    Srisakdi_Regular: Srisakdi_400Regular,
-    Srisakdi_Bold: Srisakdi_700Bold,
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
-    <View style={styles.loginContainer}>
-      <Image
-        source={require("../assets/images/plane.jpg")}
-        style={styles.image}
-      />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <View style={styles.loginContainer}>
+          <Image
+            source={require("../assets/images/plane.jpg")}
+            style={styles.image}
+          />
 
-      <View style={styles.secondLayer}>
-        <View>
-          <Text style={styles.title}>{isLogin ? "Giriş Yap" : "Kayıt Ol"}</Text>
-        </View>
-        <View style={styles.login}>
-          <View style={styles.inputComponent}>
-            <Fontisto name="email" size={25} color="black" />
-            <TextInput
-              placeholder="E-mail"
-              style={styles.inputText}
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email"
-            />
-          </View>
-          {!emailValid && email !== "" && <ErrorValid error="missing @" />}
+          <View style={styles.secondLayer}>
+            <View>
+              <Text style={styles.title}>
+                {isLogin ? "Giriş Yap" : "Kayıt Ol"}
+              </Text>
+            </View>
+            <View style={styles.login}>
+              <View style={styles.inputComponent}>
+                <Fontisto name="email" size={25} color="black" />
+                <TextInput
+                  placeholder="E-mail"
+                  style={styles.inputText}
+                  value={email}
+                  onChangeText={setEmail}
+                  keyboardType="email-address"
+                  placeholderTextColor="gray"
+                />
+              </View>
+              {!emailValid && showError && (
+                <ErrorValid error="Eksik '@' işareti." />
+              )}
 
-          <View style={styles.inputComponent}>
-            <AntDesign name="lock" size={25} color="black" />
-            <TextInput
-              placeholder="Password"
-              secureTextEntry
-              style={styles.inputText}
-              value={password}
-              onChangeText={setPassword}
-            />
-          </View>
-          {!passwordValid && password !== "" && (
-            <ErrorValid error="at least 6 characters" />
-          )}
-        </View>
+              <View style={styles.inputComponent}>
+                <AntDesign name="lock" size={25} color="black" />
+                <TextInput
+                  placeholder="Password"
+                  secureTextEntry
+                  style={styles.inputText}
+                  value={password}
+                  onChangeText={setPassword}
+                   placeholderTextColor="gray"
+                />
+              </View>
+            </View>
+            {!passwordValid && showError && (
+              <ErrorValid error="Şifre en az 6 karakter içermelidir." />
+            )}
 
-        <Pressable
-          onPress={() => onAuthanticate(email, password)}
-          style={({ pressed }) => [
-            styles.loginButton,
-            pressed && styles.pressed,
-          ]}
-        >
-          <Text style={styles.loginText}>{isLogin ? "Login" : "Sign Up"}</Text>
-        </Pressable>
-
-        <View style={styles.signUpAndLogin}>
-          <Text style={styles.signUpText}>
-            {isLogin ? "Hesabın yok mu ?" : ""}
-          </Text>
-          <Pressable
-            style={({ pressed }) => pressed && styles.pressed}
-            onPress={() => navigation.navigate("SignUpScreen")}
-          >
-            <Text style={styles.signUpAndLoginButton}>
-              {isLogin && "Kayıt Ol"}{" "}
-            </Text>
+            <Pressable
+              onPress={() => onAuthanticate(email, password)}
+              style={({ pressed }) => [
+                styles.loginButton,
+                pressed && styles.pressed,
+              ]}
+            >
+              <Text style={styles.loginText}>
+                {isLogin ? "Login" : "Sign Up"}
+              </Text>
+            </Pressable>
 
             <View style={styles.signUpAndLogin}>
-              <Text> {!isLogin && "Zaten hesabın var mı ?"}</Text>
+              <Text style={styles.signUpText}>
+                {isLogin ? "Hesabın yok mu ?" : ""}
+              </Text>
               <Pressable
-                onPress={() => navigation.navigate("LoginScreen")}
                 style={({ pressed }) => pressed && styles.pressed}
+                onPress={() => navigation.navigate("SignUpScreen")}
               >
                 <Text style={styles.signUpAndLoginButton}>
-                  {!isLogin && "Giriş Yap"}{" "}
+                  {isLogin && "Kayıt Ol"}
                 </Text>
+
+                <View style={styles.signUpAndLogin}>
+                  <Text> {!isLogin && "Zaten hesabın var mı ?"}</Text>
+                   <Pressable
+                    onPress={() => navigation.navigate("LoginScreen")}
+                    style={({ pressed }) => pressed && styles.pressed}
+                  >
+                    <Text style={styles.signUpAndLoginButton}>
+                      {!isLogin && "Giriş Yap"}
+                    </Text>
+                  </Pressable>
+                </View>
               </Pressable>
             </View>
-          </Pressable>
+          </View>
         </View>
-      </View>
-    </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -151,7 +162,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: 20,
+    gap: 40,
     width: "90%",
   },
   inputComponent: {
@@ -161,7 +172,6 @@ const styles = StyleSheet.create({
     gap: 10,
     alignItems: "center",
     borderBottomWidth: 1,
-    marginVertical: 5,
   },
   title: {
     textAlign: "left",
@@ -215,6 +225,7 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 18,
     gap: 10,
+    paddingVertical:10
   },
   pressed: {
     opacity: 0.5,
@@ -232,5 +243,10 @@ const styles = StyleSheet.create({
     fontFamily: "Srisakdi_Regular",
     fontSize: 40,
     textAlign: "center",
+  },
+  errorInput: {
+    borderWidth: 3,
+    borderColor: "#A04747",
+    borderRadius: 10,
   },
 });

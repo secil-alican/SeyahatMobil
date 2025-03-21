@@ -90,7 +90,7 @@ export default function FoodDetailsScreen({ route }) {
               <Text style={styles.restaurantText}>En iyi Restaurant :</Text>
               <View style={{ flexDirection: "row", gap: 8 }}>
                 <EvilIcons name="location" size={25} color="#A04747" />
-                <Text>{item.restaurantAdress}</Text>
+                <Text style={{color: "#555"}}>{item.restaurantAdress}</Text>
               </View>
 
               <View style={styles.iconAndClock}>
@@ -100,6 +100,7 @@ export default function FoodDetailsScreen({ route }) {
                     fontSize: 15,
                     justifyContent: "center",
                     alignItems: "center",
+                    color: "#555",
                   }}
                 >
                   {item?.restaurantOpeningHours}

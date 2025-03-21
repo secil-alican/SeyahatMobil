@@ -14,11 +14,10 @@ export default function ErrorValid({ error }) {
 const styles = StyleSheet.create({
   errorText: {
     color: "#A04747",
-    textAlign: "right",
   },
   errorView: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 40,
     width: width,
-
+    marginTop: -30,
   },
 });

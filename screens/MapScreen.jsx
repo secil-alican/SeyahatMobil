@@ -1,4 +1,3 @@
-
 import { View, StyleSheet,Text } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
@@ -9,7 +8,6 @@ export default function MapScreen({ route }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <Text style={styles.title}>{placeName}</Text>
       <MapView
         style={{ flex: 1 }}
         initialRegion={{

@@ -42,9 +42,7 @@ export default function FavoritesScreen() {
 
   return (
     <>
-      <View style={styles.titleView}>
-        <Text style={styles.title}>FAVORİLER</Text>
-      </View>
+
       <View style={styles.container}>
         <ScrollView>
           <Pressable
@@ -150,24 +148,14 @@ export default function FavoritesScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
-    paddingBottom: 20,
+    margin:20,
+    marginVertical:50
   },
 
   pressed: {
     opacity: 0.5,
   },
 
-  title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginVertical: 40,
-    letterSpacing: 2,
-    textShadowColor: "rgba(0, 0, 0, 0.3)",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 5,
-},
 
   filterView: {
     flexDirection: "row",

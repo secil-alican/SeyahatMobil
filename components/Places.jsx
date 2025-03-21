@@ -16,12 +16,13 @@ import { getDocs, collection, onSnapshot } from "firebase/firestore";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 import { db, auth } from "../firebase/firebaseConfig";
-
+import Lottie from "./Lottie";
 
 export default function Places({ searchText, cityName }) {
   const navigation = useNavigation();
   const [places, setPlaces] = useState([]);
   const [favoriteStatus, setFavoriteStatus] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const user = auth.currentUser;
 
@@ -38,6 +39,7 @@ export default function Places({ searchText, cityName }) {
           placesData.push(placeData);
         });
         setPlaces(placesData);
+        setLoading(false);
       } catch (error) {
         console.log("Error fetching places: ", error);
       }
@@ -86,11 +88,16 @@ export default function Places({ searchText, cityName }) {
     fetchFavorites();
   }, [favoriteStatus]);
 
+  if (loading) {
+    <Lottie />;
+  }
+
   return (
     <FlatList
       data={places}
-      keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
-
+      keyExtractor={(item) =>
+        item.id ? item.id.toString() : Math.random().toString()
+      }
       renderItem={({ item }) => (
         <View style={styles.viewContainer}>
           <Pressable
@@ -128,11 +135,13 @@ export default function Places({ searchText, cityName }) {
                     }
                   >
                     <MaterialIcons
-                      name= {favoriteStatus[item.placeName] ? "favorite" : "favorite-border"}
-                      size={24}
-                      color={
-                        favoriteStatus[item.placeName] ? "red" : "black"
+                      name={
+                        favoriteStatus[item.placeName]
+                          ? "favorite"
+                          : "favorite-border"
                       }
+                      size={24}
+                      color={favoriteStatus[item.placeName] ? "red" : "black"}
                     />
                   </Pressable>
                 </View>
@@ -169,7 +178,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   placesContainer: {
-    marginVertical: 25,
+    marginVertical: 15,
     backgroundColor: "#fff",
     borderRadius: 10,
     padding: 10,

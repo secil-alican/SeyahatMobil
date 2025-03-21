@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    marginVertical: 50,
+    marginVertical: 40,
   },
   image: {
     width: 150,

@@ -2,19 +2,21 @@ import { Alert } from "react-native";
 import React, { useState } from "react";
 import AuthForm from "../components/AuthForm";
 import { loginUser } from "../firebase/firebase";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+import Lottie from "../components/Lottie"
 
 export default function LoginScreen({ navigation }) {
   const [isLogin, setIsLogin] = useState(true);
-
+const [loading, setLoading] = useState(false)
   const loginHandler = async (email, password) => {
     try {
-      await loginUser(email, password);
-      Alert.alert("Giriş Başarılı", "Başarıyla giriş yapıldı!");
-      navigation.navigate("Index");
+      const userCredential = await loginUser(email, password);
+      if (userCredential) {
+        <Lottie/>
+      } else {
+        Alert.alert("Giriş Başarısız!", "Kullanıcı Bulunamadı!");
+      }
     } catch (error) {
-      Alert.alert("Giriş Başarısız!", "Bilgileri Kontrol ediniz");
+      Alert.alert("Giriş Başarısız!", "Bilgileri kontrol ediniz !");
     }
   };
 

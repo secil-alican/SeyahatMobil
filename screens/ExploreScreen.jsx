@@ -33,14 +33,14 @@ export default function ExploreScreen() {
       }
     };
     getName();
-  }, []);
+  }, [firstName]);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Merhaba, {firstName} 👋</Text>
         <Text style={styles.subtitle}>Keşfetmeye hazır mısın?</Text>
-        <Input onFocus />
+        <Input disabled={true} />
       </View>
 
       <ScrollView
@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F7F7F7",
-    paddingHorizontal: 20,
+    padding: 20,
+
   },
   headerContainer: {
     marginTop: 50,

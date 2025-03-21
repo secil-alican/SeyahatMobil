@@ -6,11 +6,13 @@ import { registerUser } from "../firebase/firebase";
 export default function SignUpScreen({ navigation }) {
   const signUpHandler = async (email, password) => {
     try {
-      await registerUser(email, password);
-      Alert.alert("Kayıt Başarılı!");
-      navigation.navigate("Index");
+      const user = await registerUser(email, password);
+      if (user) {
+        Alert.alert("Kayıt Başarılı!");
+        navigation.navigate("Index");
+      }
     } catch (error) {
-      Alert.alert("Kayıt Başarısız!", error.message || "Tekrar deneyiniz!");
+      Alert.alert("Kayıt Başarısız!", "Tekrar Deneyiniz!");
     }
   };
 

@@ -15,11 +15,16 @@ import { auth, db } from "../firebase/firebaseConfig";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { getDocs, collection } from "firebase/firestore";
 import * as Location from "expo-location";
+import {
+  getPlacesFavoriteStatus,
+  handlePlacesFavorites,
+} from "../firebase/firebase";
 
 export default function PlaceDetailsScreen({ route, navigation }) {
   const { placeName, places, isFav } = route.params;
   const [filterPlace, setFilterPlace] = useState([]);
   const [favoritePlacesList, setFavoritePlacesList] = useState([]);
+  const [favoriteStatus, setFavoriteStatus] = useState({});
 
   useEffect(() => {
     const placeDetails = places.filter(
@@ -35,31 +40,16 @@ export default function PlaceDetailsScreen({ route, navigation }) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Pressable>
+        <Pressable style={({ pressed }) => pressed && styles.pressed}>
           <MaterialIcons
-             name={isFav ? "favorite" : "favorite-border"}
+            name="favorite"
             size={30}
             color={isFav ? "red" : "black"}
           />
         </Pressable>
       ),
     });
-  }, [favoritePlacesList]);
-
-  useEffect(() => {
-    const getLocation = async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        setErrorMsg("Permission to access location was denied");
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    };
-
-    getLocation();
-  }, []);
+  }, [favoriteStatus]);
 
   const openMap = (latitude, longitude, placeName) => {
     navigation.navigate("MapScreen", { latitude, longitude, placeName });
@@ -68,8 +58,9 @@ export default function PlaceDetailsScreen({ route, navigation }) {
   return (
     <FlatList
       data={filterPlace}
-      keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
-
+      keyExtractor={(item) =>
+        item.id ? item.id.toString() : Math.random().toString()
+      }
       renderItem={({ item }) => (
         <View style={styles.container}>
           <View style={styles.imageView}>
@@ -79,28 +70,31 @@ export default function PlaceDetailsScreen({ route, navigation }) {
           <View style={styles.contentView}>
             <View style={styles.titleAndRatings}>
               <Text style={styles.title}>{item.placeName}</Text>
-              <View style={{ flexDirection: "row", gap: 8 }}>
+              <View style={{ flexDirection: "row", gap: 8,alignItems:"center" }}>
                 <FontAwesome name="star" size={25} color="#EEDF7A" />
                 <Text style={styles.ratings}>{item.placeRatings}</Text>
               </View>
             </View>
 
-            <View style={{ flexDirection: "row", gap: 8, marginBottom: 20 }}>
+            <View style={{ flexDirection: "row", gap: 8, marginBottom: 20,alignItems:"center" }}>
               <EvilIcons name="location" size={24} color="#A04747" />
-              <Text>{item.placeAdress}</Text>
+              <Text style={{ color: "#555" }}>{item.placeAdress}</Text>
             </View>
 
             <Text style={styles.description}>{item.placeDescription}</Text>
 
             <View style={styles.iconAndClock}>
               <Ionicons name="alarm" size={25} color="#A04747" />
-              <Text style={{ fontSize: 15 }}>{item?.placeOpeningHours}</Text>
+              <Text style={{ fontSize: 15, color: "#555" }}>
+                {item?.placeOpeningHours}
+              </Text>
             </View>
 
             <FlatList
               data={item.placeMap}
-              keyExtractor={(map) => (map.id ? map.id.toString() : Math.random().toString())}
-
+              keyExtractor={(map) =>
+                map.id ? map.id.toString() : Math.random().toString()
+              }
               renderItem={({ item: map }) => (
                 <Weather latitude={map.latitude} longitude={map.longitude} />
               )}
@@ -138,6 +132,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
+    lineHeight: 24,
   },
   titleAndRatings: {
     flexDirection: "row",
@@ -146,12 +141,13 @@ const styles = StyleSheet.create({
   },
   ratings: {
     fontSize: 20,
-    color:"#EEDF7A"
+    color: "#EEDF7A",
   },
   iconAndClock: {
     flexDirection: "row",
     gap: 10,
     marginTop: 30,
+    alignItems: "center",
   },
   contentView: {
     borderRadius: 40,

@@ -95,7 +95,7 @@ export default function ActivityDetailsScreen({ route }) {
 
             <View style={{ flexDirection: "row", gap: 8, marginBottom: 20 }}>
               <EvilIcons name="location" size={24} color="#A04747" />
-              <Text>{item.activityAdress}</Text>
+              <Text style={{color: "#555"}}>{item.activityAdress}</Text>
             </View>
 
             <Text style={styles.description}>{item.activityDescription}</Text>
@@ -106,7 +106,7 @@ export default function ActivityDetailsScreen({ route }) {
 
             <View style={styles.iconAndClock}>
               <Ionicons name="alarm" size={24} color="#A04747" />
-              <Text style={{ fontSize: 15 }}>{item.activityOpeningHours}</Text>
+              <Text style={{ fontSize: 15,color: "#555" }}>{item.activityOpeningHours}</Text>
             </View>
 
             <FlatList

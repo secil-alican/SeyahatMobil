@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Lottie from "./Lottie";
 
 export default function Weather({ latitude, longitude }) {
   const [weather, setWeather] = useState(null);
@@ -19,7 +20,7 @@ export default function Weather({ latitude, longitude }) {
     fetchWeather();
   }, [latitude, longitude]);
 
-  if (!weather) return <Text>Loading weather...</Text>;
+  if (!weather) return <Text>Yükleniyor ...</Text>;
 
   return (
     <View style={styles.container}>
@@ -58,7 +59,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 20,
     marginVertical: 40,
-
   },
   text: {
     color: "#fff",
@@ -67,13 +67,12 @@ const styles = StyleSheet.create({
   weatherImage: {
     width: 100,
     height: 40,
-    marginVertical:10
-
+    marginVertical: 10,
   },
   infoContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginVertical:20
+    marginVertical: 20,
   },
   value: {
     color: "#fff",
@@ -83,7 +82,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderBottomWidth: 1,
     borderBottomColor: "#D8A25E",
-
-
   },
 });
