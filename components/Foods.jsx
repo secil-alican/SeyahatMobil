@@ -7,7 +7,10 @@ import {
   Image,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { handleFoodsFavorites, getFoodsFavoriteStatus } from "../firebase/firebase";
+import {
+  handleFoodsFavorites,
+  getFoodsFavoriteStatus,
+} from "../firebase/firebase";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { getDocs, collection } from "firebase/firestore";
@@ -52,8 +55,6 @@ export default function Foods({ cityName }) {
     }));
   };
 
-
-
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
@@ -80,8 +81,9 @@ export default function Foods({ cityName }) {
   return (
     <FlatList
       data={foods}
-      keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
-
+      keyExtractor={(item) =>
+        item.id ? item.id.toString() : Math.random().toString()
+      }
       renderItem={({ item }) => (
         <View style={styles.viewContainer}>
           <Pressable
@@ -100,7 +102,9 @@ export default function Foods({ cityName }) {
               <View style={styles.icons}>
                 <View style={styles.ratingView}>
                   <FontAwesome name="star" size={20} color="#EEDF7A" />
-                  <Text>{item.restaurantRatings}</Text>
+                  <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+                    {item.restaurantRatings}
+                  </Text>
                 </View>
                 <View>
                   <Pressable
@@ -118,7 +122,11 @@ export default function Foods({ cityName }) {
                     }
                   >
                     <MaterialIcons
-                        name= {favoriteStatus[item.foodName] ? "favorite" : "favorite-border"}
+                      name={
+                        favoriteStatus[item.foodName]
+                          ? "favorite"
+                          : "favorite-border"
+                      }
                       size={24}
                       color={favoriteStatus[item.foodName] ? "red" : "black"}
                     />
@@ -157,6 +165,8 @@ const styles = StyleSheet.create({
   ratingView: {
     flexDirection: "row",
     gap: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
   icons: {
     flexDirection: "row",

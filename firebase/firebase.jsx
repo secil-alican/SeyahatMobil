@@ -3,7 +3,16 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { collection, doc, deleteDoc, getDoc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  deleteDoc,
+  getDoc,
+  setDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { cities } from "../dataset/CitiesData";
 import { db, auth } from "./firebaseConfig";
 
@@ -33,7 +42,7 @@ export const loginUser = async (email, password) => {
   }
 };
 
-export const saveProfile = async (name, phoneNumber,image) => {
+export const saveProfile = async (name, phoneNumber, image) => {
   const user = auth.currentUser;
 
   if (user) {
@@ -42,7 +51,7 @@ export const saveProfile = async (name, phoneNumber,image) => {
       firstName: name.split(" ")[0],
       lastName: name.split(" ")[1] || "",
       phoneNumber,
-      image
+      image,
     });
   }
 };
@@ -382,5 +391,54 @@ export const saveCitiesToFirestore = async () => {
     console.log("Tüm veriler başarıyla kaydedildi!");
   } catch (error) {
     console.error("Veri ekleme sırasında bir hata oluştu:", error);
+  }
+};
+
+export const getHistoricalPlaces = async () => {
+  try {
+    const placesRef = collection(db, "cities", "İstanbul", "places");
+    const q = query(placesRef, where("category", "==", "Tarihi"));
+    const querySnapshot = await getDocs(q);
+
+    const places = [];
+    querySnapshot.forEach((doc) => {
+      places.push(doc.data());
+    });
+    return places;
+  } catch (error) {
+    console.error("Veri alırken hata:", error);
+    return [];
+  }
+};
+
+export const getNaturePlaces = async () => {
+  try {
+    const placeRef = collection(db, "cities", "İstanbul", "places");
+    const q = query(placeRef, where("category", "==", "Manzara"));
+    const querySnapshot = await getDocs(q);
+    const places = [];
+    querySnapshot.forEach((doc) => {
+      places.push(doc.data());
+    });
+    return places;
+  } catch (error) {
+    console.error("Veri alırken hata:", error);
+    return [];
+  }
+};
+
+export const getCulturelPlaces = async () => {
+  try {
+    const placeRef = collection(db, "cities", "İstanbul", "places");
+    const q = query(placeRef, where("category", "==", "Sanat"));
+    const querySnapshot = await getDocs(q);
+    const places = [];
+    querySnapshot.forEach((doc) => {
+      places.push(doc.data());
+    });
+    return places;
+  } catch (error) {
+    console.error("Veri alırken hata:", error);
+    return [];
   }
 };

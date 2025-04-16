@@ -116,7 +116,7 @@ export default function Places({ searchText, cityName }) {
               <View style={styles.icons}>
                 <View style={styles.ratingView}>
                   <FontAwesome name="star" size={20} color="#EEDF7A" />
-                  <Text>{item?.placeRatings}</Text>
+                  <Text style={{fontSize:15,fontWeight:"bold"}}>{item?.placeRatings}</Text>
                 </View>
                 <View>
                   <Pressable
@@ -200,6 +200,8 @@ const styles = StyleSheet.create({
   ratingView: {
     flexDirection: "row",
     gap: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
   icons: {
     flexDirection: "row",

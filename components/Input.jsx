@@ -2,7 +2,11 @@ import { StyleSheet, Text, View, TextInput } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Input({ searchText, setSearchText, disabled = false }) {
+export default function Input({
+  searchText,
+  setSearchText,
+  autoFocus = false,
+}) {
   const navigation = useNavigation();
 
   function onFocusHandler() {
@@ -12,13 +16,12 @@ export default function Input({ searchText, setSearchText, disabled = false }) {
   return (
     <View style={styles.input}>
       <TextInput
-        placeholder="Nereye Gitmek İstiyorsun?"
+        placeholder="Hangi Şehre Gitmek İstiyorsun ?"
         onPress={onFocusHandler}
         value={searchText}
         onChangeText={(newValue) => setSearchText(newValue)}
-        editable={!disabled}
-        placeholderTextColor={'grey'}
-        autoFocus
+        placeholderTextColor={"grey"}
+        autoFocus={autoFocus}
       />
     </View>
   );

@@ -76,7 +76,7 @@ export default function PlaceDetailsScreen({ route, navigation }) {
               </View>
             </View>
 
-            <View style={{ flexDirection: "row", gap: 8, marginBottom: 20,alignItems:"center" }}>
+            <View style={{ flexDirection: "row", gap: 5, marginBottom: 20,alignItems:"center",flexWrap:"wrap" }}>
               <EvilIcons name="location" size={24} color="#A04747" />
               <Text style={{ color: "#555" }}>{item.placeAdress}</Text>
             </View>
@@ -148,6 +148,8 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 30,
     alignItems: "center",
+    flexWrap:"wrap"
+
   },
   contentView: {
     borderRadius: 40,

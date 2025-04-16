@@ -7,7 +7,6 @@ import AcountScreen from "./AccountScreen";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { View } from "react-native-web";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,11 +14,9 @@ export default function Index() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
-        tabBarActiveBackgroundColor: "#D8A25E",
-        tabBarActiveTintColor: "#343131",
-        tabBarInactiveTintColor: "#ddd",
 
+        tabBarActiveTintColor: "#D8A25E",
+        tabBarInactiveTintColor: "#ddd",
 
         tabBarStyle: {
           position: "absolute",
@@ -30,7 +27,6 @@ export default function Index() {
         },
         tabBarItemStyle: {
           height: 60,
-          borderRadius: 20,
         },
       }}
     >

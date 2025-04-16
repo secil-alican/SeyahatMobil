@@ -1,3 +1,7 @@
+//kategori:tarihi,doğa,sanat
+
+
+
 export const cities = [
   {
     city: "Eskisehir",
@@ -461,6 +465,7 @@ export const cities = [
     city: "İstanbul",
     places: [
       {
+        category: "Tarihi",
         placeImage: "https://i.ibb.co/7J22QVm3/ayasofyanin-gizemi.png",
         placeName: "Ayasofya",
         placeDescription:
@@ -477,6 +482,7 @@ export const cities = [
         ],
       },
       {
+        category: "Tarihi",
         placeImage: "https://i.ibb.co/jPhQKNph/top1-620x400.jpg",
         placeName: "Topkapı Sarayı",
         placeDescription:
@@ -492,6 +498,7 @@ export const cities = [
         ],
       },
       {
+        category: "Tarihi",
         placeImage: "https://i.ibb.co/jCqbnwX/blue-mosque-15cbc679cd9d0e.jpg",
         placeName: "Sultanahmet Camii",
         placeDescription:
@@ -507,7 +514,9 @@ export const cities = [
         ],
       },
       {
-        placeImage: "https://i.ibb.co/S7P4DbHk/20231124-kapali-carsi-915520-589236045ac5a157d94f.jpg",
+        category: "Tarihi",
+        placeImage:
+          "https://i.ibb.co/S7P4DbHk/20231124-kapali-carsi-915520-589236045ac5a157d94f.jpg",
         placeName: "Kapalı Çarşı",
         placeDescription:
           "Kapalı Çarşı, İstanbul'un en eski ve en büyük kapalı alışveriş merkezlerinden biridir. Altın, halı, baharat ve hediyelik eşya gibi birçok ürün burada bulunabilir.",
@@ -516,12 +525,13 @@ export const cities = [
         placeRatings: 4.4,
         placeMap: [
           {
-            latitude:41.01085478382827,
+            latitude: 41.01085478382827,
             longitude: 28.968068096067423,
           },
         ],
       },
       {
+        category: "Tarihi",
         placeImage: "https://i.ibb.co/0VmY6m77/bo-azdan-scaled.jpg",
         placeName: "Dolmabahçe Sarayı",
         placeDescription:
@@ -538,76 +548,225 @@ export const cities = [
       },
 
       {
-        "placeImage": "https://i.ibb.co/G4F8tcmd/istanbul-bopshorus.jpg",
-        "placeName": "İstanbul Boğazı",
-        "placeDescription": "İstanbul Boğazı, Asya ve Avrupa kıtalarını ayıran doğal bir su yoludur. Muhteşem manzaraları, tarihi yalıları ve köprüleriyle ünlüdür. Boğaz turlarıyla bu eşsiz güzelliği keşfedebilirsiniz.",
-        "placeAddress": "İstanbul Boğazı, İstanbul",
-        "placeOpeningHours": "Her zaman Erişilebilir",
-        "placeRatings": 4.8,
-        "placeMap": [
+        category: "Manzara",
+        placeImage: "https://i.ibb.co/G4F8tcmd/istanbul-bopshorus.jpg",
+        placeName: "İstanbul Boğazı",
+        placeDescription:
+          "İstanbul Boğazı, Asya ve Avrupa kıtalarını ayıran doğal bir su yoludur. Muhteşem manzaraları, tarihi yalıları ve köprüleriyle ünlüdür. Boğaz turlarıyla bu eşsiz güzelliği keşfedebilirsiniz.",
+        placeAddress: "İstanbul Boğazı, İstanbul",
+        placeOpeningHours: "Her zaman Erişilebilir",
+        placeRatings: 4.8,
+        placeMap: [
           {
-            "latitude": 41.123,
-            "longitude": 29.056
-          }
-        ]
+            latitude: 41.123,
+            longitude: 29.056,
+          },
+        ],
       },
       {
-        "placeImage": "https://i.ibb.co/sdxqgTD9/galata-kulesi-tarihi.webp",
-        "placeName": "Galata Kulesi",
-        "placeDescription": "Galata Kulesi, İstanbul'un en ikonik yapılarından biridir. 14. yüzyılda inşa edilen bu kule, şehrin panoramik manzarasını sunar. Tarihi dokusu ve eşsiz manzarasıyla ziyaretçileri cezbeder.",
-        "placeAddress": "Bereketzade, 34421 Beyoğlu/İstanbul",
-        "placeOpeningHours": "08:30–22:00",
-        "placeRatings": 4.6,
-        "placeMap": [
+        category: "Tarihi",
+        placeImage: "https://i.ibb.co/sdxqgTD9/galata-kulesi-tarihi.webp",
+        placeName: "Galata Kulesi",
+        placeDescription:
+          "Galata Kulesi, İstanbul'un en ikonik yapılarından biridir. 14. yüzyılda inşa edilen bu kule, şehrin panoramik manzarasını sunar. Tarihi dokusu ve eşsiz manzarasıyla ziyaretçileri cezbeder.",
+        placeAddress: "Bereketzade, 34421 Beyoğlu/İstanbul",
+        placeOpeningHours: "08:30–22:00",
+        placeRatings: 4.6,
+        placeMap: [
           {
-            "latitude": 41.02581988528732,
-            "longitude":28.974107138396924
-          }
-        ]
+            latitude: 41.02581988528732,
+            longitude: 28.974107138396924,
+          },
+        ],
       },
       {
-        "placeImage": "https://i.ibb.co/TG95bg5/yerebatan-sarnici-10.jpg",
-        "placeName": "Yerebatan Sarnıcı",
-        "placeDescription": "Yerebatan Sarnıcı, Bizans döneminden kalma yer altı su deposudur. Sarnıç, etkileyici sütunları ve mistik atmosferiyle ziyaretçilerine eşsiz bir deneyim sunar.",
-        "placeAddress": "Alemdar, Yerebatan Cd. 1/3, 34110 Fatih/İstanbul",
+        category: "Tarihi",
+        placeImage: "https://i.ibb.co/TG95bg5/yerebatan-sarnici-10.jpg",
+        placeName: "Yerebatan Sarnıcı",
+        placeDescription:
+          "Yerebatan Sarnıcı, Bizans döneminden kalma yer altı su deposudur. Sarnıç, etkileyici sütunları ve mistik atmosferiyle ziyaretçilerine eşsiz bir deneyim sunar.",
+        placeAddress: "Alemdar, Yerebatan Cd. 1/3, 34110 Fatih/İstanbul",
 
-        "placeOpeningHours": "09:00–18:30 | 19:30–22:00",
-        "placeRatings": 4.6,
-        "placeMap": [
+        placeOpeningHours: "09:00–18:30 | 19:30–22:00",
+        placeRatings: 4.6,
+        placeMap: [
           {
-            "latitude": 41.0085863741744,
-            "longitude": 28.977963826752344
-          }
-        ]
+            latitude: 41.0085863741744,
+            longitude: 28.977963826752344,
+          },
+        ],
       },
       {
-        "placeImage": "https://i.ibb.co/4dG1h1j/sultanahmet-meydani.jpg",
-        "placeName": "Sultanahmet Meydanı",
-        "placeDescription": "Sultanahmet Meydanı, İstanbul'un tarihi yarımadasında yer alır ve Ayasofya, Sultanahmet Camii ve Topkapı Sarayı gibi önemli yapılarla çevrilidir. Tarihi dokusu ve mimarisiyle dikkat çeker.",
-        "placeAddress": "Binbirdirek, Sultan Ahmet Parkı No:2, 34122 Fatih/İstanbul",
-        "placeOpeningHours": "Her zaman Erişilebilir",
-        "placeRatings": 4.7,
-        "placeMap": [
+        category: "",
+        placeImage: "https://i.ibb.co/tpWb3RMn/Sultan-Ahmet-Cover.jpg",
+        placeName: "Sultanahmet Meydanı",
+        placeDescription:
+          "Sultanahmet Meydanı, İstanbul'un tarihi yarımadasında yer alır ve Ayasofya, Sultanahmet Camii ve Topkapı Sarayı gibi önemli yapılarla çevrilidir. Tarihi dokusu ve mimarisiyle dikkat çeker.",
+        placeAddress:
+          "Binbirdirek, Sultan Ahmet Parkı No:2, 34122 Fatih/İstanbul",
+        placeOpeningHours: "Her zaman Erişilebilir",
+        placeRatings: 4.7,
+        placeMap: [
           {
-            "latitude": 41.00648825647748,
-            "longitude": 28.975655152709194
-          }
-        ]
+            latitude: 41.00648825647748,
+            longitude: 28.975655152709194,
+          },
+        ],
       },
       {
-        "placeImage": "https://i.ibb.co/7k7yJ1k/istiklal-caddesi.jpg",
-        "placeName": "İstiklal Caddesi",
-        "placeDescription": "İstiklal Caddesi, İstanbul'un en popüler alışveriş ve eğlence caddelerinden biridir. Tarihi binaları, mağazaları, restoranları ve sanat galerileriyle ünlüdür.",
-        "placeAddress": "Beyoğlu/İstanbul",
-        "placeOpeningHours": "Her zaman Erişilebilir",
-        "placeRatings": 4.6,
-        "placeMap": [
+        category: "",
+        placeImage: "https://i.ibb.co/0yDqHd7s/6257739075-67337fc423-b.jpg",
+        placeName: "İstiklal Caddesi",
+        placeDescription:
+          "İstiklal Caddesi, İstanbul'un en popüler alışveriş ve eğlence caddelerinden biridir. Tarihi binaları, mağazaları, restoranları ve sanat galerileriyle ünlüdür.",
+        placeAddress: "Beyoğlu/İstanbul",
+        placeOpeningHours: "Her zaman Erişilebilir",
+        placeRatings: 4.6,
+        placeMap: [
           {
-            "latitude": 41.03382783635566,
-            "longitude": 28.977952696068616
-          }
-        ]
-      }
+            latitude: 41.03382783635566,
+            longitude: 28.977952696068616,
+          },
+        ],
+      },
+      {
+        category: "",
+        placeImage: "https://i.ibb.co/KjXRG2M9/1200x628.jpg",
+        placeName: "Taksim Meydanı",
+        placeDescription:
+          "Taksim Meydanı, İstanbul'un en merkezi noktalarından biridir. Alışveriş merkezleri, restoranlar ve otellerle çevrilidir.",
+        placeAddress: "Taksim Meydanı, Beyoğlu, İstanbul",
+        placeOpeningHours: "Her zaman Erişilebilir",
+        placeRatings: 4.5,
+        placeMap: [
+          { latitude: 41.03768106719055, longitude: 28.985091638323603 },
+        ],
+      },
+      {
+        category: "Tarihi",
+        placeImage: "https://i.ibb.co/bM9RnjJn/kiz-kulesinin-hikayesi.jpg",
+        placeName: "Kız Kulesi",
+        placeDescription:
+          "Kız Kulesi, İstanbul Boğazı'nda küçük bir adacık üzerinde yer alan tarihi bir kuledir. Günümüzde restoran ve müze olarak hizmet vermektedir.",
+        placeAddress: "Salacak, 34668 Üsküdar/İstanbul",
+        placeOpeningHours: "09:30–18:00",
+        placeRatings: 4.7,
+        placeMap: [
+          { latitude: 41.021388719934265, longitude: 29.00436799168176 },
+        ],
+      },
+      {
+        category: "Tarihi",
+        placeImage: "https://i.ibb.co/dJ4PTRMp/misir-carsisi.jpg",
+        placeName: "Mısır Çarşısı",
+        placeDescription:
+          "Mısır Çarşısı, baharatları, kuruyemişleri ve lokumlarıyla ünlü tarihi bir çarşıdır. Renkli atmosferiyle ziyaretçilerine eşsiz bir alışveriş deneyimi sunar.",
+        placeAddress: "Rüstem Paşa, 34116 Fatih/İstanbul",
+        placeOpeningHours: "08:00–19:30",
+        placeRatings: 4.5,
+        placeMap: [
+          { latitude: 41.016749242987444, longitude: 28.970489984424127 },
+        ],
+      },
+      {
+        category: "",
+        placeImage: "https://i.ibb.co/5XT5N5DK/607573cbf434d99a1a1a8a23.jpg",
+        placeName: "Eminönü",
+        placeDescription:
+          "Eminönü, İstanbul'un tarihi yarımadasında yer alan ve ticaretin kalbinin attığı bir bölgedir. Balık ekmekçileri, tarihi yapıları ve çarşılarıyla ünlüdür.",
+        placeAddress: "Eminönü, Fatih, İstanbul",
+        placeOpeningHours: "Her zaman Erişilebilir",
+        placeRatings: 4.6,
+        placeMap: [
+          { latitude: 41.01748449657007, longitude: 28.970921767232042 },
+        ],
+      },
+      {
+        category: "Tarihi",
+        placeImage:
+          "https://i.ibb.co/V0NbdNfG/1200px-S-leymaniye-Mosque-Istanbul-cropped.jpg",
+        placeName: "Süleymaniye Camii ve Külliyesi",
+        placeDescription:
+          "Süleymaniye Camii, Mimar Sinan'ın en önemli eserlerinden biridir ve İstanbul'un siluetine damgasını vurur. Külliye içerisinde medrese, hamam ve imaret gibi yapılar da bulunur.",
+        placeAddress:
+          "Süleymaniye, Prof. Sıddık Sami Onar Cd. No:1, 34116 Fatih/İstanbul",
+        placeOpeningHours: "09:00 - 18:00",
+        placeRatings: 4.9,
+        placeMap: [
+          { latitude: 41.01613601831407, longitude: 28.9640354690814732 },
+        ],
+      },
+      {
+        category: "Sanat",
+        placeImage: "https://i.ibb.co/JRQd0zDx/koleksiyon-78310-977448.jpg",
+        placeName: "İstanbul Modern Sanat Müzesi",
+        placeDescription:
+          "İstanbul Modern, çağdaş sanat eserleriyle tanınan, Türkiye'nin en önemli modern sanat müzelerinden biridir. Sürekli ve geçici sergilere ev sahipliği yapar.",
+        placeAddress:
+          "Kılıçali Paşa, Tophane İskele Cd. No:1/1, 34433 Beyoğlu/İstanbul",
+        placeOpeningHours: "10:00 - 18:00 (Pazartesi kapalı)",
+        placeRatings: 4.4,
+        placeMap: [
+          { latitude: 41.02604907474936, longitude: 28.982956313260146 },
+        ],
+      },
+      {
+        category: "Sanat",
+        placeImage:
+          "https://i.ibb.co/1Y4C40td/istanbul-arkeoloji-muzesi-gezisi.jpg",
+        placeName: "İstanbul Arkeoloji Müzeleri",
+        placeDescription:
+          "İstanbul Arkeoloji Müzeleri, antik eser koleksiyonlarıyla dünya çapında ünlüdür. Müze, Eski Şark Eserleri Müzesi, Arkeoloji Müzesi ve Çinili Köşk Müzesi olmak üzere üç bölümden oluşur.",
+        placeAddress: "Cankurtaran, 34122 Fatih/İstanbul",
+        placeOpeningHours: "09:00–17:30",
+        placeRatings: 4.6,
+        placeMap: [
+          { latitude: 41.011725949941074, longitude: 28.98133049606743 },
+        ],
+      },
+      {
+        category: "Sanat",
+        placeImage: "https://i.ibb.co/xq1mM1WJ/miniaturk-muzesi-istanbul.jpg",
+        placeName: "Miniatürk",
+        placeDescription:
+          "Miniatürk, Türkiye'nin önemli tarihi yapılarının minyatür versiyonlarını sergileyen açık hava müzesidir. Çocuklar ve turistler için eğlenceli bir gezi noktasıdır.",
+        placeAddress: "Örnektepe, İmrahor Cd. No:7, 34445 Beyoğlu/İstanbul",
+        placeOpeningHours: "09:00 - 18:00",
+        placeRatings: 4.6,
+        placeMap: [
+          { latitude: 41.05913405715795, longitude: 28.949265215111417 },
+        ],
+      },
+      {
+        category: "Sanat",
+        placeImage:
+          "https://i.ibb.co/gbKL6Vcn/istanbul-pera-museum-exterior2.jpg",
+        placeName: "Pera Müzesi",
+        placeDescription:
+          "Pera Müzesi, Osmanlı ve Cumhuriyet dönemine ait sanat koleksiyonlarıyla dikkat çeker. Düzenlenen sergiler ve kültürel etkinliklerle sanatseverleri ağırlar.",
+        placeAddress:
+          "Asmalı Mescit, Meşrutiyet Cd. No:65, 34430 Beyoğlu/İstanbul",
+        placeOpeningHours:
+          "10:00–19:00 (Pazartesi kapalı) | Cumartesi : 10:00–19:00",
+        placeRatings: 4.6,
+        placeMap: [
+          { latitude: 41.03200734274797, longitude: 28.97502560956156 },
+        ],
+      },
+      {
+        category: "Sanat",
+        placeImage: "https://i.ibb.co/844Q0rKr/image.jpg",
+        placeName: "Sakıp Sabancı Müzesi",
+        placeDescription:
+          "Sakıp Sabancı Müzesi, Osmanlı hat sanatları, modern sanat eserleri ve geçici sergileriyle İstanbul’un kültürel hayatında önemli bir yere sahiptir.",
+        placeAddress:
+          "Emirgan, Sakıp Sabancı Cd. No:42, 34467 Sarıyer/İstanbul",
+        placeOpeningHours: "10:00–18:00 (Pazartesi kapalı)",
+        placeRatings: 4.7,
+        placeMap: [
+          { latitude: 41.10568484410979, longitude: 29.05688000166506 },
+        ],
+      },
     ],
   },
 ];

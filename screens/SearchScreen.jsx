@@ -117,7 +117,7 @@ export default function SearchScreen({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.viewContainer}>
-        <Input searchText={searchText} setSearchText={setSearchText} />
+        <Input searchText={searchText} setSearchText={setSearchText} autoFocus={true} />
         <FlatList
           data={filteredCities}
           keyExtractor={(item) => item.cityName}

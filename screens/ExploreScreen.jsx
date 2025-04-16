@@ -3,18 +3,46 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
   Image,
-  TouchableOpacity,
+  FlatList,
+  ScrollView,
+  Dimensions,
+  Pressable,
 } from "react-native";
 import Testimonials from "../components/Testimonials";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Input from "../components/Input";
 import { db, auth } from "../firebase/firebaseConfig";
 import { getDoc, doc } from "firebase/firestore";
+import {
+  getHistoricalPlaces,
+  getCulturelPlaces,
+  getNaturePlaces,
+} from "../firebase/firebase";
+import Carousel from "react-native-reanimated-carousel";
+import { useSharedValue } from "react-native-reanimated";
 
-export default function ExploreScreen() {
+const images = [
+  require("../assets/images/imagesCard/1.jpg"),
+  require("../assets/images/imagesCard/2.jpg"),
+  require("../assets/images/imagesCard/3.jpg"),
+  require("../assets/images/imagesCard/4.jpg"),
+  require("../assets/images/imagesCard/5.jpg"),
+  require("../assets/images/imagesCard/6.jpg"),
+  require("../assets/images/imagesCard/7.jpg"),
+  require("../assets/images/imagesCard/8.jpg"),
+  require("../assets/images/imagesCard/9.jpg"),
+  require("../assets/images/imagesCard/10.jpg"),
+];
+
+export default function ExploreScreen({ navigation }) {
   const [firstName, setFirstName] = useState("");
+  const [current, setCurrent] = useState(0);
+  const [historicalDatas, setHistoricalDatas] = useState([]);
+  const [natureDatas, setNatureDatas] = useState([]);
+  const [culturelDatas, setCulturelDatas] = useState([]);
+
+  const progress = useSharedValue(0);
+  const screenWidth = Dimensions.get("window").width;
 
   useEffect(() => {
     const getName = async () => {
@@ -35,13 +63,138 @@ export default function ExploreScreen() {
     getName();
   }, [firstName]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const fetchExplorePlaces = async () => {
+      try {
+        const historicalData = await getHistoricalPlaces();
+        setHistoricalDatas(historicalData);
+        const natureData = await getNaturePlaces();
+        setNatureDatas(natureData);
+        const culturelData = await getCulturelPlaces();
+        setCulturelDatas(culturelData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchExplorePlaces();
+  }, []);
+
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Merhaba, {firstName} 👋</Text>
         <Text style={styles.subtitle}>Keşfetmeye hazır mısın?</Text>
-        <Input disabled={true} />
+        <Input />
       </View>
+
+      <View style={styles.imageCardView}>
+        <Image source={images[current]} style={styles.imagesCard} />
+      </View>
+
+      {historicalDatas.length > 0 && (
+        <View style={{ marginTop: 20 }}>
+          <Text style={styles.sectionTitle}>Tarihi Yerler</Text>
+
+          <FlatList
+            horizontal
+            data={historicalDatas}
+            keyExtractor={(item) => item.placeName}
+            renderItem={({ item }) => (
+              <Pressable
+                style={({ pressed }) => pressed && styles.pressed}
+                onPress={() =>
+                  navigation.navigate("PlaceDetailsScreen", {
+                    places: images,
+                    placeName: item.placeName,
+                  })
+                }
+              >
+                <View style={styles.card}>
+                  <Image
+                    source={{ uri: item.placeImage }}
+                    style={styles.image}
+                    imageStyle={{ borderRadius: 15 }}
+                  ></Image>
+                  <Text style={styles.cardText}>{item.placeName}</Text>
+                </View>
+              </Pressable>
+            )}
+          />
+        </View>
+      )}
+
+
+
+      {culturelDatas.length > 0 && (
+        <View style={{ marginTop: 20 }}>
+          <Text style={styles.sectionTitle}>Sanat Ve Müze</Text>
+
+          <FlatList
+            horizontal
+            data={culturelDatas}
+            keyExtractor={(item) => item.placeName}
+            renderItem={({ item }) => (
+              <Pressable
+                style={({ pressed }) => pressed && styles.pressed}
+                onPress={() =>
+                  navigation.navigate("PlaceDetailsScreen", {
+                    places: images,
+                    placeName: item.placeName,
+                  })
+                }
+              >
+                <View style={styles.card}>
+                  <Image
+                    source={{ uri: item.placeImage }}
+                    style={styles.image}
+                    imageStyle={{ borderRadius: 15 }}
+                  ></Image>
+                  <Text style={styles.cardText}>{item.placeName}</Text>
+                </View>
+              </Pressable>
+            )}
+          />
+        </View>
+      )}
+
+{natureDatas.length > 0 && (
+        <View style={{ marginTop: 20 }}>
+          <Text style={styles.sectionTitle}>Doğa Ve Manzara</Text>
+
+          <FlatList
+            horizontal
+            data={natureDatas}
+            keyExtractor={(item) => item.placeName}
+            renderItem={({ item }) => (
+              <Pressable
+                style={({ pressed }) => pressed && styles.pressed}
+                onPress={() =>
+                  navigation.navigate("PlaceDetailsScreen", {
+                    places: images,
+                    placeName: item.placeName,
+                  })
+                }
+              >
+                <View style={styles.card}>
+                  <Image
+                    source={{ uri: item.placeImage }}
+                    style={styles.image}
+                    imageStyle={{ borderRadius: 15 }}
+                  ></Image>
+                  <Text style={styles.cardText}>{item.placeName}</Text>
+                </View>
+              </Pressable>
+            )}
+          />
+        </View>
+      )}
 
       <ScrollView
         horizontal
@@ -52,52 +205,7 @@ export default function ExploreScreen() {
           testimonials="Seyahat, yalnızca bir yerden diğerine gitmek değil, aynı zamanda yaşamın ne kadar çeşitli olduğunu keşfetmektir."
           text=" – Mark Twain"
         />
-
-        <Testimonials
-          testimonials="Her yolculuk, kendi içinde bir öğretmendir. Deneyimlediğiniz her şey, size yaşamın ne kadar basit ve aynı zamanda karmaşık olduğunu gösterir."
-          text="– Elizabeth Gilbert"
-        />
-        <Testimonials
-          testimonials="Dünyayı bir kere görmek, bin kere duymaktan iyidir. "
-          text="– Evliya Çelebi"
-        />
       </ScrollView>
-
-      <View style={styles.popularPlacesContainer}>
-        <Text style={styles.sectionTitle}>Popüler Yerler</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View style={styles.card}>
-            <Image
-              source={require("../assets/images/istanbul.jpg")}
-              style={styles.image}
-            />
-            <View style={styles.cardFooter}>
-              <Text style={styles.cardText}>İstanbul</Text>
-              <MaterialIcons name="favorite" size={24} color="red" />
-            </View>
-          </View>
-          <View style={styles.card}>
-            <Image
-              source={require("../assets/images/izmir.jpg")}
-              style={styles.image}
-            />
-            <View style={styles.cardFooter}>
-              <Text style={styles.cardText}>İzmir</Text>
-              <MaterialIcons name="favorite" size={24} color="red" />
-            </View>
-          </View>
-          <View style={styles.card}>
-            <Image
-              source={require("../assets/images/ankara.jpg")}
-              style={styles.image}
-            />
-            <View style={styles.cardFooter}>
-              <Text style={styles.cardText}>Ankara</Text>
-              <MaterialIcons name="favorite" size={24} color="red" />
-            </View>
-          </View>
-        </ScrollView>
-      </View>
     </ScrollView>
   );
 }
@@ -107,11 +215,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F7F7F7",
     padding: 20,
-
   },
   headerContainer: {
-    marginTop: 50,
-    marginBottom: 20,
+    marginVertical: 20,
   },
   title: {
     fontSize: 28,
@@ -124,36 +230,64 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   testimonialsContainer: {
-    marginBottom: 30,
+    marginVertical: 30,
   },
 
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 30,
+    fontSize: 25,
+    fontWeight: "400",
     color: "#333",
+    marginVertical: 20,
   },
   card: {
-    backgroundColor: "#fff",
-    borderRadius: 15,
-
     marginRight: 15,
-    padding: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   image: {
     width: 160,
-    height: 200,
-    borderRadius:15
+    height: 150,
+    borderRadius: 30,
   },
-  cardFooter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 10,
-  },
+
   cardText: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#333",
+    position: "absolute",
+    bottom: 0,
+    padding: 20,
+    color: "#fff",
+  },
+  imageCardView: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
+    overflow: "hidden",
+
+    padding: 10,
+  },
+  imagesCard: {
+    width: "100%",
+    height: 180,
+    resizeMode: "cover",
+    borderRadius: 20,
+  },
+  pressed: {
+    opacity: 0.5,
   },
 });
