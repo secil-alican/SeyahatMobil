@@ -58,7 +58,7 @@ export default function SearchScreen({ navigation }) {
 
           if (
             cityData.cityName &&
-            cityData.cityName.toLowerCase().includes(searchText.toLowerCase())
+            cityData.cityName.toLowerCase().startsWith(searchText.toLowerCase())
           ) {
             const placesSnapshot = await getDocs(
               collection(db, "cities", cityData.cityName, "places")
@@ -117,7 +117,11 @@ export default function SearchScreen({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.viewContainer}>
-        <Input searchText={searchText} setSearchText={setSearchText} autoFocus={true} />
+        <Input
+          searchText={searchText}
+          setSearchText={setSearchText}
+          autoFocus={true}
+        />
         <FlatList
           data={filteredCities}
           keyExtractor={(item) => item.cityName}

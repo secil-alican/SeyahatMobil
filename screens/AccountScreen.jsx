@@ -15,6 +15,7 @@ import {
   Platform,
   Image,
   Alert,
+  ImageBackground,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { getUserProfile, saveProfile } from "../firebase/firebase";
@@ -23,10 +24,11 @@ import { auth } from "../firebase/firebaseConfig";
 import Lottie from "../components/Lottie";
 
 export default function AccountScreen() {
+  const [image, setImage] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [image, setImage] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const [nameTitle, setNameTitle] = useState("");
 
@@ -59,6 +61,7 @@ export default function AccountScreen() {
   function saveHandler() {
     saveProfile(name, phoneNumber, image);
     Alert.alert("Başarılı", "Bilgiler kaydedildi!");
+    console.log(image);
   }
 
   function logOut() {
@@ -77,62 +80,54 @@ export default function AccountScreen() {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView
-          style={{ flex: 1 }}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
-          <View style={styles.imageName}>
-            <ImagePickerComponent image={image} setImage={setImage} />
-            <View style={{ justifyContent: "center" }}>
-              <Text style={styles.nameText}>
-                {nameTitle ? `${nameTitle}  ✈️` : ""}
-              </Text>
-              <Text style={{ fontSize: 20 }}>Gezgin</Text>
-            </View>
-          </View>
-          <LinearGradient
-            colors={["#FAE1C0", "#F0C98D", "#D8A25E"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.gradientView}
-          >
-            <Text style={styles.inputText}>İsim Soyisim : </Text>
-            <TextInput
-              style={styles.input}
-              value={name}
-              onChangeText={setName}
-              placeholder="İsim Soyisim"
-            />
-            <Text style={styles.inputText}>E-Posta : </Text>
-            <TextInput
-              style={styles.input}
-              value={email}
-              placeholder="E-posta"
-              editable={false}
-            />
-            <Text style={styles.inputText}>Telefon Numarası : </Text>
-            <TextInput
-              style={styles.input}
-              value={phoneNumber}
-              onChangeText={setPhoneNumber}
-              maxLength={11}
-              placeholder="Telefon Numarası"
-            />
 
-            <View style={styles.buttonContainer}>
-              <Pressable style={styles.saveButton} onPress={saveHandler}>
-                <Text style={styles.buttonText}>Kaydet</Text>
-              </Pressable>
-              <Pressable style={styles.logoutButton} onPress={logOut}>
-                <Text style={styles.buttonText}>Çıkış Yap</Text>
-              </Pressable>
+      <ScrollView contentContainerStyle={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <KeyboardAvoidingView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+          >
+            <View style={styles.imagePicker}>
+              <ImagePickerComponent image={image} setImage={setImage} />
             </View>
-          </LinearGradient>
-        </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
-    </ScrollView>
+
+            <View>
+              <Text style={styles.inputText}>İsim Soyisim : </Text>
+              <TextInput
+                style={styles.input}
+                value={name}
+                onChangeText={setName}
+                placeholder="İsim Soyisim"
+              />
+              <Text style={styles.inputText}>E-Posta : </Text>
+              <TextInput
+                style={styles.input}
+                value={email}
+                placeholder="E-posta"
+                editable={false}
+              />
+              <Text style={styles.inputText}>Telefon Numarası : </Text>
+              <TextInput
+                style={styles.input}
+                value={phoneNumber}
+                onChangeText={setPhoneNumber}
+                maxLength={11}
+                placeholder="Telefon Numarası"
+              />
+
+              <View style={styles.buttonContainer}>
+                <Pressable style={styles.saveButton} onPress={saveHandler}>
+                  <Text style={styles.buttonText}>Kaydet</Text>
+                </Pressable>
+                <Pressable style={styles.logoutButton} onPress={logOut}>
+                  <Text style={styles.buttonText}>Çıkış Yap</Text>
+                </Pressable>
+              </View>
+            </View>
+          </KeyboardAvoidingView>
+        </TouchableWithoutFeedback>
+      </ScrollView>
+
   );
 }
 
@@ -178,9 +173,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  imageName: {
+  imagePicker: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     gap: 20,
   },

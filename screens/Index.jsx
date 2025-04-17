@@ -14,7 +14,6 @@ export default function Index() {
   return (
     <Tab.Navigator
       screenOptions={{
-
         tabBarActiveTintColor: "#D8A25E",
         tabBarInactiveTintColor: "#ddd",
 

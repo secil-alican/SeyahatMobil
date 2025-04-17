@@ -18,8 +18,6 @@ import {
   getCulturelPlaces,
   getNaturePlaces,
 } from "../firebase/firebase";
-import Carousel from "react-native-reanimated-carousel";
-import { useSharedValue } from "react-native-reanimated";
 
 const images = [
   require("../assets/images/imagesCard/1.jpg"),
@@ -39,10 +37,7 @@ export default function ExploreScreen({ navigation }) {
   const [current, setCurrent] = useState(0);
   const [historicalDatas, setHistoricalDatas] = useState([]);
   const [natureDatas, setNatureDatas] = useState([]);
-  const [culturelDatas, setCulturelDatas] = useState([]);
-
-  const progress = useSharedValue(0);
-  const screenWidth = Dimensions.get("window").width;
+  const [culturalDatas, setCulturelDatas] = useState([]);
 
   useEffect(() => {
     const getName = async () => {
@@ -77,8 +72,8 @@ export default function ExploreScreen({ navigation }) {
         setHistoricalDatas(historicalData);
         const natureData = await getNaturePlaces();
         setNatureDatas(natureData);
-        const culturelData = await getCulturelPlaces();
-        setCulturelDatas(culturelData);
+        const culturalData = await getCulturelPlaces();
+        setCulturelDatas(culturalData);
       } catch (error) {
         console.log(error);
       }
@@ -93,59 +88,152 @@ export default function ExploreScreen({ navigation }) {
         <Text style={styles.subtitle}>Keşfetmeye hazır mısın?</Text>
         <Input />
       </View>
-
       <View style={styles.imageCardView}>
         <Image source={images[current]} style={styles.imagesCard} />
       </View>
 
-      {historicalDatas.length > 0 && (
-        <View style={{ marginTop: 20 }}>
-          <Text style={styles.sectionTitle}>Tarihi Yerler</Text>
+      <View style={{ marginTop: 30 }}>
+        {historicalDatas.length > 4 ? (
+          <View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text style={styles.sectionTitle}>Tarihi Yerler</Text>
+              <Pressable
+                style={({ pressed }) => pressed && styles.pressed}
+                onPress={() =>
+                  navigation.navigate("HistoricalPlacesScreen", {
+                    historicalDatas: historicalDatas,
+                  })
+                }
+              >
+                <Text style={styles.seeAllsText}>Tümünü Gör</Text>
+              </Pressable>
+            </View>
 
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              data={historicalDatas.slice(0, 4)}
+              keyExtractor={(item) => item.placeName}
+              renderItem={({ item }) => (
+                <Pressable
+                  style={({ pressed }) => pressed && styles.pressed}
+                  onPress={() =>
+                    navigation.navigate("PlaceDetailsScreen", {
+                      places: historicalDatas,
+                      placeName: item.placeName,
+                    })
+                  }
+                >
+                  <View style={styles.card}>
+                    <Image
+                      source={{ uri: item.placeImage }}
+                      style={styles.image}
+                      imageStyle={{ borderRadius: 15 }}
+                    />
+                    <Text style={styles.cardText}>{item.placeName}</Text>
+                  </View>
+                </Pressable>
+              )}
+            />
+          </View>
+        ) : (
           <FlatList
+            showsHorizontalScrollIndicator={false}
             horizontal
             data={historicalDatas}
             keyExtractor={(item) => item.placeName}
             renderItem={({ item }) => (
               <Pressable
                 style={({ pressed }) => pressed && styles.pressed}
-                onPress={() =>
+                onPress={() => {
                   navigation.navigate("PlaceDetailsScreen", {
-                    places: images,
+                    places: historicalDatas,
                     placeName: item.placeName,
-                  })
-                }
+                  });
+                }}
               >
                 <View style={styles.card}>
                   <Image
                     source={{ uri: item.placeImage }}
                     style={styles.image}
                     imageStyle={{ borderRadius: 15 }}
-                  ></Image>
+                  />
                   <Text style={styles.cardText}>{item.placeName}</Text>
                 </View>
               </Pressable>
             )}
           />
-        </View>
-      )}
+        )}
+      </View>
 
+      <View style={{ marginTop: 30 }}>
+        {culturalDatas.length > 4 ? (
+          <View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text style={styles.sectionTitle}>Sanat Ve Müze</Text>
+              <Pressable
+                style={({ pressed }) => pressed && styles.pressed}
+                onPress={() =>
+                  navigation.navigate("CulturalPlacesScreen", {
+                    culturalDatas: culturalDatas,
+                  })
+                }
+              >
+                <Text style={styles.seeAllsText}>Tümünü Gör</Text>
+              </Pressable>
+            </View>
 
-
-      {culturelDatas.length > 0 && (
-        <View style={{ marginTop: 20 }}>
-          <Text style={styles.sectionTitle}>Sanat Ve Müze</Text>
-
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              data={culturalDatas.slice(0, 4)}
+              keyExtractor={(item) => item.placeName}
+              renderItem={({ item }) => (
+                <Pressable
+                  style={({ pressed }) => pressed && styles.pressed}
+                  onPress={() =>
+                    navigation.navigate("PlaceDetailsScreen", {
+                      places: culturalDatas,
+                      placeName: item.placeName,
+                    })
+                  }
+                >
+                  <View style={styles.card}>
+                    <Image
+                      source={{ uri: item.placeImage }}
+                      style={styles.image}
+                      imageStyle={{ borderRadius: 15 }}
+                    />
+                    <Text style={styles.cardText}>{item.placeName}</Text>
+                  </View>
+                </Pressable>
+              )}
+            />
+          </View>
+        ) : (
           <FlatList
+            showsHorizontalScrollIndicator={false}
             horizontal
-            data={culturelDatas}
+            data={culturalDatas}
             keyExtractor={(item) => item.placeName}
             renderItem={({ item }) => (
               <Pressable
                 style={({ pressed }) => pressed && styles.pressed}
                 onPress={() =>
                   navigation.navigate("PlaceDetailsScreen", {
-                    places: images,
+                    places: culturalDatas,
                     placeName: item.placeName,
                   })
                 }
@@ -155,47 +243,98 @@ export default function ExploreScreen({ navigation }) {
                     source={{ uri: item.placeImage }}
                     style={styles.image}
                     imageStyle={{ borderRadius: 15 }}
-                  ></Image>
+                  />
                   <Text style={styles.cardText}>{item.placeName}</Text>
                 </View>
               </Pressable>
             )}
           />
-        </View>
-      )}
+        )}
+      </View>
 
-{natureDatas.length > 0 && (
-        <View style={{ marginTop: 20 }}>
-          <Text style={styles.sectionTitle}>Doğa Ve Manzara</Text>
-
-          <FlatList
-            horizontal
-            data={natureDatas}
-            keyExtractor={(item) => item.placeName}
-            renderItem={({ item }) => (
+      <View style={{ marginTop: 30 }}>
+        {natureDatas.length > 4 ? (
+          <View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text style={styles.sectionTitle}>Doğa Ve Manzara</Text>
               <Pressable
                 style={({ pressed }) => pressed && styles.pressed}
                 onPress={() =>
-                  navigation.navigate("PlaceDetailsScreen", {
-                    places: images,
-                    placeName: item.placeName,
+                  navigation.navigate("NaturePlacesScreen", {
+                    natureDatas: natureDatas,
                   })
                 }
               >
-                <View style={styles.card}>
-                  <Image
-                    source={{ uri: item.placeImage }}
-                    style={styles.image}
-                    imageStyle={{ borderRadius: 15 }}
-                  ></Image>
-                  <Text style={styles.cardText}>{item.placeName}</Text>
-                </View>
+                <Text style={styles.seeAllsText}>Tümünü Gör</Text>
               </Pressable>
-            )}
-          />
-        </View>
-      )}
+            </View>
 
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              data={natureDatas.slice(0, 4)}
+              keyExtractor={(item) => item.placeName}
+              renderItem={({ item }) => (
+                <Pressable
+                  style={({ pressed }) => pressed && styles.pressed}
+                  onPress={() =>
+                    navigation.navigate("PlaceDetailsScreen", {
+                      places: natureDatas,
+                      placeName: item.placeName,
+                    })
+                  }
+                >
+                  <View style={styles.card}>
+                    <Image
+                      source={{ uri: item.placeImage }}
+                      style={styles.image}
+                      imageStyle={{ borderRadius: 15 }}
+                    />
+                    <Text style={styles.cardText}>{item.placeName}</Text>
+                  </View>
+                </Pressable>
+              )}
+            />
+          </View>
+        ) : (
+          <View>
+            <Text style={styles.sectionTitle}>Doğa Ve Manzara</Text>
+
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              data={natureDatas}
+              keyExtractor={(item) => item.placeName}
+              renderItem={({ item }) => (
+                <Pressable
+                  style={({ pressed }) => pressed && styles.pressed}
+                  onPress={() =>
+                    navigation.navigate("PlaceDetailsScreen", {
+                      places: natureDatas,
+                      placeName: item.placeName,
+                    })
+                  }
+                >
+                  <View style={styles.card}>
+                    <Image
+                      source={{ uri: item.placeImage }}
+                      style={styles.image}
+                      imageStyle={{ borderRadius: 15 }}
+                    />
+                    <Text style={styles.cardText}>{item.placeName}</Text>
+                  </View>
+                </Pressable>
+              )}
+            />
+          </View>
+        )}
+      </View>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -289,5 +428,10 @@ const styles = StyleSheet.create({
   },
   pressed: {
     opacity: 0.5,
+  },
+  seeAllsText: {
+    fontSize: 15,
+    color: "#D8A25E",
+    textDecorationLine: "underline",
   },
 });

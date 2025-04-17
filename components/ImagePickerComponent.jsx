@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Button, Image, View, StyleSheet, Pressable, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
-export default function ImagePickerComponent({ image, setImage }) {
+export default function ImagePickerComponent({image,setImage}) {
+
   const pickImage = async () => {
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -12,7 +13,7 @@ export default function ImagePickerComponent({ image, setImage }) {
     }
 
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ImagePicker.Images,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
