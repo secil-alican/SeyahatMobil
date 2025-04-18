@@ -432,6 +432,5 @@ const styles = StyleSheet.create({
   seeAllsText: {
     fontSize: 15,
     color: "#D8A25E",
-    textDecorationLine: "underline",
   },
 });

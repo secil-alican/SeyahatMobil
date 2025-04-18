@@ -83,7 +83,6 @@ export const addPlacesFavorites = async (favoriteRef, place) => {
       placeAdress: place.placeAdress,
       placeMap: place.placeMap,
       placeOpeningHours: place.placeOpeningHours,
-      placeWeather: place.placeWeather,
     });
 
     console.log(`Favori "${place.placeName}" kaydedildi.`);

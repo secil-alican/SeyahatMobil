@@ -86,7 +86,7 @@ export default function Places({ searchText, cityName }) {
     };
 
     fetchFavorites();
-  }, [favoriteStatus]);
+  }, []);
 
   if (loading) {
     <Lottie />;
@@ -116,7 +116,9 @@ export default function Places({ searchText, cityName }) {
               <View style={styles.icons}>
                 <View style={styles.ratingView}>
                   <FontAwesome name="star" size={20} color="#EEDF7A" />
-                  <Text style={{fontSize:15,fontWeight:"bold"}}>{item?.placeRatings}</Text>
+                  <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+                    {item?.placeRatings}
+                  </Text>
                 </View>
                 <View>
                   <Pressable
@@ -130,7 +132,6 @@ export default function Places({ searchText, cityName }) {
                         placeAdress: item.placeAdress,
                         placeMap: item.placeMap,
                         placeOpeningHours: item.placeOpeningHours,
-                        placeWeather: item.placeWeather,
                       })
                     }
                   >

@@ -12,8 +12,6 @@ export const cities = [
         placeDescription:
           "Eskişehir'in simgelerinden biri olan Porsuk Çayı, şehrin ortasından geçen ve çevresindeki keyifli yürüyüş yolları ile tanınan bir akarsudur. Gondol turları ile de turistlerin ilgisini çeker.",
         placeAdress: "Odunpazarı, Eskişehir",
-        placeWeather:
-          "Genelde ılıman, yaz aylarında sıcak ve güneşli, kış aylarında serin.",
         placeOpeningHours: "Her zaman erişilebilir",
         placeRatings: 4.5,
         placeMap: [
@@ -29,8 +27,6 @@ export const cities = [
         placeDescription:
           "Odunpazarı, Eskişehir'in tarihi merkezlerinden biridir. Geleneksel Osmanlı mimarisine sahip evleri, renkli caddeleri ve sanat galerileri ile ünlüdür. Ayrıca Eskişehir'in kültürel mirasını yansıtan birçok mekan burada bulunmaktadır.",
         placeAdress: "Şarkiye, Atatürk Blv. No: 37, 26020 Odunpazarı/Eskişehir",
-        placeWeather:
-          "Ilıman, yaz aylarında sıcak, kış aylarında soğuk ve kar yağışlı olabilir.",
         placeOpeningHours: "Her zaman erişilebilir",
         placeRatings: 4.6,
         placeMap: [
@@ -47,8 +43,7 @@ export const cities = [
           "Masal Şatosu, Eskişehir'in Sazova Parkı'nda yer alan ve masallardan ilham alınarak inşa edilen renkli ve büyüleyici bir yapıdır. Hem çocuklar hem de yetişkinler için harika bir ziyaret noktasıdır. Şatoda çeşitli masal karakterlerinin heykelleri ve interaktif alanlar bulunmaktadır.",
         placeAdress:
           "Sazova, Bilim Sanat ve Kültür Parkı, Ulusal Egemenlik Blv., 26150 Tepebaşı/Eskişehir",
-        placeWeather:
-          "Ilıman, yaz aylarında sıcak ve güneşli, kışın soğuk ve yağışlı olabilir.",
+
         placeOpeningHours: "10:00 - 17:15",
         placeRatings: 4.5,
         placeMap: [
@@ -64,8 +59,6 @@ export const cities = [
         placeDescription:
           "Balmumu Heykeller Müzesi, Eskişehir'in en ilginç müzelerinden biridir. Bu müzede ünlü kişilerin balmumu heykelleri sergilenmektedir. Ziyaretçiler, ünlü siyasetçilerden sanatçılara kadar birçok kişinin heykelini yakından görebilirler.",
         placeAdress: "Akarbaşı, Atatürk Blv. No:43, 26010 Odunpazarı/Eskişehir",
-        placeWeather:
-          "Ilıman, yazları sıcak, kışları ise serin ve yağışlı olabilir.",
         placeOpeningHours: "09:00 - 17:00",
         placeRatings: 4.6,
         placeMap: [

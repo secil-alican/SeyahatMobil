@@ -80,54 +80,52 @@ export default function AccountScreen() {
   }
 
   return (
+    <ScrollView contentContainerStyle={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <View style={styles.imagePicker}>
+            <ImagePickerComponent image={image} setImage={setImage} />
+          </View>
 
-      <ScrollView contentContainerStyle={styles.container}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <KeyboardAvoidingView
-            style={{ flex: 1 }}
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-          >
-            <View style={styles.imagePicker}>
-              <ImagePickerComponent image={image} setImage={setImage} />
+          <View style={styles.card}>
+            <Text style={styles.inputText}>İsim Soyisim : </Text>
+            <TextInput
+              style={styles.input}
+              value={name}
+              onChangeText={setName}
+              placeholder="İsim Soyisim"
+            />
+            <Text style={styles.inputText}>E-Posta : </Text>
+            <TextInput
+              style={styles.input}
+              value={email}
+              placeholder="E-posta"
+              editable={false}
+            />
+            <Text style={styles.inputText}>Telefon Numarası : </Text>
+            <TextInput
+              style={styles.input}
+              value={phoneNumber}
+              onChangeText={setPhoneNumber}
+              maxLength={11}
+              placeholder="Telefon Numarası"
+            />
+
+            <View style={styles.buttonContainer}>
+              <Pressable style={styles.saveButton} onPress={saveHandler}>
+                <Text style={styles.buttonText}>Kaydet</Text>
+              </Pressable>
+              <Pressable style={styles.logoutButton} onPress={logOut}>
+                <Text style={styles.buttonText}>Çıkış Yap</Text>
+              </Pressable>
             </View>
-
-            <View>
-              <Text style={styles.inputText}>İsim Soyisim : </Text>
-              <TextInput
-                style={styles.input}
-                value={name}
-                onChangeText={setName}
-                placeholder="İsim Soyisim"
-              />
-              <Text style={styles.inputText}>E-Posta : </Text>
-              <TextInput
-                style={styles.input}
-                value={email}
-                placeholder="E-posta"
-                editable={false}
-              />
-              <Text style={styles.inputText}>Telefon Numarası : </Text>
-              <TextInput
-                style={styles.input}
-                value={phoneNumber}
-                onChangeText={setPhoneNumber}
-                maxLength={11}
-                placeholder="Telefon Numarası"
-              />
-
-              <View style={styles.buttonContainer}>
-                <Pressable style={styles.saveButton} onPress={saveHandler}>
-                  <Text style={styles.buttonText}>Kaydet</Text>
-                </Pressable>
-                <Pressable style={styles.logoutButton} onPress={logOut}>
-                  <Text style={styles.buttonText}>Çıkış Yap</Text>
-                </Pressable>
-              </View>
-            </View>
-          </KeyboardAvoidingView>
-        </TouchableWithoutFeedback>
-      </ScrollView>
-
+          </View>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
+    </ScrollView>
   );
 }
 
@@ -177,7 +175,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 20,
+    zIndex: 1,
   },
   nameText: {
     fontSize: 28,
@@ -192,5 +190,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "500",
     marginTop: 10,
+  },
+  card: {
+    backgroundColor: "#D8A25E",
+    padding: 10,
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+
   },
 });
