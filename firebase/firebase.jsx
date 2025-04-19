@@ -243,63 +243,6 @@ export const deleteFoodsFavorites = async (favoriteRef) => {
   }
 };
 
-export const getPlacesFavoriteStatus = async (name) => {
-  try {
-    const user = auth.currentUser;
-    if (!user) return false;
-
-    const favoriteRef = doc(db, "users", user.uid, "favoritePlaces", name);
-    const docSnap = await getDoc(favoriteRef);
-
-    if (docSnap.exists()) {
-      return docSnap.data().name;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    console.error("Favori durumu alınırken hata:", error);
-    return false;
-  }
-};
-
-export const getActivitiesFavoriteStatus = async (name) => {
-  try {
-    const user = auth.currentUser;
-    if (!user) return false;
-
-    const favoriteRef = doc(db, "users", user.uid, "favoriteActivities", name);
-    const docSnap = await getDoc(favoriteRef);
-
-    if (docSnap.exists()) {
-      return docSnap.data().name;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    console.error("Favori durumu alınırken hata:", error);
-    return false;
-  }
-};
-
-export const getFoodsFavoriteStatus = async (name) => {
-  try {
-    const user = auth.currentUser;
-    if (!user) return false;
-
-    const favoriteRef = doc(db, "users", user.uid, "favoriteFoods", name);
-    const docSnap = await getDoc(favoriteRef);
-
-    if (docSnap.exists()) {
-      return docSnap.data().name;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    console.error("Favori durumu alınırken hata:", error);
-    return false;
-  }
-};
-
 export const favoritesList = async (name) => {
   const user = auth.currentUser;
   if (!user) {
@@ -441,3 +384,59 @@ export const getCulturelPlaces = async () => {
     return [];
   }
 };
+
+export const isFavoritePlaces = async (name) => {
+  const user = auth.currentUser;
+  if (!user) {
+    console.error("Kullanıcı giriş yapmamış.");
+    return false;
+  }
+  try {
+    const favoriteRef = doc(db, "users", user.uid, "favoritePlaces", name);
+    const docSnapshot = await getDoc(favoriteRef);
+    if (docSnapshot.exists()) {
+      return docSnapshot.exists();
+    }
+  } catch (err) {
+    console.error(err);
+    return false
+  }
+};
+
+
+export const isFavoriteActivity = async (name) => {
+  const user = auth.currentUser;
+  if (!user) {
+    console.error("Kullanıcı giriş yapmamış.");
+    return false;
+  }
+  try {
+    const favoriteRef = doc(db, "users", user.uid, "favoriteActivities", name);
+    const docSnapshot = await getDoc(favoriteRef);
+    if (docSnapshot.exists()) {
+      return docSnapshot.exists();
+    }
+  } catch (err) {
+    console.error(err);
+    return false
+  }
+};
+
+export const isFavoriteFoods = async (name) => {
+  const user = auth.currentUser;
+  if (!user) {
+    console.error("Kullanıcı giriş yapmamış.");
+    return false;
+  }
+  try {
+    const favoriteRef = doc(db, "users", user.uid, "favoriteFoods", name);
+    const docSnapshot = await getDoc(favoriteRef);
+    if (docSnapshot.exists()) {
+      return docSnapshot.exists();
+    }
+  } catch (err) {
+    console.error(err);
+    return false
+  }
+};
+

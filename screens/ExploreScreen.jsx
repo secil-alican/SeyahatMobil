@@ -19,6 +19,8 @@ import {
   getNaturePlaces,
 } from "../firebase/firebase";
 
+const window = Dimensions.get("window");
+
 const images = [
   require("../assets/images/imagesCard/1.jpg"),
   require("../assets/images/imagesCard/2.jpg"),
@@ -56,7 +58,7 @@ export default function ExploreScreen({ navigation }) {
       }
     };
     getName();
-  }, [firstName]);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -84,10 +86,14 @@ export default function ExploreScreen({ navigation }) {
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.title}>Merhaba, {firstName} 👋</Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-between",alignItems: "center" }}>
+        <Text style={styles.title}>Merhaba , {firstName}</Text>
+        <Text style={{fontSize:50}}>👋</Text>
+        </View>
         <Text style={styles.subtitle}>Keşfetmeye hazır mısın?</Text>
         <Input />
       </View>
+
       <View style={styles.imageCardView}>
         <Image source={images[current]} style={styles.imagesCard} />
       </View>

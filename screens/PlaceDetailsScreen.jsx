@@ -16,14 +16,15 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { getDocs, collection } from "firebase/firestore";
 import * as Location from "expo-location";
 import {
-  getPlacesFavoriteStatus,
+  isFavoritePlaces,
   handlePlacesFavorites,
+  getPlacesFavoriteStatus,
 } from "../firebase/firebase";
 
 export default function PlaceDetailsScreen({ route, navigation }) {
-  const { placeName, places, isFav } = route.params;
+  const { placeName, places } = route.params;
   const [filterPlace, setFilterPlace] = useState([]);
-  const [favoritePlacesList, setFavoritePlacesList] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteStatus, setFavoriteStatus] = useState({});
 
   useEffect(() => {
@@ -37,19 +38,46 @@ export default function PlaceDetailsScreen({ route, navigation }) {
     navigation.setOptions({ title: placeName });
   }, [placeName]);
 
+  const updateFavorite = async (place) => {
+    await handlePlacesFavorites(place);
+    try {
+      const favoriteData = await isFavoritePlaces(placeName);
+      console.log("Favorite Data: ", favoriteData);
+      setIsFavorite(favoriteData);
+    } catch (error) {
+      console.log("Error fetching favorite status: ", error);
+    }
+
+  };
+
+  useEffect(() => {
+    const checkFavoritestatus = async () => {
+      try {
+        const favoriteData = await isFavoritePlaces(placeName);
+        setIsFavorite(favoriteData);
+      } catch (error) {
+        console.log("Error fetching favorite status: ", error);
+      }
+    };
+    checkFavoritestatus();
+  }, [placeName]);
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Pressable style={({ pressed }) => pressed && styles.pressed}>
+        <Pressable
+          onPress={() => updateFavorite(filterPlace[0])}
+          style={({ pressed }) => [pressed && styles.pressed]}
+        >
           <MaterialIcons
-            name="favorite"
-            size={30}
-            color={isFav ? "red" : "black"}
+            name={isFavorite ? "favorite" : "favorite-border"}
+            size={25}
+            color={isFavorite ? "red" : "#000"}
           />
         </Pressable>
       ),
     });
-  }, [favoriteStatus]);
+  }, [isFavorite, filterPlace]);
 
   const openMap = (latitude, longitude, placeName) => {
     navigation.navigate("MapScreen", { latitude, longitude, placeName });
@@ -70,13 +98,23 @@ export default function PlaceDetailsScreen({ route, navigation }) {
           <View style={styles.contentView}>
             <View style={styles.titleAndRatings}>
               <Text style={styles.title}>{item.placeName}</Text>
-              <View style={{ flexDirection: "row", gap: 8,alignItems:"center" }}>
+              <View
+                style={{ flexDirection: "row", gap: 8, alignItems: "center" }}
+              >
                 <FontAwesome name="star" size={25} color="#EEDF7A" />
                 <Text style={styles.ratings}>{item.placeRatings}</Text>
               </View>
             </View>
 
-            <View style={{ flexDirection: "row", gap: 5, marginBottom: 20,alignItems:"center",flexWrap:"wrap" }}>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 5,
+                marginBottom: 20,
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}
+            >
               <EvilIcons name="location" size={24} color="#A04747" />
               <Text style={{ color: "#555" }}>{item.placeAdress}</Text>
             </View>
@@ -148,8 +186,7 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 30,
     alignItems: "center",
-    flexWrap:"wrap"
-
+    flexWrap: "wrap",
   },
   contentView: {
     borderRadius: 40,

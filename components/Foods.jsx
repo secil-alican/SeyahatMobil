@@ -32,7 +32,7 @@ export default function Foods({ cityName }) {
 
         foodsSnapshot.docs.forEach((foodsDoc) => {
           const foodData = foodsDoc.data();
-          foodsData.push(foodData);
+          foodsData.push({ id: foodsDoc.id, ...foodData }); // düzeltildi
         });
         setFoods(foodsData);
       } catch (error) {
@@ -92,7 +92,7 @@ export default function Foods({ cityName }) {
               navigation.navigate("FoodDetailsScreen", {
                 foods: foods,
                 foodName: item.foodName,
-                isFav: favoriteStatus[item.foodName],
+
               })
             }
           >

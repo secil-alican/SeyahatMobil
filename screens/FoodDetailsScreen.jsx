@@ -14,11 +14,15 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { auth, db } from "../firebase/firebaseConfig";
 import { getDocs, collection } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
+import {
+  isFavoriteFoods,
+  handleFoodsFavorites,
+} from "../firebase/firebase";
 
 export default function FoodDetailsScreen({ route }) {
   const { foodName, foods, isFav } = route.params;
   const [filterfood, setFilterFood] = useState([]);
-  const [favoriteFoodsList, setFavoriteFoodsList] = useState([]);
+const [isFavorite, setIsFavorite] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -30,39 +34,49 @@ export default function FoodDetailsScreen({ route }) {
     navigation.setOptions({ title: foodName });
   }, [foodName]);
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const user = auth.currentUser;
-        if (!user) return;
 
-        const favoritesRef = collection(db, "users", user.uid, "favoriteFoods");
-        const querySnapshot = await getDocs(favoritesRef);
+ const updateFavorite = async (place) => {
+     await handleFoodsFavorites(place);
+     try {
+       const favoriteData = await isFavoriteFoods(foodName);
+       console.log("Favorite Data: ", favoriteData);
+       setIsFavorite(favoriteData);
+     } catch (error) {
+       console.log("Error fetching favorite status: ", error);
+     }
 
-        const favorites = querySnapshot.docs.map((doc) => doc.data());
-        setFavoriteFoodsList(favorites);
-      } catch (error) {
-        console.error("Favori listesi alınırken hata:", error);
-      }
-    };
+   };
 
-    fetchFavorites();
-  }, []);
+   useEffect(() => {
+     const checkFavoritestatus = async () => {
+       try {
+         const favoriteData = await isFavoriteFoods(foodName);
+         console.log("Favorite Data: ", favoriteData);
+         setIsFavorite(favoriteData);
+       } catch (error) {
+         console.log("Error fetching favorite status: ", error);
+       }
+     };
+     checkFavoritestatus();
+   }, [foodName]);
 
-  useEffect(() => {
+
+   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Pressable>
+        <Pressable
+          onPress={() => updateFavorite(filterfood[0])}
+          style={({ pressed }) => [pressed && styles.pressed]}
+        >
           <MaterialIcons
-            name={isFav ? "favorite" : "favorite-border"}
-            size={30}
-            color={isFav ? "red" : "black"}
+            name={isFavorite ? "favorite" : "favorite-border"}
+            size={25}
+            color={isFavorite ? "red" : "#000"}
           />
         </Pressable>
       ),
     });
-  }, []);
-
+  }, [isFavorite, filterfood]);
   return (
     <FlatList
       data={filterfood}

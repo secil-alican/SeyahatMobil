@@ -33,10 +33,10 @@ export default function Activities({ cityName }) {
 
         activitiesSnapshot.docs.forEach((activityDoc) => {
           const activityData = activityDoc.data();
-          activitiesData.push(activityData);
+          activitiesData.push({ id: activityDoc.id, ...activityData });
         });
-        setActivities(activitiesData);
 
+        setActivities(activitiesData);
       } catch (error) {
         console.log("Error fetching activities: ", error);
       }
@@ -56,7 +56,6 @@ export default function Activities({ cityName }) {
       [activity.activityName]: { ...activity, status },
     }));
   };
-
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -89,8 +88,7 @@ export default function Activities({ cityName }) {
   return (
     <FlatList
       data={activities}
-      keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
-
+      keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <View style={styles.viewContainer}>
           <Pressable
@@ -99,7 +97,6 @@ export default function Activities({ cityName }) {
               navigation.navigate("ActivityDetailsScreen", {
                 activities: activities,
                 activityName: item.activityName,
-                isFav: favoriteStatus[item.activityName],
               })
             }
           >
@@ -112,7 +109,9 @@ export default function Activities({ cityName }) {
               <View style={styles.icons}>
                 <View style={styles.ratingView}>
                   <FontAwesome name="star" size={20} color="#EEDF7A" />
-                  <Text style={{fontSize:15,fontWeight:"bold"}}>{item.activityRatings}</Text>
+                  <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+                    {item.activityRatings}
+                  </Text>
                 </View>
                 <View>
                   <Pressable
@@ -130,7 +129,11 @@ export default function Activities({ cityName }) {
                     }
                   >
                     <MaterialIcons
-                        name= {favoriteStatus[item.activityName] ? "favorite" : "favorite-border"}
+                      name={
+                        favoriteStatus[item.activityName]
+                          ? "favorite"
+                          : "favorite-border"
+                      }
                       size={24}
                       color={
                         favoriteStatus[item.activityName] ? "red" : "black"
@@ -171,8 +174,8 @@ const styles = StyleSheet.create({
   ratingView: {
     flexDirection: "row",
     gap: 5,
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center",
   },
   icons: {
     flexDirection: "row",

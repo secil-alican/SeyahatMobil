@@ -23,6 +23,7 @@ export default function Places({ searchText, cityName }) {
   const [places, setPlaces] = useState([]);
   const [favoriteStatus, setFavoriteStatus] = useState({});
   const [loading, setLoading] = useState(true);
+   const [isFavorite, setIsFavorite] = useState(false);
 
   const user = auth.currentUser;
 
@@ -36,8 +37,9 @@ export default function Places({ searchText, cityName }) {
 
         placesSnapshot.docs.forEach((placeDoc) => {
           const placeData = placeDoc.data();
-          placesData.push(placeData);
+          placesData.push({ id: placeDoc.id, ...placeData });
         });
+
         setPlaces(placesData);
         setLoading(false);
       } catch (error) {
@@ -49,6 +51,7 @@ export default function Places({ searchText, cityName }) {
       placesHandler();
     }
   }, [cityName]);
+
 
   const updateFavorite = async (place) => {
     await handlePlacesFavorites(place);
@@ -86,7 +89,9 @@ export default function Places({ searchText, cityName }) {
     };
 
     fetchFavorites();
-  }, []);
+  }, [favoriteStatus]);
+
+
 
   if (loading) {
     <Lottie />;
@@ -95,9 +100,7 @@ export default function Places({ searchText, cityName }) {
   return (
     <FlatList
       data={places}
-      keyExtractor={(item) =>
-        item.id ? item.id.toString() : Math.random().toString()
-      }
+      keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <View style={styles.viewContainer}>
           <Pressable
@@ -106,7 +109,7 @@ export default function Places({ searchText, cityName }) {
               navigation.navigate("PlaceDetailsScreen", {
                 places: places,
                 placeName: item.placeName,
-                isFav: favoriteStatus[item.placeName],
+
               })
             }
           >

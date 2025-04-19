@@ -15,11 +15,15 @@ import Weather from "../components/Weather";
 import { auth, db } from "../firebase/firebaseConfig";
 import { getDocs, collection } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
+import {
+  isFavoriteActivity,
+  handleActivityFavorites,
+} from "../firebase/firebase";
 
 export default function ActivityDetailsScreen({ route }) {
-  const { activities, activityName, isFav } = route.params;
+  const { activities, activityName } = route.params;
   const [filterActivity, setFilterActivity] = useState([]);
-  const [favoriteActivitiesList, setFavoriteActivitiesList] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const navigation = useNavigation();
 
@@ -34,43 +38,48 @@ export default function ActivityDetailsScreen({ route }) {
     navigation.setOptions({ title: activityName });
   }, [activityName]);
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const user = auth.currentUser;
-        if (!user) return;
+  const updateFavorite = async (place) => {
+     await handleActivityFavorites(place);
+     try {
+       const favoriteData = await isFavoriteActivity(activityName);
+       console.log("Favorite Data: ", favoriteData);
+       setIsFavorite(favoriteData);
+     } catch (error) {
+       console.log("Error fetching favorite status: ", error);
+     }
 
-        const favoritesRef = collection(
-          db,
-          "users",
-          user.uid,
-          "favoriteActivities"
-        );
-        const querySnapshot = await getDocs(favoritesRef);
+   };
 
-        const favorites = querySnapshot.docs.map((doc) => doc.data());
-        setFavoriteActivitiesList(favorites);
-      } catch (error) {
-        console.error("Favori listesi alınırken hata:", error);
-      }
-    };
+   useEffect(() => {
+     const checkFavoritestatus = async () => {
+       try {
+         const favoriteData = await isFavoriteActivity(activityName);
+         console.log("Favorite Data: ", favoriteData);
+         setIsFavorite(favoriteData);
+       } catch (error) {
+         console.log("Error fetching favorite status: ", error);
+       }
+     };
+     checkFavoritestatus();
+   }, [activityName]);
 
-    fetchFavorites();
-  }, []);
 
-  useEffect(() => {
+   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Pressable>
+        <Pressable
+          onPress={() => updateFavorite(filterActivity[0])}
+          style={({ pressed }) => [pressed && styles.pressed]}
+        >
           <MaterialIcons
-            name={isFav ? "favorite" : "favorite-border"}
-            size={30}
-            color={isFav ? "red" : "black"}
+            name={isFavorite ? "favorite" : "favorite-border"}
+            size={25}
+            color={isFavorite ? "red" : "#000"}
           />
         </Pressable>
       ),
     });
-  }, []);
+  }, [isFavorite, filterActivity]);
 
   return (
     <FlatList
@@ -95,7 +104,7 @@ export default function ActivityDetailsScreen({ route }) {
 
             <View style={{ flexDirection: "row", gap: 8, marginBottom: 20 }}>
               <EvilIcons name="location" size={24} color="#A04747" />
-              <Text style={{color: "#555"}}>{item.activityAdress}</Text>
+              <Text style={{ color: "#555" }}>{item.activityAdress}</Text>
             </View>
 
             <Text style={styles.description}>{item.activityDescription}</Text>
@@ -106,7 +115,9 @@ export default function ActivityDetailsScreen({ route }) {
 
             <View style={styles.iconAndClock}>
               <Ionicons name="alarm" size={24} color="#A04747" />
-              <Text style={{ fontSize: 15,color: "#555" }}>{item.activityOpeningHours}</Text>
+              <Text style={{ fontSize: 15, color: "#555" }}>
+                {item.activityOpeningHours}
+              </Text>
             </View>
 
             <FlatList

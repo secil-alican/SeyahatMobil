@@ -85,7 +85,7 @@ export default function FavoritePlaces() {
               <View style={styles.icons}>
                 <View style={styles.ratingView}>
                   <FontAwesome name="star" size={20} color="#EEDF7A" />
-                  <Text>{item?.placeRatings}</Text>
+                  <Text style={{fontWeight:"bold"}}>{item?.placeRatings}</Text>
                 </View>
                 <Pressable
                   style={({ pressed }) => pressed && styles.pressed}
@@ -163,6 +163,8 @@ const styles = StyleSheet.create({
   ratingView: {
     flexDirection: "row",
     gap: 5,
+    justifyContent:"center",
+    alignItems:"center",
   },
   icons: {
     flexDirection: "row",
