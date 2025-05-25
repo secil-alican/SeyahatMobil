@@ -28,12 +28,12 @@ export default function AuthForm({ isLogin, onAuthanticating }) {
 
   const onAuthanticate = () => {
     if (isLogin) {
-      onAuthanticating(email, password);
+      onAuthanticating(email.toLowerCase(), password);
       setEmail("");
       setPassword("");
     } else {
       if (emailValid && passwordValid) {
-        onAuthanticating(email, password);
+        onAuthanticating(email.toLowerCase(), password);
         setEmail("");
         setPassword("");
         setShowError(false);

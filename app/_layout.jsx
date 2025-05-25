@@ -21,6 +21,7 @@ import HistoricalPlacesScreen from "../screens/HistoricalPlacesScreen";
 import CulturalPlacesScreen from "../screens/CulturalPlacesScreen";
 import NaturePlacesScreen from "../screens/NaturePlacesScreen";
 import OnboardScreen from "../screens/OnboardingScreen";
+import ChatBotScreen from "../screens/ChatBotScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -119,6 +120,14 @@ export default function RootLayout() {
                 component={NaturePlacesScreen}
                 options={{
                   title: "Doğa Ve Manzara",
+                  presentation: "modal",
+                }}
+              />
+              <Stack.Screen
+                name="ChatBotScreen"
+                component={ChatBotScreen}
+                options={{
+                  title: "Yapay Zeka Asistanı",
                   presentation: "modal",
                 }}
               />
