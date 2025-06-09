@@ -1,7 +1,5 @@
 //kategori:tarihi,doğa,sanat
 
-
-
 export const cities = [
   {
     city: "Eskisehir",
@@ -758,6 +756,513 @@ export const cities = [
         placeRatings: 4.7,
         placeMap: [
           { latitude: 41.10568484410979, longitude: 29.05688000166506 },
+        ],
+      },
+
+      {
+        category: "Doğa",
+        placeImage:
+          "https://i.ibb.co/7d3W8xZf/pierre-loti-tepesi-istanbulun-buyuleyici-manzarasi-ve-romantik-hikayesi-H1557659-11.webp",
+        placeName: "Pierre Loti Tepesi",
+        placeDescription:
+          "Eyüp’te, Haliç’e nazır muhteşem manzarası ve tepesindeki kafe ile tanınan tarihi bir seyir noktasıdır.",
+        placeAddress: "Merkez, İdris Köşkü Cd., 34050 Eyüpsultan/İstanbul",
+        placeOpeningHours:
+          "(24 saat erişim mümkün, kafe saatleri farklılık gösterebilir)",
+        placeRatings: 4.3,
+        placeMap: [
+          { latitude: 41.054517485420675, longitude: 28.93335163303406 },
+        ],
+      },
+      {
+        category: "Doğa",
+        placeImage: "https://i.ibb.co/twX4tn8D/gulhane-parki.jpg",
+        placeName: "Gülhane Parkı",
+        placeDescription:
+          "Topkapı Sarayı’nın eski bahçesi; tarihi dokusu, yeşilliği ve gezinti yollarıyla İstanbul’un en eski halka açık parkıdır.",
+        placeAddress: "Cankurtaran, Kennedy Cad., 34122 Fatih/İstanbul",
+        placeOpeningHours: "Her zaman erişilebilir",
+        placeRatings: 4.7,
+        placeMap: [
+          { latitude: 41.01346978155904, longitude: 28.981499367424753 },
+        ],
+      },
+      {
+        category: "Doğa",
+        placeImage: "https://i.ibb.co/9mKsNTPh/Atatu-rk-Arboretumu.jpg",
+        placeName: "Atatürk Arboretumu",
+        placeDescription:
+          "Sarıyer’de, çeşitli ağaç ve bitki türleriyle dolu, araştırma ve yürüyüş amaçlı kullanılan 296 ha’lık botanik arboretumdur.",
+        placeAddress:
+          "İstanbul Üniversitesi, Bahçeköy Kemer, Orman Fakültesi, 34450 Sarıyer/İstanbul",
+        placeOpeningHours: "09:00–17:00",
+        placeRatings: 4.6,
+        placeMap: [
+          { latitude: 41.17681190569192, longitude: 28.98528093674485 },
+        ],
+      },
+      {
+        category: "Doğa",
+        placeImage:
+          "https://i.ibb.co/s9dw3fYy/1791-belgrad-ormanlari20201031-184035-eyupsultan-belediyesi-500x300.jpg",
+        placeName: "Belgrad Ormanı",
+        placeDescription:
+          "İstanbul’un kuzeybatısında, 5 524 ha’lık geniş bir ormanlık alan; koşu, yürüyüş, piknik ve tarihi bentlerle zenginleşmiştir.",
+        placeAddress: "Kemerburgaz Yolu, 34450 Sarıyer/İstanbul",
+        placeOpeningHours:
+          "24 saat (piknik alanları ve kafeler sabah–akşam arası)",
+        placeRatings: 4.6,
+        placeMap: [
+          { latitude: 41.19024883583275, longitude: 28.962429222709055 },
+        ],
+      },
+    ],
+    activities: [
+      {
+        activityName: "Avrasya Maratonu’na Katılmak",
+        activityDescription:
+          "Avrupa ile Asya kıtalarını birleştiren benzersiz bir parkurda, 42 km’lik maraton, 15 km’lik halk koşusu ve kısa mesafe yarışlarına katılabilirsiniz.",
+        activityImage: "https://i.ibb.co/Cpt4yxby/65376a5986b24a58a0eb79d2.jpg",
+        activityAdress:
+          "Başlangıç: Kadıköy (Asya) – Varış: Sultanahmet (Avrupa)",
+        activityOpeningHours: "Kayıt sabah 7:00 civarı, start 9:00",
+        activityRatings: 4.8,
+        activityMap: [
+          {
+            latitude: 40.987,
+            longitude: 29.025,
+          },
+        ],
+      },
+      {
+        activityName: "Ortaköy’de Meşhur Kumpir Lezzetini Keşfetmek",
+        activityDescription:
+          "Ortaköy sahilinde yer alan kumpir stantlarında; tereyağı, peynir ve sayısız sos‑malzeme ile doldurulmuş bu lezzeti dene.",
+        activityImage: "https://i.ibb.co/GGDCRJW/ortakoy-kumpir-42542.webp",
+        activityAdress: "Ortaköy, Ortaköy Sahil No:14, 34930 Beşiktaş/İstanbul",
+        activityOpeningHours:
+          "Genelde 09:00–00:00 (standlara göre değişebilir)",
+        activityRatings: 4.6,
+        activityMap: [
+          {
+            latitude: 41.048747413793954,
+            longitude: 29.026984984611794,
+          },
+        ],
+      },
+      {
+        activityName: "Muhsin Ertuğrul Sahnesi’nde Oyun İzlemek",
+        activityDescription:
+          "Harbiye’de tarihî bir tiyatro salonu olan Muhsin Ertuğrul Sahnesi’nde, modern ve klasik oyunları izleyebilirsiniz.",
+        activityImage:
+          "https://i.ibb.co/twRrX6kp/harbiye-muhsin-ertugrul-sahnesi-istse-gj-TIex-Is-Br.jpg",
+        activityAdress: "Harbiye, Darülbedai Cd. No:3, 34367 Şişli/İstanbul",
+        activityOpeningHours: "Genelde 20:00, etkinliğe göre değişir",
+        activityRatings: 5.0,
+        activityMap: [
+          {
+            latitude: 41.04692908621154,
+            longitude: 28.988929282770584,
+          },
+        ],
+      },
+      {
+        activityName: "Çemberlitaş Hamamı’nda Masaj Yaptırmak",
+        activityDescription:
+          "16. yüzyıldan kalan tarihi atmosferde klasik Türk hamamı ritüeli: köpük, kese, masaj ve dinlenme imkanı.",
+        activityImage:
+          "https://i.ibb.co/Lhg36px5/cemberlitas-hamam-turkish-bath-hammam-istanbul-4.jpg",
+        activityAdress: "Molla Fenari, Vezirhan Cd. No:8, 34440 Fatih/İstanbul",
+        activityOpeningHours: "07:30–22:30",
+        activityRatings: 3.9,
+        activityMap: [
+          {
+            latitude: 41.04692908621154,
+            longitude: 28.988929282770584,
+          },
+        ],
+      },
+
+      {
+        activityName: "Üstü Açık Otobüs ile İstanbul Turu",
+        activityDescription:
+          "Çift katlı, üstü açık hop‑on hop‑off otobüsle İstanbul’un tarihi yarımadası, Boğaziçi ve Asya yakasını kapsayan panoramik bir şehir turu yapabilirsiniz. 8 farklı dilde sesli rehberlik ve Wi‑Fi dahil.",
+        activityImage:
+          "https://i.ibb.co/4Rj1PM4g/hop-on-hop-off-istanbul-1647345932.jpg",
+        activityAdress:
+          "Sultanahmet Meydanı veya Taksim Meydanı (başlangıç noktaları)",
+        activityOpeningHours:
+          "Her gün 10:00–17:00, seferler 30–45 dakikada bir",
+        activityRatings: 4.5,
+        activityMap: [
+          {
+            latitude: 41.006759813152705,
+            longitude: 28.97589147454073,
+          },
+        ],
+      },
+
+      {
+        activityName: "Marmara Paintball’da Oynamak",
+        activityDescription:
+          "Avrupa Yakası’nda (Büyükçekmece/Beylikdüzü) orman içinde kurulu parkurda paintball oyunu oynayabilirsiniz.",
+        activityImage: "https://i.ibb.co/6Rpj9B5f/paintball-3-1030x687.jpg",
+        activityAdress:
+          "Fatih, Cengiz Topel Cd. No:48, 34500 Büyükçekmece/İstanbul",
+        activityOpeningHours: "07:30–02:00",
+        activityRatings: 3.8,
+        activityMap: [
+          {
+            latitude: 41.02278533055023,
+            longitude: 28.585694453933286,
+          },
+        ],
+      },
+      {
+        activityName: "KidZania İstanbul’da Rol Yapmak",
+        activityDescription:
+          "Akasya AVM içinde çocuklara yönelik mini şehirde, 120’den fazla meslek deneyimi ile eğlenceli ve eğitici bir gün geçirebilirsiniz.",
+        activityImage: "https://i.ibb.co/YF6xRTZV/kariyer-yonetimi.webp",
+        activityAdress: "Acıbadem, Akasya Avm No:25A, 34660 Üsküdar/İstanbul",
+        activityOpeningHours:
+          "Salı–Cuma 10:00–16:00, Hafta sonu 10:00–20:00 (Pazartesi kapalı)",
+        activityRatings: 4.4,
+        activityMap: [
+          {
+            latitude: 41.000717498344684,
+            longitude: 29.05492969440785,
+          },
+        ],
+      },
+      {
+        activityName: "Olimpik Go Kart’ta Yarışmak",
+        activityDescription:
+          "Türkiye’nin en büyük kapalı go‑kart pisti olan Olimpik Go Kart’ta aile dostu ve eğlenceli turlara katılabilirsiniz.",
+        activityImage:
+          "https://i.ibb.co/VY2HMrGD/20-08-07-00-30-43-1920x1080-1.jpg",
+        activityAdress:
+          "Fevzi Çakmak, Fatih Cd. Bağcılar Olimpik Spor Salonu 50/A, 34200 Bağcılar/İstanbul",
+        activityOpeningHours: "7/24 açık",
+        activityRatings: 4.8,
+        activityMap: [
+          {
+            latitude: 41.042365346297785,
+            longitude: 28.853810682770455,
+          },
+        ],
+      },
+      {
+        activityName: "Alkuzu Binicilik Okulu’nda At Binmek",
+        activityDescription:
+          "Kemerburgaz’da, pony ve atlarla, engel atlama, dressaj ve voltij branşlarında binicilik dersleri alabilirsiniz.",
+        activityImage:
+          "https://i.ibb.co/d4FCcT1K/u-C2-Fx-Fru-Df-W6o9-Xat-Git-R0y6-TSFTEMTZf-WRP-d-D6w46n9e-AVg4-Nx-EOf-X44-I1w-VVUQr-DBw-UU1-QF-1-MLE.jpg",
+        activityAdress:
+          "Mithatpaşa, Kumsu Sk. No:10, 34075, 34075 Eyüpsultan/İstanbul",
+        activityOpeningHours: "09:00–19:00 (Pazartesi kapalı)",
+        activityRatings: 4.4,
+        activityMap: [
+          {
+            latitude: 41.15590190708127,
+            longitude: 28.903772471136516,
+          },
+        ],
+      },
+      {
+        activityName: "Veliefendi Hipodromu’nda At Yarışı İzlemek",
+        activityDescription:
+          "Türkiye’nin en eski ve büyük hipodromu olan Veliefendi’de at yarışlarını izleyebilir, restoran & müze alanlarında zaman geçirebilirsiniz.",
+        activityImage: "https://i.ibb.co/SjfsdyY/67fe99a801456f79bc5c4962.jpg",
+        activityAdress: "Osmaniye, Ekrem Kurt Blv., 34146 Bakırköy/İstanbul",
+        activityOpeningHours: "10:00–18:30",
+        activityRatings: 4.5,
+        activityMap: [
+          {
+            latitude: 40.986722647280295,
+            longitude: 28.88752916742344,
+          },
+        ],
+      },
+
+      {
+        activityName: "Crazy VR Deneyimi",
+        activityDescription:
+          "Şişli’deki VR merkezi Crazy VR’de birbirinden farklı sanal gerçeklik oyunlarını deneyimleyebilir, VR silahlar, sürüş simülasyonları ve özel odalarla eğlenceli vakit geçirebilirsiniz.",
+        activityImage: "https://i.ibb.co/xtHhc26m/egg-9d-simulation.jpg",
+        activityAdress: "Şişli, İstanbul",
+        activityOpeningHours: "10:00–22:00 (Kaynaklara göre değişebilir)",
+        activityRatings: 4.3,
+        activityMap: [{ latitude: 41.06, longitude: 28.998 }],
+      },
+      {
+        activityName: "Beyoğlu Yeşilçam Sineması’nda Film İzlemek",
+        activityDescription:
+          "AKM içindeki bağımsız program sineması olan Yeşilçam Sineması’nda kısa film, belgesel ve bağımsız uzun metraj filmleri izleyebilirsiniz.",
+        activityImage: "https://i.ibb.co/PJpWfnN/photo0jpg.jpg",
+        activityAdress:
+          "Atatürk Kültür Merkezi Kat: -3, 34435 Beyoğlu/İstanbul",
+        activityOpeningHours: "13:30–20:30",
+        activityRatings: 4.5,
+        activityMap: [
+          { latitude: 41.03683453147213, longitude: 28.98758939440985 },
+        ],
+      },
+      {
+        activityName: "Ağva’da Huzurlu Bir Kaçamak",
+        activityDescription:
+          "Göksu ve Yeşilçay nehirlerinin buluştuğu Ağva’da doğa yürüyüşü, nehir kenarında mola, tekne turu ve sakin plaj deneyimi yaşayabilirsiniz.",
+        activityImage: "https://i.ibb.co/sd0HK3CZ/masalevi-otel-agva1.jpg",
+        activityAdress: "Ağva, Şile/İstanbul",
+        activityOpeningHours: "Sürekli erişim (Restoran/konaklama 09:00–22:00)",
+        activityRatings: 4.4,
+        activityMap: [
+          { latitude: 41.13327204441861, longitude: 29.840221484627225 },
+        ],
+      },
+      {
+        activityName: "Çiçek Pasajı’ndaki Meyhanelerde Akşam Yemeği",
+        activityDescription:
+          "Tarihi Çiçek Pasajı’ndaki mahzen meyhanelerinde canlı müzik eşliğinde, mezelerle donatılmış bir akşam yemeği yiyebilirsiniz.",
+        activityImage:
+          "https://i.ibb.co/JjCHsNyT/cicek-pasajinin-en-iyi-5-restorani-lezzetine-doyulmaz-7-600x400.jpg",
+        activityAdress:
+          "Hüseyinağa Mah. İstiklal Cad. Saitpaşa Geçidi No:176, 34435 Beyoğlu/İstanbul",
+        activityOpeningHours: "24 saat açık(restoranlara göre değişebilir)",
+        activityRatings: 4.4,
+        activityMap: [
+          { latitude: 41.03421152721816, longitude: 28.97815018931135 },
+        ],
+      },
+      {
+        activityName: "Tarihi Vefa Bozacısı’na Uğramak",
+        activityDescription:
+          "1876’dan beri hizmet veren, Osmanlı’dan Cumhuriyet’e uzanan tarihi boza dükkanında boza içebilir, yanında tarçınlı leblebi eşliğini tadabilirsiniz.",
+        activityImage:
+          "https://i.ibb.co/MDV4XFNP/vefa-bozacisi-2014-vefa-bozacisinin-sokaktan-gorunusu.jpg",
+        activityAdress: "Molla Hüsrev, Vefa Cd. No:66, 34134 Fatih/İstanbul",
+        activityOpeningHours: "10:00–00:00",
+        activityRatings: 4.6,
+        activityMap: [
+          { latitude: 41.01542350982122, longitude: 28.95840946742486 },
+        ],
+      },
+
+      {
+        activityName: "Süleymaniye Kuru Fasulyecilerinde Kuru Fasulye Tatmak",
+        activityDescription:
+          "Süleymaniye Camii karşısındaki tarihi kuru fasulyecilerde; bol tereyağlı, pilavlı fasulye ve ayranla Türk mutfağının vazgeçilmez lezzetini deneyimleyebilirsiniz.",
+        activityImage:
+          "https://i.ibb.co/4nPRXjNc/ucwzx-W3j-Dcley-IVIZSq-B5-Dv-Ez-Fn-ISvy-Sx-ZCOL7x-Omtfoyt-VXx-MXl-XW4-Op-Zie-Ap7e2-Jj-NQUg-s-BIEKZZL.jpg",
+        activityAdress: "Prof. Sıddık Sami Önar Cd. No:1, Fatih/İstanbul",
+        activityOpeningHours: "Değişir, genelde 09:00–22:00",
+        activityRatings: 4.1,
+        activityMap: [
+          { latitude: 41.016001441579014, longitude: 28.962663844671745 },
+        ],
+      },
+      {
+        activityName: "Mısır Çarşısı’nın Ruhunu Keşfetmek",
+        activityDescription:
+          "17. yüzyıldan bu yana açık olan, baharat, lokum, kuruyemiş ve aktarcılar arasındaki labirent koridorlarda kültürel bir keşif yapabilirsiniz.",
+        activityImage: "https://i.ibb.co/FkQYVPgX/Misir-Carsisi-Istanbul.jpg",
+        activityAdress: "Rüstem Paşa, 34116 Fatih/İstanbul",
+        activityOpeningHours: "08:00–19:30",
+        activityRatings: 4.5,
+        activityMap: [
+          { latitude: 41.01717474658996, longitude: 28.97031344863628 },
+        ],
+      },
+      {
+        activityName: "Süleymaniye Camii Avlusunda Gün Batımı İzlemek",
+        activityDescription:
+          "Mimar Sinan’ın bu muhteşem külliyesinin avlusundan, Haliç ve şehrin silüeti eşliğinde unutulmaz bir gün batımı izleyebilirsiniz.",
+        activityImage: "https://i.ibb.co/DgMCMvWz/istanbul-gun-batimi-22.jpg",
+        activityAdress:
+          "Süleymaniye, Prof. Sıddık Sami Önar Cd. No:1, Fatih/İstanbul",
+        activityOpeningHours: "Gün batımı vakitleri (yaklaşık 19:00–20:30)",
+        activityRatings: 4.8,
+        activityMap: [
+          { latitude: 41.01616638151985, longitude: 28.963472727899745 },
+        ],
+      },
+      {
+        activityName: "Fethi Paşa Korusu’nda Boğaza Nazır Kahvaltı",
+        activityDescription:
+          "Üsküdar’ın yemyeşil Fethi Paşa Korusu’ndaki sosyal tesislerde, Boğaz manzarası eşliğinde serpme veya açık büfe kahvaltı yapabilirsiniz.",
+        activityImage:
+          "https://i.ibb.co/XkyJrnQj/fethipasa-korusu-menu-fiyatlari.png",
+        activityAdress:
+          "Sultantepe, Fethi Paşa Korusu No:14, 34674 Üsküdar/İstanbul",
+        activityOpeningHours: "Hafta içi 08:30–12:00, hafta sonu 08:30–13:00",
+        activityRatings: 4.6,
+        activityMap: [
+          { latitude: 41.03045870711625, longitude: 29.027422710553406 },
+        ],
+      },
+      {
+        activityName: "Galata Mevlevihanesi’ni Ziyaret Etmek",
+        activityDescription:
+          "1491’de inşa edilmiş İstanbul’un ilk Mevlevihanesi’ni gezebilir, semahane, Şeyh Galip Türbesi ve dükkânları keşfedebilirsiniz.",
+        activityImage:
+          "https://i.ibb.co/BH4fHfs7/istnew-Galata-Mevlevi-Museum-istanbul-online-tickets-turkey-4.jpg",
+        activityAdress: "Şahkulu, Galip Dede Cd. No:15, 34420 Beyoğlu/İstanbul",
+        activityOpeningHours: "09:00–18:00 (Pazartesi kapalı)",
+        activityRatings: 4.5,
+        activityMap: [
+          { latitude: 41.02836248189808, longitude: 28.974400223245492 },
+        ],
+      },
+    ],
+    localFoods: [
+      {
+        foodName: "Islak Hamburger",
+        restaurantName: "Kristal Büfe",
+        foodImage: "https://i.ibb.co/async/default.png",
+        foodDescription:
+          "Taksim Meydanı etrafında satılan, sarımsaklı domates sosuyla ıslatılmış bu küçük burgerler gece atıştırmalıklarının favorisi haline gelmiştir.",
+        restaurantRatings: 4.4,
+        restaurantOpeningHours: "24 saat (gece geç saatlerde en yoğundur)",
+        restaurantAdress:
+          "Sıraselviler Cd. No:6, Taksim/Meydan, Beyoğlu/İstanbul",
+        restaurantMap: [{ latitude: 41.0369, longitude: 28.986 }],
+      },
+      {
+        foodName: "Kumpir",
+        restaurantName: "Tarihi Ortaköy Kumpircisi",
+        foodImage: "https://i.ibb.co/5X52j2g7/u9zl-listing.jpg",
+        foodDescription:
+          "Ortaköy sahilindeki stantlarda sunulan tereyağlı fırınlanmış patates, mısır, turşu, zeytin, salatalık, peynir gibi sayısız malzemeyle hazırlanır.",
+        restaurantRatings: 4.2,
+        restaurantOpeningHours: "24 saat (standlara göre değişir)",
+        restaurantAdress:
+          "Mecidiye Mah., Mecidiye Köprüsü Sk. No:3, Beşiktaş/İstanbul",
+        restaurantMap: [
+          { latitude: 41.05461276098914, longitude: 29.028326422428627 },
+        ],
+      },
+      {
+        foodName: "Waffle",
+        restaurantName: "Granny’s Waffles (Moda)",
+        foodImage:
+          "https://i.ibb.co/8nV7tjSb/b18fcddc-3b31-4ae9-9cd1-5a81751d91b3.jpg",
+        foodDescription:
+          "Moda’daki Granny’s Waffles’ta çikolata, meyve ve karamel gibi pek çok sosla hazırlanmış taze waffle’lar sunulur.",
+        restaurantRatings: 4.1,
+        restaurantOpeningHours: "08:00–04:00",
+        restaurantAdress: "Caferağa Mh., Moda Cd. No:176/B, Kadıköy/İstanbul",
+        restaurantMap: [
+          { latitude: 40.98179666233807, longitude: 29.022886238587013 },
+        ],
+      },
+      {
+        foodName: "Kokoreç",
+        restaurantName: "Kral Kokoreç",
+        foodImage: "https://i.ibb.co/v6tTHdDD/blog-25.jpg",
+        foodDescription:
+          "Kuzu bağırsağından yapılan kokoreç, ekmek arası veya porsiyon şeklinde sunulur; Sirkeci’deki Kral Kokoreç gece atıştırması olarak popülerdir.",
+        restaurantRatings: 4.6,
+        restaurantOpeningHours: "10:00–21:00",
+        restaurantAdress:
+          "Büyük Postane Cd. No:26/1, Hobyar Mh., Fatih/İstanbul",
+        restaurantMap: [
+          { latitude: 41.01518251960287, longitude: 28.973242238588927 },
+        ],
+      },
+      {
+        foodName: "Kanlıca Yoğurdu",
+        restaurantName: "Asırlık Kanlıca Yoğurdu",
+        foodImage:
+          "https://i.ibb.co/m51y8CKG/resized-f4981-1136-tur-picture-20190208-17584059-17584047.jpg",
+        foodDescription:
+          "Kanlıca sahilinde, tatlı pudra şekeriyle servis edilen koyu kıvamlı doğal yoğurdur.",
+        restaurantRatings: 4.4,
+        restaurantOpeningHours: "09:00–00:00",
+        restaurantAdress:
+          "İbrahimpaşa Cd. Sıtkı Bey Sk. No:11, Kanlıca/Beykoz/İstanbul",
+        restaurantMap: [
+          { latitude: 41.10015186236595, longitude: 29.065507180921056 },
+        ],
+      },
+
+      {
+        foodName: "Boza",
+        restaurantName: "Vefa Bozacısı",
+        foodImage: "https://i.ibb.co/Q3yRSDbr/4-4-11zon-471.webp",
+        foodDescription:
+          "1876’dan beri Fatih’te hizmet veren, tarçınla sunulan yoğun kıvamlı geleneksel boza.",
+        restaurantRatings: 4.6,
+        restaurantOpeningHours: "10:00–00:00",
+        restaurantAdress:
+          "Mollahüsrev Mah., Vefa Cad. No:66, 34134 Fatih/İstanbul",
+        restaurantMap: [
+          { latitude: 41.01881536513795, longitude: 28.956360263128786 },
+        ],
+      },
+      {
+        foodName: "Türk Kahvesi",
+        restaurantName: "Mandabatmaz Kahve Evi",
+        foodImage:
+          "https://i.ibb.co/cX6CyhxG/854efe88e5fffacf944a6a5607de78fe02c083b9.jpg",
+        foodDescription:
+          "İstiklal Caddesi'nde yoğun köpüklü, sert kıvamıyla ünlü bir klasik Türk kahvesi deneyimi sunar.",
+        restaurantRatings: 4.6,
+        restaurantOpeningHours: "09:30–23:30",
+        restaurantAdress: "Asmalı Mescit, İstiklal Cd. No:19, Beyoğlu/İstanbul",
+        restaurantMap: [
+          { latitude: 41.032838481992805, longitude: 28.976192980917723 },
+        ],
+      },
+      {
+        foodName: "Osmanlı Şerbeti",
+        restaurantName: "Şerbethane Cafe & Restaurant",
+        foodImage: "https://i.ibb.co/Tq2xY2Lm/ramazan-serbetleri-2.webp",
+        foodDescription:
+          "Sultanahmet’te, Arasta Çarşısı altında tarihi dekor içinde demirhindi ve diğer Osmanlı şerbetlerini sunar.",
+        restaurantRatings: 4.4,
+        restaurantOpeningHours: "09:00–23:30",
+        restaurantAdress: "Arasta Çarşısı Sokak, Sultanahmet/Fatih/İstanbul",
+        restaurantMap: [
+          { latitude: 41.004450196984024, longitude: 28.97675398091619 },
+        ],
+      },
+      {
+        foodName: "Közde Mısır",
+        restaurantName: "Sokak Közde Mısır Tezgahları",
+        foodImage:
+          "https://i.ibb.co/hJ3hCGBC/kozde-misir-151-1232020-203529-4843.jpg",
+        foodDescription:
+          "Sultanahmet ve cadde başlarında köz üzerinde pişirilen mısırlar, tereyağı veya baharatla servis edilir.",
+        restaurantRatings: 4.5,
+        restaurantOpeningHours: "10:00–23:00",
+        restaurantAdress: "Sultanahmet ve çevresi, İstanbul",
+        restaurantMap: [{ latitude: 41.0085, longitude: 28.978 }],
+      },
+      {
+        foodName: "Serpme Kahvaltı",
+        restaurantName: "Küff Yeldeğirmeni",
+        foodImage:
+          "https://i.ibb.co/Nd5vR091/0000900-serpme-koy-kahvaltisi-1-kisilik-1200.jpg",
+        foodDescription:
+          "Kadıköy Yeldeğirmeni’nde zengin yöresel seçenekler sunan klasik serpme kahvaltı mekanı.",
+        restaurantRatings: 4.2,
+        restaurantOpeningHours: "08:00–02:00",
+        restaurantAdress: "Rasimpaşa Mah. Caferağa Cd. No:68, Kadıköy/İstanbul",
+        restaurantMap: [
+          { latitude: 40.99588912244153, longitude: 29.029306709751673 },
+        ],
+      },
+      {
+        foodName: "Sushi",
+        restaurantName: "Itsumi",
+        foodImage:
+          "https://i.ibb.co/F4MfGtq2/csm-sushi-kakkoii-2c56fe3133.webp",
+        foodDescription:
+          "Levent’te klasik Japon tarzı nigiri, sashimi ve roll çeşitleriyle öne çıkan şık bir sushi restoranı.",
+        restaurantRatings: 4.6,
+        restaurantOpeningHours: "12:00–23:00",
+        restaurantAdress: "İş Kuleleri Kule 2 D:43, Levent/Beşiktaş/İstanbul",
+        restaurantMap: [
+          { latitude: 41.08289762381901, longitude: 29.012470396264266 },
         ],
       },
     ],
