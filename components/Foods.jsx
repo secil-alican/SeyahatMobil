@@ -92,7 +92,6 @@ export default function Foods({ cityName }) {
               navigation.navigate("FoodDetailsScreen", {
                 foods: foods,
                 foodName: item.foodName,
-
               })
             }
           >
@@ -152,7 +151,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 20,
     elevation: 5,
-    height: 230,
   },
 
   foodName: {

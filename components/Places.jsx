@@ -23,7 +23,7 @@ export default function Places({ searchText, cityName }) {
   const [places, setPlaces] = useState([]);
   const [favoriteStatus, setFavoriteStatus] = useState({});
   const [loading, setLoading] = useState(true);
-   const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const user = auth.currentUser;
 
@@ -51,7 +51,6 @@ export default function Places({ searchText, cityName }) {
       placesHandler();
     }
   }, [cityName]);
-
 
   const updateFavorite = async (place) => {
     await handlePlacesFavorites(place);
@@ -91,8 +90,6 @@ export default function Places({ searchText, cityName }) {
     fetchFavorites();
   }, [favoriteStatus]);
 
-
-
   if (loading) {
     <Lottie />;
   }
@@ -109,7 +106,6 @@ export default function Places({ searchText, cityName }) {
               navigation.navigate("PlaceDetailsScreen", {
                 places: places,
                 placeName: item.placeName,
-
               })
             }
           >
@@ -191,7 +187,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 20,
     elevation: 5,
-    height: 230,
   },
 
   placeName: {

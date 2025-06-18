@@ -356,7 +356,7 @@ export const getHistoricalPlaces = async () => {
 export const getNaturePlaces = async () => {
   try {
     const placeRef = collection(db, "cities", "İstanbul", "places");
-    const q = query(placeRef, where("category", "==", "Manzara"));
+    const q = query(placeRef, where("category", "in", ["Manzara", "Doğa"]));
     const querySnapshot = await getDocs(q);
     const places = [];
     querySnapshot.forEach((doc) => {
@@ -399,10 +399,9 @@ export const isFavoritePlaces = async (name) => {
     }
   } catch (err) {
     console.error(err);
-    return false
+    return false;
   }
 };
-
 
 export const isFavoriteActivity = async (name) => {
   const user = auth.currentUser;
@@ -418,7 +417,7 @@ export const isFavoriteActivity = async (name) => {
     }
   } catch (err) {
     console.error(err);
-    return false
+    return false;
   }
 };
 
@@ -436,7 +435,6 @@ export const isFavoriteFoods = async (name) => {
     }
   } catch (err) {
     console.error(err);
-    return false
+    return false;
   }
 };
-

@@ -39,32 +39,30 @@ export default function ActivityDetailsScreen({ route }) {
   }, [activityName]);
 
   const updateFavorite = async (place) => {
-     await handleActivityFavorites(place);
-     try {
-       const favoriteData = await isFavoriteActivity(activityName);
-       console.log("Favorite Data: ", favoriteData);
-       setIsFavorite(favoriteData);
-     } catch (error) {
-       console.log("Error fetching favorite status: ", error);
-     }
+    await handleActivityFavorites(place);
+    try {
+      const favoriteData = await isFavoriteActivity(activityName);
+      console.log("Favorite Data: ", favoriteData);
+      setIsFavorite(favoriteData);
+    } catch (error) {
+      console.log("Error fetching favorite status: ", error);
+    }
+  };
 
-   };
+  useEffect(() => {
+    const checkFavoritestatus = async () => {
+      try {
+        const favoriteData = await isFavoriteActivity(activityName);
+        console.log("Favorite Data: ", favoriteData);
+        setIsFavorite(favoriteData);
+      } catch (error) {
+        console.log("Error fetching favorite status: ", error);
+      }
+    };
+    checkFavoritestatus();
+  }, [activityName]);
 
-   useEffect(() => {
-     const checkFavoritestatus = async () => {
-       try {
-         const favoriteData = await isFavoriteActivity(activityName);
-         console.log("Favorite Data: ", favoriteData);
-         setIsFavorite(favoriteData);
-       } catch (error) {
-         console.log("Error fetching favorite status: ", error);
-       }
-     };
-     checkFavoritestatus();
-   }, [activityName]);
-
-
-   useEffect(() => {
+  useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <Pressable
@@ -95,7 +93,7 @@ export default function ActivityDetailsScreen({ route }) {
 
           <View style={styles.contentView}>
             <View style={styles.titleAndRatings}>
-              <Text style={styles.title}>{item.activityName}</Text>
+              <Text style={styles.title}>{item.activityName.trim()}</Text>
               <View style={{ flexDirection: "row", gap: 8 }}>
                 <FontAwesome name="star" size={25} color="#EEDF7A" />
                 <Text style={styles.ratings}>{item.activityRatings}</Text>
@@ -104,10 +102,14 @@ export default function ActivityDetailsScreen({ route }) {
 
             <View style={{ flexDirection: "row", gap: 8, marginBottom: 20 }}>
               <EvilIcons name="location" size={24} color="#A04747" />
-              <Text style={{ color: "#555" }}>{item.activityAdress}</Text>
+              <Text style={{ color: "#555" }}>
+                {item.activityAdress.trim()}
+              </Text>
             </View>
 
-            <Text style={styles.description}>{item.activityDescription}</Text>
+            <Text style={styles.description}>
+              {item.activityDescription.trim()}
+            </Text>
 
             <View style={styles.text2}>
               <Text style={{ fontWeight: "500" }}>Eğlenceye hazır mısın?</Text>
@@ -168,6 +170,8 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     justifyContent: "space-between",
     alignItems: "center",
+    flexWrap: "wrap",
+    gap: 10,
   },
   ratings: {
     fontSize: 20,
@@ -177,6 +181,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
     alignItems: "center",
+    justifyContent: "start",
   },
   contentView: {
     borderRadius: 40,

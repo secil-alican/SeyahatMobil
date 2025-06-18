@@ -161,7 +161,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 20,
     elevation: 5,
-    height: 230,
   },
 
   activityName: {

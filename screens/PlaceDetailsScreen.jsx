@@ -47,7 +47,6 @@ export default function PlaceDetailsScreen({ route, navigation }) {
     } catch (error) {
       console.log("Error fetching favorite status: ", error);
     }
-
   };
 
   useEffect(() => {
@@ -176,6 +175,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 20,
     justifyContent: "space-between",
+    alignItems: "center",
   },
   ratings: {
     fontSize: 20,

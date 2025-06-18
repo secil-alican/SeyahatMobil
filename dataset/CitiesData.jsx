@@ -457,7 +457,7 @@ export const cities = [
     places: [
       {
         category: "Tarihi",
-        placeImage: "https://i.ibb.co/7J22QVm3/ayasofyanin-gizemi.png",
+        placeImage: "https://i.ibb.co/FkGQ1TdZ/ayasofyanin-gizemi.png",
         placeName: "Ayasofya",
         placeDescription:
           "Ayasofya, Bizans ve Osmanlı İmparatorlukları dönemlerinde kilise ve cami olarak kullanılan, günümüzde ise müze ve ibadethane olarak ziyaretçilerini ağırlayan tarihi bir yapıdır.",
@@ -474,7 +474,7 @@ export const cities = [
       },
       {
         category: "Tarihi",
-        placeImage: "https://i.ibb.co/jPhQKNph/top1-620x400.jpg",
+        placeImage: "https://i.ibb.co/JjdK5CtB/4.jpg",
         placeName: "Topkapı Sarayı",
         placeDescription:
           "Osmanlı İmparatorluğu’nun yönetim merkezi olarak kullanılan Topkapı Sarayı, ihtişamlı mimarisi ve Osmanlı tarihine dair önemli eserleri ile dikkat çekmektedir.",
@@ -490,7 +490,7 @@ export const cities = [
       },
       {
         category: "Tarihi",
-        placeImage: "https://i.ibb.co/jCqbnwX/blue-mosque-15cbc679cd9d0e.jpg",
+        placeImage: "https://i.ibb.co/ccnKrLd1/blue-mosque-15cbc679cd9d0e.jpg",
         placeName: "Sultanahmet Camii",
         placeDescription:
           "Mavi Camii olarak da bilinen Sultanahmet Camii, Osmanlı dönemine ait en önemli eserlerden biridir. Muhteşem iç dekorasyonu ve altı minaresiyle ünlüdür.",
@@ -507,7 +507,7 @@ export const cities = [
       {
         category: "Tarihi",
         placeImage:
-          "https://i.ibb.co/S7P4DbHk/20231124-kapali-carsi-915520-589236045ac5a157d94f.jpg",
+          "https://i.ibb.co/5X17PfS5/kapali-carsi-nin-tarihi-ve-ozellikleri.jpg",
         placeName: "Kapalı Çarşı",
         placeDescription:
           "Kapalı Çarşı, İstanbul'un en eski ve en büyük kapalı alışveriş merkezlerinden biridir. Altın, halı, baharat ve hediyelik eşya gibi birçok ürün burada bulunabilir.",
@@ -523,7 +523,8 @@ export const cities = [
       },
       {
         category: "Tarihi",
-        placeImage: "https://i.ibb.co/0VmY6m77/bo-azdan-scaled.jpg",
+        placeImage:
+          "https://i.ibb.co/27gwskKB/1200px-Dolmabah-e-Palace-Istanbul-cropped.jpg",
         placeName: "Dolmabahçe Sarayı",
         placeDescription:
           "Osmanlı İmparatorluğu'nun son dönemlerinde kullanılan Dolmabahçe Sarayı, Avrupa mimarisinden etkilenerek inşa edilmiş ve zarif detayları ile göz kamaştırmaktadır.",
@@ -540,7 +541,7 @@ export const cities = [
 
       {
         category: "Manzara",
-        placeImage: "https://i.ibb.co/G4F8tcmd/istanbul-bopshorus.jpg",
+        placeImage: "https://i.ibb.co/HfskLwNk/istanbul-bopshorus-1200x660.jpg",
         placeName: "İstanbul Boğazı",
         placeDescription:
           "İstanbul Boğazı, Asya ve Avrupa kıtalarını ayıran doğal bir su yoludur. Muhteşem manzaraları, tarihi yalıları ve köprüleriyle ünlüdür. Boğaz turlarıyla bu eşsiz güzelliği keşfedebilirsiniz.",
@@ -556,7 +557,7 @@ export const cities = [
       },
       {
         category: "Tarihi",
-        placeImage: "https://i.ibb.co/sdxqgTD9/galata-kulesi-tarihi.webp",
+        placeImage: "https://i.ibb.co/S4T2DnK3/galata-kulesi-tarihi.webp",
         placeName: "Galata Kulesi",
         placeDescription:
           "Galata Kulesi, İstanbul'un en ikonik yapılarından biridir. 14. yüzyılda inşa edilen bu kule, şehrin panoramik manzarasını sunar. Tarihi dokusu ve eşsiz manzarasıyla ziyaretçileri cezbeder.",
@@ -572,7 +573,8 @@ export const cities = [
       },
       {
         category: "Tarihi",
-        placeImage: "https://i.ibb.co/TG95bg5/yerebatan-sarnici-10.jpg",
+        placeImage:
+          "https://i.ibb.co/d4Nzpwhb/yerebatan-sergi-ogu6525-min-Jl-Pk-scaled-1.jpg",
         placeName: "Yerebatan Sarnıcı",
         placeDescription:
           "Yerebatan Sarnıcı, Bizans döneminden kalma yer altı su deposudur. Sarnıç, etkileyici sütunları ve mistik atmosferiyle ziyaretçilerine eşsiz bir deneyim sunar.",
@@ -589,7 +591,8 @@ export const cities = [
       },
       {
         category: "",
-        placeImage: "https://i.ibb.co/tpWb3RMn/Sultan-Ahmet-Cover.jpg",
+        placeImage:
+          "https://i.ibb.co/Z6XWysVj/Sultanahmet-Square-Istanbul-52121369586.jpg",
         placeName: "Sultanahmet Meydanı",
         placeDescription:
           "Sultanahmet Meydanı, İstanbul'un tarihi yarımadasında yer alır ve Ayasofya, Sultanahmet Camii ve Topkapı Sarayı gibi önemli yapılarla çevrilidir. Tarihi dokusu ve mimarisiyle dikkat çeker.",
@@ -606,7 +609,7 @@ export const cities = [
       },
       {
         category: "",
-        placeImage: "https://i.ibb.co/0yDqHd7s/6257739075-67337fc423-b.jpg",
+        placeImage: "https://i.ibb.co/kV5PqYJh/istiklal-caddesi.jpg",
         placeName: "İstiklal Caddesi",
         placeDescription:
           "İstiklal Caddesi, İstanbul'un en popüler alışveriş ve eğlence caddelerinden biridir. Tarihi binaları, mağazaları, restoranları ve sanat galerileriyle ünlüdür.",
@@ -622,7 +625,7 @@ export const cities = [
       },
       {
         category: "",
-        placeImage: "https://i.ibb.co/KjXRG2M9/1200x628.jpg",
+        placeImage: "https://i.ibb.co/0ySvR0tj/Istanbul-Taksim.png",
         placeName: "Taksim Meydanı",
         placeDescription:
           "Taksim Meydanı, İstanbul'un en merkezi noktalarından biridir. Alışveriş merkezleri, restoranlar ve otellerle çevrilidir.",
@@ -635,7 +638,7 @@ export const cities = [
       },
       {
         category: "Tarihi",
-        placeImage: "https://i.ibb.co/bM9RnjJn/kiz-kulesinin-hikayesi.jpg",
+        placeImage: "https://i.ibb.co/0p2Xhy4Q/5.png",
         placeName: "Kız Kulesi",
         placeDescription:
           "Kız Kulesi, İstanbul Boğazı'nda küçük bir adacık üzerinde yer alan tarihi bir kuledir. Günümüzde restoran ve müze olarak hizmet vermektedir.",
@@ -648,7 +651,7 @@ export const cities = [
       },
       {
         category: "Tarihi",
-        placeImage: "https://i.ibb.co/dJ4PTRMp/misir-carsisi.jpg",
+        placeImage: "https://i.ibb.co/Hfx48tNQ/misir-carsisi.jpg",
         placeName: "Mısır Çarşısı",
         placeDescription:
           "Mısır Çarşısı, baharatları, kuruyemişleri ve lokumlarıyla ünlü tarihi bir çarşıdır. Renkli atmosferiyle ziyaretçilerine eşsiz bir alışveriş deneyimi sunar.",
@@ -661,7 +664,8 @@ export const cities = [
       },
       {
         category: "",
-        placeImage: "https://i.ibb.co/5XT5N5DK/607573cbf434d99a1a1a8a23.jpg",
+        placeImage:
+          "https://i.ibb.co/chqL3yrv/shutterstock-1102955216-4-3-1530683360.jpg",
         placeName: "Eminönü",
         placeDescription:
           "Eminönü, İstanbul'un tarihi yarımadasında yer alan ve ticaretin kalbinin attığı bir bölgedir. Balık ekmekçileri, tarihi yapıları ve çarşılarıyla ünlüdür.",
@@ -675,7 +679,7 @@ export const cities = [
       {
         category: "Tarihi",
         placeImage:
-          "https://i.ibb.co/V0NbdNfG/1200px-S-leymaniye-Mosque-Istanbul-cropped.jpg",
+          "https://i.ibb.co/xKntM4zC/S-leymaniye-Mosque-Istanbul-cropped.jpg",
         placeName: "Süleymaniye Camii ve Külliyesi",
         placeDescription:
           "Süleymaniye Camii, Mimar Sinan'ın en önemli eserlerinden biridir ve İstanbul'un siluetine damgasını vurur. Külliye içerisinde medrese, hamam ve imaret gibi yapılar da bulunur.",
@@ -689,7 +693,8 @@ export const cities = [
       },
       {
         category: "Sanat",
-        placeImage: "https://i.ibb.co/JRQd0zDx/koleksiyon-78310-977448.jpg",
+        placeImage:
+          "https://i.ibb.co/9mRyT8yg/istanbul-modern-fotograf-cemal-emden-50878-5656592.jpg",
         placeName: "İstanbul Modern Sanat Müzesi",
         placeDescription:
           "İstanbul Modern, çağdaş sanat eserleriyle tanınan, Türkiye'nin en önemli modern sanat müzelerinden biridir. Sürekli ve geçici sergilere ev sahipliği yapar.",
@@ -704,7 +709,7 @@ export const cities = [
       {
         category: "Sanat",
         placeImage:
-          "https://i.ibb.co/1Y4C40td/istanbul-arkeoloji-muzesi-gezisi.jpg",
+          "https://i.ibb.co/wN3MWZMj/istanbul-arkeoloji-muzesi-gezisi.jpg",
         placeName: "İstanbul Arkeoloji Müzeleri",
         placeDescription:
           "İstanbul Arkeoloji Müzeleri, antik eser koleksiyonlarıyla dünya çapında ünlüdür. Müze, Eski Şark Eserleri Müzesi, Arkeoloji Müzesi ve Çinili Köşk Müzesi olmak üzere üç bölümden oluşur.",
@@ -717,7 +722,7 @@ export const cities = [
       },
       {
         category: "Sanat",
-        placeImage: "https://i.ibb.co/xq1mM1WJ/miniaturk-muzesi-istanbul.jpg",
+        placeImage: "https://i.ibb.co/b52yGNYR/miniaturk-4.png",
         placeName: "Miniatürk",
         placeDescription:
           "Miniatürk, Türkiye'nin önemli tarihi yapılarının minyatür versiyonlarını sergileyen açık hava müzesidir. Çocuklar ve turistler için eğlenceli bir gezi noktasıdır.",
@@ -731,7 +736,7 @@ export const cities = [
       {
         category: "Sanat",
         placeImage:
-          "https://i.ibb.co/gbKL6Vcn/istanbul-pera-museum-exterior2.jpg",
+          "https://i.ibb.co/BH0jzNBj/a226730586e25a35baa97a43a3003591.jpg",
         placeName: "Pera Müzesi",
         placeDescription:
           "Pera Müzesi, Osmanlı ve Cumhuriyet dönemine ait sanat koleksiyonlarıyla dikkat çeker. Düzenlenen sergiler ve kültürel etkinliklerle sanatseverleri ağırlar.",
@@ -746,7 +751,8 @@ export const cities = [
       },
       {
         category: "Sanat",
-        placeImage: "https://i.ibb.co/844Q0rKr/image.jpg",
+        placeImage:
+          "https://i.ibb.co/mr8VkRy6/180108-sakip-sabanci-muzesijpg.jpg",
         placeName: "Sakıp Sabancı Müzesi",
         placeDescription:
           "Sakıp Sabancı Müzesi, Osmanlı hat sanatları, modern sanat eserleri ve geçici sergileriyle İstanbul’un kültürel hayatında önemli bir yere sahiptir.",
@@ -761,8 +767,7 @@ export const cities = [
 
       {
         category: "Doğa",
-        placeImage:
-          "https://i.ibb.co/7d3W8xZf/pierre-loti-tepesi-istanbulun-buyuleyici-manzarasi-ve-romantik-hikayesi-H1557659-11.webp",
+        placeImage: "https://i.ibb.co/Z6j80J3t/pierre-loti-teleferik.jpg",
         placeName: "Pierre Loti Tepesi",
         placeDescription:
           "Eyüp’te, Haliç’e nazır muhteşem manzarası ve tepesindeki kafe ile tanınan tarihi bir seyir noktasıdır.",
@@ -776,7 +781,7 @@ export const cities = [
       },
       {
         category: "Doğa",
-        placeImage: "https://i.ibb.co/twX4tn8D/gulhane-parki.jpg",
+        placeImage: "https://i.ibb.co/0VBJ0qHm/G-lhane-Park-Istanbul.jpg",
         placeName: "Gülhane Parkı",
         placeDescription:
           "Topkapı Sarayı’nın eski bahçesi; tarihi dokusu, yeşilliği ve gezinti yollarıyla İstanbul’un en eski halka açık parkıdır.",
@@ -789,7 +794,8 @@ export const cities = [
       },
       {
         category: "Doğa",
-        placeImage: "https://i.ibb.co/9mKsNTPh/Atatu-rk-Arboretumu.jpg",
+        placeImage:
+          "https://www.turizmgunlugu.com/wp-content/uploads/2020/10/Atatu%CC%88rk-Arboretumu.jpg",
         placeName: "Atatürk Arboretumu",
         placeDescription:
           "Sarıyer’de, çeşitli ağaç ve bitki türleriyle dolu, araştırma ve yürüyüş amaçlı kullanılan 296 ha’lık botanik arboretumdur.",
@@ -804,7 +810,7 @@ export const cities = [
       {
         category: "Doğa",
         placeImage:
-          "https://i.ibb.co/s9dw3fYy/1791-belgrad-ormanlari20201031-184035-eyupsultan-belediyesi-500x300.jpg",
+          "https://i.ibb.co/v6GPK3hM/belgrad-ormani-2-3-SJ677-NHXZ41-D6-GO60-ZBL5-RS35-Y2-OQ.jpg",
         placeName: "Belgrad Ormanı",
         placeDescription:
           "İstanbul’un kuzeybatısında, 5 524 ha’lık geniş bir ormanlık alan; koşu, yürüyüş, piknik ve tarihi bentlerle zenginleşmiştir.",
@@ -822,7 +828,7 @@ export const cities = [
         activityName: "Avrasya Maratonu’na Katılmak",
         activityDescription:
           "Avrupa ile Asya kıtalarını birleştiren benzersiz bir parkurda, 42 km’lik maraton, 15 km’lik halk koşusu ve kısa mesafe yarışlarına katılabilirsiniz.",
-        activityImage: "https://i.ibb.co/Cpt4yxby/65376a5986b24a58a0eb79d2.jpg",
+        activityImage: "https://i.ibb.co/0V9g85nS/1705445.jpg",
         activityAdress:
           "Başlangıç: Kadıköy (Asya) – Varış: Sultanahmet (Avrupa)",
         activityOpeningHours: "Kayıt sabah 7:00 civarı, start 9:00",
@@ -838,7 +844,8 @@ export const cities = [
         activityName: "Ortaköy’de Meşhur Kumpir Lezzetini Keşfetmek",
         activityDescription:
           "Ortaköy sahilinde yer alan kumpir stantlarında; tereyağı, peynir ve sayısız sos‑malzeme ile doldurulmuş bu lezzeti dene.",
-        activityImage: "https://i.ibb.co/GGDCRJW/ortakoy-kumpir-42542.webp",
+        activityImage:
+          "https://i.ibb.co/9Hv0LW8w/b5f84e19a79072d135fb51ec642ad794.jpg",
         activityAdress: "Ortaköy, Ortaköy Sahil No:14, 34930 Beşiktaş/İstanbul",
         activityOpeningHours:
           "Genelde 09:00–00:00 (standlara göre değişebilir)",
@@ -855,7 +862,7 @@ export const cities = [
         activityDescription:
           "Harbiye’de tarihî bir tiyatro salonu olan Muhsin Ertuğrul Sahnesi’nde, modern ve klasik oyunları izleyebilirsiniz.",
         activityImage:
-          "https://i.ibb.co/twRrX6kp/harbiye-muhsin-ertugrul-sahnesi-istse-gj-TIex-Is-Br.jpg",
+          "https://i.ibb.co/xSywfMM3/harbiye-muhsin-ertugrul-sahnesi-istse-gj-TIex-Is-Br.jpg",
         activityAdress: "Harbiye, Darülbedai Cd. No:3, 34367 Şişli/İstanbul",
         activityOpeningHours: "Genelde 20:00, etkinliğe göre değişir",
         activityRatings: 5.0,
@@ -871,7 +878,7 @@ export const cities = [
         activityDescription:
           "16. yüzyıldan kalan tarihi atmosferde klasik Türk hamamı ritüeli: köpük, kese, masaj ve dinlenme imkanı.",
         activityImage:
-          "https://i.ibb.co/Lhg36px5/cemberlitas-hamam-turkish-bath-hammam-istanbul-4.jpg",
+          "https://i.ibb.co/zhyKJ95q/cemberlitas-hamam-turkish-bath-hammam-istanbul-2.jpg",
         activityAdress: "Molla Fenari, Vezirhan Cd. No:8, 34440 Fatih/İstanbul",
         activityOpeningHours: "07:30–22:30",
         activityRatings: 3.9,
@@ -888,7 +895,7 @@ export const cities = [
         activityDescription:
           "Çift katlı, üstü açık hop‑on hop‑off otobüsle İstanbul’un tarihi yarımadası, Boğaziçi ve Asya yakasını kapsayan panoramik bir şehir turu yapabilirsiniz. 8 farklı dilde sesli rehberlik ve Wi‑Fi dahil.",
         activityImage:
-          "https://i.ibb.co/4Rj1PM4g/hop-on-hop-off-istanbul-1647345932.jpg",
+          "https://i.ibb.co/t1xyf80/hop-on-hop-off-istanbul-1647345932.jpg",
         activityAdress:
           "Sultanahmet Meydanı veya Taksim Meydanı (başlangıç noktaları)",
         activityOpeningHours:
@@ -906,7 +913,7 @@ export const cities = [
         activityName: "Marmara Paintball’da Oynamak",
         activityDescription:
           "Avrupa Yakası’nda (Büyükçekmece/Beylikdüzü) orman içinde kurulu parkurda paintball oyunu oynayabilirsiniz.",
-        activityImage: "https://i.ibb.co/6Rpj9B5f/paintball-3-1030x687.jpg",
+        activityImage: "https://i.ibb.co/QFbtxyrQ/paintball-atalca.jpg",
         activityAdress:
           "Fatih, Cengiz Topel Cd. No:48, 34500 Büyükçekmece/İstanbul",
         activityOpeningHours: "07:30–02:00",
@@ -922,7 +929,7 @@ export const cities = [
         activityName: "KidZania İstanbul’da Rol Yapmak",
         activityDescription:
           "Akasya AVM içinde çocuklara yönelik mini şehirde, 120’den fazla meslek deneyimi ile eğlenceli ve eğitici bir gün geçirebilirsiniz.",
-        activityImage: "https://i.ibb.co/YF6xRTZV/kariyer-yonetimi.webp",
+        activityImage: "https://i.ibb.co/zMCxJy9/kariyer-yonetimi.webp",
         activityAdress: "Acıbadem, Akasya Avm No:25A, 34660 Üsküdar/İstanbul",
         activityOpeningHours:
           "Salı–Cuma 10:00–16:00, Hafta sonu 10:00–20:00 (Pazartesi kapalı)",
@@ -939,7 +946,7 @@ export const cities = [
         activityDescription:
           "Türkiye’nin en büyük kapalı go‑kart pisti olan Olimpik Go Kart’ta aile dostu ve eğlenceli turlara katılabilirsiniz.",
         activityImage:
-          "https://i.ibb.co/VY2HMrGD/20-08-07-00-30-43-1920x1080-1.jpg",
+          "https://i.ibb.co/FLt8ytXS/20-08-07-00-30-43-1920x1080-1.jpg",
         activityAdress:
           "Fevzi Çakmak, Fatih Cd. Bağcılar Olimpik Spor Salonu 50/A, 34200 Bağcılar/İstanbul",
         activityOpeningHours: "7/24 açık",
@@ -956,7 +963,7 @@ export const cities = [
         activityDescription:
           "Kemerburgaz’da, pony ve atlarla, engel atlama, dressaj ve voltij branşlarında binicilik dersleri alabilirsiniz.",
         activityImage:
-          "https://i.ibb.co/d4FCcT1K/u-C2-Fx-Fru-Df-W6o9-Xat-Git-R0y6-TSFTEMTZf-WRP-d-D6w46n9e-AVg4-Nx-EOf-X44-I1w-VVUQr-DBw-UU1-QF-1-MLE.jpg",
+          "https://i.ibb.co/v6BQGVpj/SE4-YYN1-THS9s-HXm-Rg-Fl-Zi-Oyxj-Uf-YGJ9k-UCYa-QZULb5-SQm-WKj9-E56w39-SFb-ZMS5jv-Ce-Unc-Ydn-SAUEUZn3.jpg",
         activityAdress:
           "Mithatpaşa, Kumsu Sk. No:10, 34075, 34075 Eyüpsultan/İstanbul",
         activityOpeningHours: "09:00–19:00 (Pazartesi kapalı)",
@@ -972,7 +979,7 @@ export const cities = [
         activityName: "Veliefendi Hipodromu’nda At Yarışı İzlemek",
         activityDescription:
           "Türkiye’nin en eski ve büyük hipodromu olan Veliefendi’de at yarışlarını izleyebilir, restoran & müze alanlarında zaman geçirebilirsiniz.",
-        activityImage: "https://i.ibb.co/SjfsdyY/67fe99a801456f79bc5c4962.jpg",
+        activityImage: "https://i.ibb.co/pvR9wrB1/67fe99a801456f79bc5c4962.jpg",
         activityAdress: "Osmaniye, Ekrem Kurt Blv., 34146 Bakırköy/İstanbul",
         activityOpeningHours: "10:00–18:30",
         activityRatings: 4.5,
@@ -988,7 +995,7 @@ export const cities = [
         activityName: "Crazy VR Deneyimi",
         activityDescription:
           "Şişli’deki VR merkezi Crazy VR’de birbirinden farklı sanal gerçeklik oyunlarını deneyimleyebilir, VR silahlar, sürüş simülasyonları ve özel odalarla eğlenceli vakit geçirebilirsiniz.",
-        activityImage: "https://i.ibb.co/xtHhc26m/egg-9d-simulation.jpg",
+        activityImage: "https://i.ibb.co/7dyC4kcS/egg-9d-simulation.jpg",
         activityAdress: "Şişli, İstanbul",
         activityOpeningHours: "10:00–22:00 (Kaynaklara göre değişebilir)",
         activityRatings: 4.3,
@@ -998,7 +1005,7 @@ export const cities = [
         activityName: "Beyoğlu Yeşilçam Sineması’nda Film İzlemek",
         activityDescription:
           "AKM içindeki bağımsız program sineması olan Yeşilçam Sineması’nda kısa film, belgesel ve bağımsız uzun metraj filmleri izleyebilirsiniz.",
-        activityImage: "https://i.ibb.co/PJpWfnN/photo0jpg.jpg",
+        activityImage: "https://i.ibb.co/rKrSVBRc/beyoglu-sinemasi.jpg",
         activityAdress:
           "Atatürk Kültür Merkezi Kat: -3, 34435 Beyoğlu/İstanbul",
         activityOpeningHours: "13:30–20:30",
@@ -1011,7 +1018,8 @@ export const cities = [
         activityName: "Ağva’da Huzurlu Bir Kaçamak",
         activityDescription:
           "Göksu ve Yeşilçay nehirlerinin buluştuğu Ağva’da doğa yürüyüşü, nehir kenarında mola, tekne turu ve sakin plaj deneyimi yaşayabilirsiniz.",
-        activityImage: "https://i.ibb.co/sd0HK3CZ/masalevi-otel-agva1.jpg",
+        activityImage:
+          "https://i.ibb.co/cRSpVJ5/agvada-kalinacak-yerler-masal-evi-otel.jpg",
         activityAdress: "Ağva, Şile/İstanbul",
         activityOpeningHours: "Sürekli erişim (Restoran/konaklama 09:00–22:00)",
         activityRatings: 4.4,
@@ -1024,7 +1032,7 @@ export const cities = [
         activityDescription:
           "Tarihi Çiçek Pasajı’ndaki mahzen meyhanelerinde canlı müzik eşliğinde, mezelerle donatılmış bir akşam yemeği yiyebilirsiniz.",
         activityImage:
-          "https://i.ibb.co/JjCHsNyT/cicek-pasajinin-en-iyi-5-restorani-lezzetine-doyulmaz-7-600x400.jpg",
+          "https://i.ibb.co/Q3knj57P/cicek-pasajinin-en-iyi-5-restorani-lezzetine-doyulmaz-7-600x400.jpg",
         activityAdress:
           "Hüseyinağa Mah. İstiklal Cad. Saitpaşa Geçidi No:176, 34435 Beyoğlu/İstanbul",
         activityOpeningHours: "24 saat açık(restoranlara göre değişebilir)",
@@ -1037,8 +1045,7 @@ export const cities = [
         activityName: "Tarihi Vefa Bozacısı’na Uğramak",
         activityDescription:
           "1876’dan beri hizmet veren, Osmanlı’dan Cumhuriyet’e uzanan tarihi boza dükkanında boza içebilir, yanında tarçınlı leblebi eşliğini tadabilirsiniz.",
-        activityImage:
-          "https://i.ibb.co/MDV4XFNP/vefa-bozacisi-2014-vefa-bozacisinin-sokaktan-gorunusu.jpg",
+        activityImage: "https://i.ibb.co/7JqdDyKK/Anasayfa01-1.jpg",
         activityAdress: "Molla Hüsrev, Vefa Cd. No:66, 34134 Fatih/İstanbul",
         activityOpeningHours: "10:00–00:00",
         activityRatings: 4.6,
@@ -1052,7 +1059,7 @@ export const cities = [
         activityDescription:
           "Süleymaniye Camii karşısındaki tarihi kuru fasulyecilerde; bol tereyağlı, pilavlı fasulye ve ayranla Türk mutfağının vazgeçilmez lezzetini deneyimleyebilirsiniz.",
         activityImage:
-          "https://i.ibb.co/4nPRXjNc/ucwzx-W3j-Dcley-IVIZSq-B5-Dv-Ez-Fn-ISvy-Sx-ZCOL7x-Omtfoyt-VXx-MXl-XW4-Op-Zie-Ap7e2-Jj-NQUg-s-BIEKZZL.jpg",
+          "https://i.ibb.co/whztDsYJ/ucwzx-W3j-Dcley-IVIZSq-B5-Dv-Ez-Fn-ISvy-Sx-ZCOL7x-Omtfoyt-VXx-MXl-XW4-Op-Zie-Ap7e2-Jj-NQUg-s-BIEKZZL.jpg",
         activityAdress: "Prof. Sıddık Sami Önar Cd. No:1, Fatih/İstanbul",
         activityOpeningHours: "Değişir, genelde 09:00–22:00",
         activityRatings: 4.1,
@@ -1064,7 +1071,7 @@ export const cities = [
         activityName: "Mısır Çarşısı’nın Ruhunu Keşfetmek",
         activityDescription:
           "17. yüzyıldan bu yana açık olan, baharat, lokum, kuruyemiş ve aktarcılar arasındaki labirent koridorlarda kültürel bir keşif yapabilirsiniz.",
-        activityImage: "https://i.ibb.co/FkQYVPgX/Misir-Carsisi-Istanbul.jpg",
+        activityImage: "https://i.ibb.co/dJxjB9Hf/Yeme-Icme-Noktalari.jpg",
         activityAdress: "Rüstem Paşa, 34116 Fatih/İstanbul",
         activityOpeningHours: "08:00–19:30",
         activityRatings: 4.5,
@@ -1076,7 +1083,7 @@ export const cities = [
         activityName: "Süleymaniye Camii Avlusunda Gün Batımı İzlemek",
         activityDescription:
           "Mimar Sinan’ın bu muhteşem külliyesinin avlusundan, Haliç ve şehrin silüeti eşliğinde unutulmaz bir gün batımı izleyebilirsiniz.",
-        activityImage: "https://i.ibb.co/DgMCMvWz/istanbul-gun-batimi-22.jpg",
+        activityImage: "https://i.ibb.co/RTqBRp5s/istanbul-gun-batimi-22.jpg",
         activityAdress:
           "Süleymaniye, Prof. Sıddık Sami Önar Cd. No:1, Fatih/İstanbul",
         activityOpeningHours: "Gün batımı vakitleri (yaklaşık 19:00–20:30)",
@@ -1090,7 +1097,7 @@ export const cities = [
         activityDescription:
           "Üsküdar’ın yemyeşil Fethi Paşa Korusu’ndaki sosyal tesislerde, Boğaz manzarası eşliğinde serpme veya açık büfe kahvaltı yapabilirsiniz.",
         activityImage:
-          "https://i.ibb.co/XkyJrnQj/fethipasa-korusu-menu-fiyatlari.png",
+          "https://i.ibb.co/FLFsR00z/fethipasa-korusu-menu-fiyatlari.png",
         activityAdress:
           "Sultantepe, Fethi Paşa Korusu No:14, 34674 Üsküdar/İstanbul",
         activityOpeningHours: "Hafta içi 08:30–12:00, hafta sonu 08:30–13:00",
@@ -1104,7 +1111,7 @@ export const cities = [
         activityDescription:
           "1491’de inşa edilmiş İstanbul’un ilk Mevlevihanesi’ni gezebilir, semahane, Şeyh Galip Türbesi ve dükkânları keşfedebilirsiniz.",
         activityImage:
-          "https://i.ibb.co/BH4fHfs7/istnew-Galata-Mevlevi-Museum-istanbul-online-tickets-turkey-4.jpg",
+          "https://i.ibb.co/BVZfN6Hr/istnew-Galata-Mevlevi-Museum-istanbul-online-tickets-turkey-4.jpg",
         activityAdress: "Şahkulu, Galip Dede Cd. No:15, 34420 Beyoğlu/İstanbul",
         activityOpeningHours: "09:00–18:00 (Pazartesi kapalı)",
         activityRatings: 4.5,
@@ -1117,7 +1124,7 @@ export const cities = [
       {
         foodName: "Islak Hamburger",
         restaurantName: "Kristal Büfe",
-        foodImage: "https://i.ibb.co/async/default.png",
+        foodImage: "https://i.ibb.co/VWvnBct7/islak-hamburger-t.jpg",
         foodDescription:
           "Taksim Meydanı etrafında satılan, sarımsaklı domates sosuyla ıslatılmış bu küçük burgerler gece atıştırmalıklarının favorisi haline gelmiştir.",
         restaurantRatings: 4.4,
@@ -1129,7 +1136,7 @@ export const cities = [
       {
         foodName: "Kumpir",
         restaurantName: "Tarihi Ortaköy Kumpircisi",
-        foodImage: "https://i.ibb.co/5X52j2g7/u9zl-listing.jpg",
+        foodImage: "https://i.ibb.co/kZWZC0w/u9zl-listing.jpg",
         foodDescription:
           "Ortaköy sahilindeki stantlarda sunulan tereyağlı fırınlanmış patates, mısır, turşu, zeytin, salatalık, peynir gibi sayısız malzemeyle hazırlanır.",
         restaurantRatings: 4.2,
@@ -1144,7 +1151,7 @@ export const cities = [
         foodName: "Waffle",
         restaurantName: "Granny’s Waffles (Moda)",
         foodImage:
-          "https://i.ibb.co/8nV7tjSb/b18fcddc-3b31-4ae9-9cd1-5a81751d91b3.jpg",
+          "https://i.ibb.co/d4djVJGX/b18fcddc-3b31-4ae9-9cd1-5a81751d91b3.jpg",
         foodDescription:
           "Moda’daki Granny’s Waffles’ta çikolata, meyve ve karamel gibi pek çok sosla hazırlanmış taze waffle’lar sunulur.",
         restaurantRatings: 4.1,
@@ -1157,7 +1164,7 @@ export const cities = [
       {
         foodName: "Kokoreç",
         restaurantName: "Kral Kokoreç",
-        foodImage: "https://i.ibb.co/v6tTHdDD/blog-25.jpg",
+        foodImage: "https://i.ibb.co/wFg5G3yY/blog-25.jpg",
         foodDescription:
           "Kuzu bağırsağından yapılan kokoreç, ekmek arası veya porsiyon şeklinde sunulur; Sirkeci’deki Kral Kokoreç gece atıştırması olarak popülerdir.",
         restaurantRatings: 4.6,
@@ -1172,7 +1179,7 @@ export const cities = [
         foodName: "Kanlıca Yoğurdu",
         restaurantName: "Asırlık Kanlıca Yoğurdu",
         foodImage:
-          "https://i.ibb.co/m51y8CKG/resized-f4981-1136-tur-picture-20190208-17584059-17584047.jpg",
+          "https://i.ibb.co/7dgXF3Wk/resized-f4981-1136-tur-picture-20190208-17584059-17584047.jpg",
         foodDescription:
           "Kanlıca sahilinde, tatlı pudra şekeriyle servis edilen koyu kıvamlı doğal yoğurdur.",
         restaurantRatings: 4.4,
@@ -1187,7 +1194,7 @@ export const cities = [
       {
         foodName: "Boza",
         restaurantName: "Vefa Bozacısı",
-        foodImage: "https://i.ibb.co/Q3yRSDbr/4-4-11zon-471.webp",
+        foodImage: "https://i.ibb.co/bM1rwttn/845x554-1-2.jpg",
         foodDescription:
           "1876’dan beri Fatih’te hizmet veren, tarçınla sunulan yoğun kıvamlı geleneksel boza.",
         restaurantRatings: 4.6,
@@ -1202,7 +1209,7 @@ export const cities = [
         foodName: "Türk Kahvesi",
         restaurantName: "Mandabatmaz Kahve Evi",
         foodImage:
-          "https://i.ibb.co/cX6CyhxG/854efe88e5fffacf944a6a5607de78fe02c083b9.jpg",
+          "https://i.ibb.co/jXqktJV/854efe88e5fffacf944a6a5607de78fe02c083b9.jpg",
         foodDescription:
           "İstiklal Caddesi'nde yoğun köpüklü, sert kıvamıyla ünlü bir klasik Türk kahvesi deneyimi sunar.",
         restaurantRatings: 4.6,
@@ -1215,7 +1222,7 @@ export const cities = [
       {
         foodName: "Osmanlı Şerbeti",
         restaurantName: "Şerbethane Cafe & Restaurant",
-        foodImage: "https://i.ibb.co/Tq2xY2Lm/ramazan-serbetleri-2.webp",
+        foodImage: "https://i.ibb.co/5xXQh57v/ramazan-serbetleri-2.webp",
         foodDescription:
           "Sultanahmet’te, Arasta Çarşısı altında tarihi dekor içinde demirhindi ve diğer Osmanlı şerbetlerini sunar.",
         restaurantRatings: 4.4,
@@ -1229,7 +1236,7 @@ export const cities = [
         foodName: "Közde Mısır",
         restaurantName: "Sokak Közde Mısır Tezgahları",
         foodImage:
-          "https://i.ibb.co/hJ3hCGBC/kozde-misir-151-1232020-203529-4843.jpg",
+          "https://i.ibb.co/bj8Fts0t/kozde-misir-151-1232020-203529-4843.jpg",
         foodDescription:
           "Sultanahmet ve cadde başlarında köz üzerinde pişirilen mısırlar, tereyağı veya baharatla servis edilir.",
         restaurantRatings: 4.5,
@@ -1241,7 +1248,7 @@ export const cities = [
         foodName: "Serpme Kahvaltı",
         restaurantName: "Küff Yeldeğirmeni",
         foodImage:
-          "https://i.ibb.co/Nd5vR091/0000900-serpme-koy-kahvaltisi-1-kisilik-1200.jpg",
+          "https://i.ibb.co/mCy05FsS/0000900-serpme-koy-kahvaltisi-1-kisilik-1200.jpg",
         foodDescription:
           "Kadıköy Yeldeğirmeni’nde zengin yöresel seçenekler sunan klasik serpme kahvaltı mekanı.",
         restaurantRatings: 4.2,
@@ -1254,8 +1261,7 @@ export const cities = [
       {
         foodName: "Sushi",
         restaurantName: "Itsumi",
-        foodImage:
-          "https://i.ibb.co/F4MfGtq2/csm-sushi-kakkoii-2c56fe3133.webp",
+        foodImage: "https://i.ibb.co/YF8GnzBb/sushi-kakkoii.jpg",
         foodDescription:
           "Levent’te klasik Japon tarzı nigiri, sashimi ve roll çeşitleriyle öne çıkan şık bir sushi restoranı.",
         restaurantRatings: 4.6,

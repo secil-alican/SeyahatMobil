@@ -10,7 +10,7 @@ export default function Weather({ latitude, longitude }) {
     const fetchWeather = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=20e82ffda8c3e7303fd1dfc634a18c31&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=20e82ffda8c3e7303fd1dfc634a18c31&units=metric&lang=tr`
         );
         setWeather(response.data);
       } catch (error) {
@@ -40,7 +40,7 @@ export default function Weather({ latitude, longitude }) {
         <View style={styles.infoItem}>
           <Text style={styles.text}>Durum: </Text>
           <Text style={styles.value}>
-            {weather.weather?.[0]?.description || "Bilgi yok"}
+            {weather.weather?.[0]?.description.trim() || "Bilgi yok"}
           </Text>
         </View>
 

@@ -91,7 +91,7 @@ const [isFavorite, setIsFavorite] = useState(false);
 
           <View style={styles.contentView}>
             <View style={styles.titleAndRatings}>
-              <Text style={styles.title}>{item.foodName}</Text>
+              <Text style={styles.title}>{item.foodName?.trim()}</Text>
               <View style={{ flexDirection: "row", gap: 8 }}>
                 <FontAwesome name="star" size={25} color="#EEDF7A" />
                 <Text style={styles.ratings}>{item.restaurantRatings}</Text>
